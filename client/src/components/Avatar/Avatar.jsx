@@ -12,7 +12,7 @@ const Avatar = ({children, backgroundColor, px, py, color, borderRadius, fontSiz
         cursor: cursor||null,
         textDecoration: "none"
     };
-    console.log(borderRadius);
+    // console.log(borderRadius);
     // console.log("hello");
   return (
     <div style={style}>
