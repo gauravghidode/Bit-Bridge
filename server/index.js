@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 
 import userRoutes from './routes/users.js'
+import questionRoutes from './routes/Questions.js'
 
 const app = express();
 app.use(express.json({limit: "30mb", extended: true}))
@@ -14,6 +15,7 @@ app.get('/', (req, res)=>{
 });
 
 app.use('/user', userRoutes);
+app.use('/questions', questionRoutes);
 
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL = "mongodb+srv://alokverma73762:4qsRQIJAiHdk1CdK@bitbridge.h76aqik.mongodb.net/?retryWrites=true&w=majority"
