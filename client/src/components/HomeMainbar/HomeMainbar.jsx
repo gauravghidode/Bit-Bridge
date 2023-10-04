@@ -7,104 +7,184 @@ const HomeMainbar = () => {
 
 var questionList=[
     {
-        id:1,
-        votes:3,
+        _id:1,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is a function?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Gaurav",
-        askedOn: "Oct 1"
+        userId:101,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:2,
-        votes:3,
+        _id:2,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:102,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:3,
-        votes:3,
+        _id:3,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"How to center a div?",
         questionBody:"What it meant to be",
         questionTags:["html", "css", "javascript"],
         userPosted:"Gaurav",
-        askedOn: "Oct 1"
+        userId:101,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:4,
-        votes:3,
+        _id:4,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:102,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:5,
-        votes:3,
+        _id:5,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:102,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:6,
-        votes:3,
+        _id:6,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:2,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:7,
-        votes:3,
+        _id:7,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:2,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:8,
-        votes:3,
+        _id:8,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:2,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:2,
-        votes:3,
+        _id:2,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:2,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     },
     {
-        id:2,
-        votes:3,
+        _id:2,
+        upvotes:3,
+        downvotes:2,
         noOfAnswers:2,
         questionTitle:"What is React.js?",
         questionBody:"What it meant to be",
         questionTags:["java", "node.js", "react.js"],
         userPosted:"Alok",
-        askedOn: "Oct 1"
+        userId:2,
+        askedOn: "Oct 1",
+        answer: [{
+            answerBody: "Answer",
+            userAnswered: 'Krishna',
+            answeredOn: 'Oct 4',
+            userId: 1
+        }]
     }
 ];
 
