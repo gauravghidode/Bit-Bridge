@@ -16,7 +16,7 @@ const AskQuestion = () => {
     const handleSubmit = (e)=>{
         e.preventDefault();
         // console.log(questionTitle, questionBody, questionTags);
-        dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name}, navigate))
+        dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}, navigate(-1)))
 
     }
 
@@ -35,7 +35,7 @@ const AskQuestion = () => {
                         <label htmlFor="ask-ques-title">
                             <h4>Title</h4>
                             <p>Your title must summarize the problem</p>
-                            <input type="text" name='questionTitle' id='ask-ques-title' placeholder='Example: How to center a div' onChange={(e)=>{setQuestionTitle(e.target.value)}} />
+                            <input type="text" autoComplete='off' name='questionTitle' id='ask-ques-title' placeholder='Example: How to center a div' onChange={(e)=>{setQuestionTitle(e.target.value)}} />
                         </label>
                         <label htmlFor="ask-ques-body">
                             <h4>Body</h4>
@@ -46,7 +46,7 @@ const AskQuestion = () => {
                         <label htmlFor="ask-ques-tags">
                             <h4>Tags</h4>
                             <p>Add tags to describe what your question is about</p>
-                            <input type="text" name='questionTsag' id='ask-ques-tags' onChange={(e)=>{setQuestionTags(e.target.value.split(' '))}} placeholder='Example: css html frontend'/>
+                            <input type="text" autoComplete='off' name='questionTsag' id='ask-ques-tags' onChange={(e)=>{setQuestionTags(e.target.value.split(' '))}} placeholder='Example: css html frontend'/>
                         </label>
                         <input type="submit" value='Review your question' className='review-btn border-gradient border-gradient-purple grad-btn'/>
                     </div>

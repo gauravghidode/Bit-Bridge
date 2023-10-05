@@ -12,7 +12,7 @@ const QuestionSchema = mongoose.Schema({
     askedOn: {type: Date, default: Date.now},
     answer:[{
         answerBody: String,
-        userAnswer: String,
+        userAnswered: String,
         userId: String,
         answeredOn: {type: Date, default: Date.now},
     }]

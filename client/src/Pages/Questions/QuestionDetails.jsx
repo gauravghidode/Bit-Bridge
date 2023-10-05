@@ -1,16 +1,51 @@
-import React from 'react'
-import { useParams , Link} from 'react-router-dom'
-import {useSelector} from 'react-redux'
+import React ,{useState} from 'react'
+import { useParams , Link, useNavigate, useLocation} from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
+import moment from 'moment'
+import {CopyToClipboard} from 'react-copy-to-clipboard'
+
 import upvote from '../../assets/upvote.svg'
 import downvote from '../../assets/downvote.svg'
 import './Question.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAns from './DisplayAnswer'
+import { postAnswer, deleteQuestion, voteQuestion } from "../../actions/question.js";
 
 const QuestionDetails = () => {
 
     const {id}=useParams();
     const questionList = useSelector(state => state.questionsReducer)
+
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const url = "http://localhost:3000" + location.pathname;
+    const [Answer, setAnswer] = useState("");
+    const User = useSelector((state) => (state.currentUserReducer));
+    const handlePostAns = (e, answerLength)=>{
+        e.preventDefault();
+        if(User === null){
+            alert("Login or Signup to answer a question")
+            navigate('/Auth')
+        }else{
+            if(Answer === '' || Answer.trim() === ''){
+                alert("Enter an answer before submitting")
+            }else{
+                dispatch(postAnswer({id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name, userId: User?.result?._id}, navigate(0)))
+            }
+        }
+    }
+
+    const handleDelete = ()=>{
+        dispatch(deleteQuestion(id, navigate))
+    }
+
+    const handleUpVote =()=>{
+        dispatch(voteQuestion(id, 'upVote', User.result._id))
+    }
+    const handleDownVote =()=>{
+        dispatch(voteQuestion(id, 'downVote', User.result._id))
+    }
     
   return (
     <div className='question-details-page'>
@@ -20,15 +55,15 @@ const QuestionDetails = () => {
             <>
                 {
                     
-                    questionList.data.filter(question => question._id==id).map(question => (
+                    questionList.data.filter(question => question._id===id).map(question => (
                         <div key={question._id}>
                             <section className='question-details-container'> 
                                 <h1>{question.questionTitle}</h1>
                                 <div className='question-details-container-2'>
                                     <div className="question-votes">
-                                        <img src={upvote} alt="" className='material-icons-like'/>
-                                        <p>{question.upvotes-question.downvotes}</p>
-                                        <img src={downvote} className='material-icons-unlike'></img>
+                                        <img src={upvote} alt="" className='material-icons-like' onClick={handleUpVote} />
+                                        <p>{question.upVote.length-question.downVote.length}</p>
+                                        <img src={downvote} className='material-icons-unlike' alt="downvoteButton" onClick={handleDownVote} ></img>
                                     </div>
                                     <div style={{width: '100%'}}>
                                         <p className='question-body'>{question.questionBody}</p>
@@ -39,11 +74,17 @@ const QuestionDetails = () => {
                                         </div>
                                         <div className="question-action-user">
                                             <div>
-                                                <button type='button'>Share</button>
-                                                <button type='button'>Delete</button>
+                                                <CopyToClipboard text={url}>
+                                                    <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
+                                                </CopyToClipboard>
+                                                {
+                                                    User?.result?._id === question?.userId && (
+                                                        <button type='button' onClick={handleDelete} >Delete</button>
+                                                    )
+                                                }
                                             </div>
                                             <div>
-                                                <p>asked on {question.askedOn}</p>
+                                                <p>asked on {moment(question.askedOn).fromNow()}</p>
                                                 <Link to={`/User/${question.userId}`} className='user-link' style={{color: '#white'}}>
                                                     <Avatar backgroundColor="white" px="8px" py="5px">{question.userPosted.charAt(0).toUpperCase()}</Avatar>
                                                     <div>
@@ -56,17 +97,17 @@ const QuestionDetails = () => {
                                 </div>
                             </section>
                             {
-                                question.noOfAnswers!=0 && (
+                                question.noOfAnswers!== 0 && (
                                     <section>
-                                        <h3>{question.noOfAnswers} answers</h3>
+                                        <h3>{question.noOfAnswers} Answers</h3>
                                         <DisplayAns key={question._id}question={question}></DisplayAns>
                                     </section>
                                 )
                             }
                             <section className='post-ans-container'>
                                 <h3>Your answer</h3>
-                                <form>
-                                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <form onSubmit={ (e) => {handlePostAns(e, question.answer.length)}}>
+                                    <textarea name="" id="" cols="30" rows="10" onChange={(e)=> setAnswer(e.target.value)}></textarea>
                                     <input type="Submit" name="" id="" className='post-ans-btn' value='Post Your Answer'/>
                                 </form>
                                 <p>
