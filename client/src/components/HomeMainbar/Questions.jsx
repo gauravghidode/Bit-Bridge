@@ -7,7 +7,7 @@ const Questions = ({question}) => {
         <div className='display-question-details'>
             <Link to={`/Questions/${question._id}`}className='question-title-link'>{question.questionTitle}</Link>
             <div className='display-tags-time'>
-            <div className='display-tags'>
+            <div className='display-tags all-tags'>
                     {
                         question.questionTags.map((tag) => (
                             <div>

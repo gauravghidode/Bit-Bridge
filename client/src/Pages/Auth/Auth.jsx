@@ -66,7 +66,7 @@ const Auth = () => {
           </label>
               {!isSignup && <p style={{color: '#007ac6'}}>Forgot password?</p>}
           
-          <button type='submit' className='auth-btn border-gradient border-gradient-purple '>{isSignup? 'Sign up': 'Login'}</button>
+          <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>{isSignup? 'Sign up': 'Login'}</button>
         </form>
         <p>
           {isSignup? "Already have an account?" : "Don't have an account?"}

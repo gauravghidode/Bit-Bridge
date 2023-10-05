@@ -21,8 +21,8 @@ function Navbar(){
                     <img src={logo} alt="logo" id='bit-bridge-logo'></img>
                 </Link>
                 <Link to='/' className='nav-item nav-btn'>About</Link>
-                <Link to='/' className='nav-item nav-btn'>Products</Link>
-                <Link to='/' className='nav-item nav-btn'>For Teams</Link>
+                <Link to='/' className='nav-item nav-btn'>Contact</Link>
+                <Link to='/' className='nav-item nav-btn'>Feedback</Link>
                 <form action="">
                     <input type="text" placeholder='Search...'/>
                     <span class="material-symbols-outlined search-icon">search</span>

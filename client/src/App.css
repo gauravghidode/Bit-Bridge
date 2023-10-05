@@ -23,3 +23,28 @@ body{
   box-sizing: border-box;
   
 }
+
+.grad-btn{
+  border: 10px solid;
+  border-image-slice: 1;
+  border-width: 3px;
+  border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+  background-image: linear-gradient(to right, rgb(163, 11, 252), rgb(4, 4, 121));
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.grad-btn:hover{
+  /* transform: scale(1.01); */
+  background-image: linear-gradient(to right, rgb(147, 16, 222), rgb(2, 2, 67));
+
+}
+
+.all-tags {
+  background-color: blue;
+}
+

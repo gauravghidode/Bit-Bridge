@@ -48,7 +48,7 @@ const AskQuestion = () => {
                             <p>Add tags to describe what your question is about</p>
                             <input type="text" name='questionTsag' id='ask-ques-tags' onChange={(e)=>{setQuestionTags(e.target.value.split(' '))}} placeholder='Example: css html frontend'/>
                         </label>
-                        <input type="submit" value='Review your question' className='review-btn'/>
+                        <input type="submit" value='Review your question' className='review-btn border-gradient border-gradient-purple grad-btn'/>
                     </div>
                 </form>
             </div>
