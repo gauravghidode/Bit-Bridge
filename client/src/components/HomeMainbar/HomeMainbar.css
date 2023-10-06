@@ -18,7 +18,7 @@
 .main-bar-header .ask-btn{
     padding: 10px 15px;
     border-radius: 4px;
-    background-color: #009dff;
+    background: linear-gradient(to right, #3a3add, rgb(185, 24, 185));
     color: white;
     border: none;
     text-decoration: none;
@@ -26,7 +26,7 @@
 }
 
 .main-bar-header .ask-btn:hover{
-    background-color: #0086d8;
+    background: linear-gradient(to right, rgb(17, 17, 195), purple);
 }
 
 .display-question-container{
@@ -56,12 +56,16 @@
 
 .question-title-link{
     text-decoration: none;
-    color: #037ecb;
+    color:rgb(255, 255, 255, 0.7);
+    font-weight: 600;
     transition: 0.3s;
+    font-size: 14px;
 }
 
 .question-title-link:hover{
-    color: #009dff;
+    background: linear-gradient(to right, rgb(5, 240, 240), rgb(248, 11, 248));
+    -webkit-text-fill-color: transparent; 
+    -webkit-background-clip: text;
 }
 
 .display-question-details{
@@ -94,11 +98,7 @@
     /* margin: 0px; */
 }
 
-.display-tags-time .display-tags div p{
-    height: 20px;
-    background-color: rgb(231, 200, 200);
-    padding: 2px 4px;
-}
+
 
 .display-tags-time .display-time{
     font-size: 13px;

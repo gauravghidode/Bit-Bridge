@@ -21,6 +21,7 @@
 }
 #name{
     background-color: white;
+    color: black;
 }
 .login-logo{
     height: 75px;
@@ -92,9 +93,4 @@
     font-size: 13px;
     cursor: pointer;
 }
-.border-gradient {
-    
-  }
-  .border-gradient-purple {
-    
-  }
+

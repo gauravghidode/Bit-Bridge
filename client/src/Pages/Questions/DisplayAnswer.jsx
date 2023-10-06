@@ -23,24 +23,27 @@ const DisplayAns = ({question}) => {
           <div className="display-ans" key={ans._id}>
             <p>{ans.answerBody}</p>
             <div className='question-actions-user'>
-            <CopyToClipboard text={url}>
-              <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
-            </CopyToClipboard>
-            {
-              User?.result?._id === ans?.userId && (
-                <button type='button' onClick={()=>handleDelete(ans._id, question.noOfAnswers)}>Delete</button>
-              )
-            }
+                <div>
+                <CopyToClipboard text={url}>
+                  <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
+                </CopyToClipboard>
+                {
+                  User?.result?._id === ans?.userId && (
+                    <button type='button' onClick={()=>handleDelete(ans._id, question.noOfAnswers)}>Delete</button>
+                  )
+                }
+                </div>
+                <div>
+                  <p>answered {moment(ans.answeredOn).fromNow()}</p>
+                  <Link to={`/User/${question.userId}`} className='user-link' style={{color: '#white'}}>
+                      <Avatar backgroundColor="white" px="8px" py="5px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
+                      <div>
+                          {ans.userAnswered}
+                      </div>
+                  </Link>
+                </div>
             </div>
-            <div>
-              <p>Answered on {moment(ans.answeredOn).fromNow()}</p>
-              <Link to={`/User/${question.userId}`} className='user-link' style={{color: '#white'}}>
-                  <Avatar backgroundColor="white" px="8px" py="5px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
-                  <div>
-                      {ans.userAnswered}
-                  </div>
-              </Link>
-            </div>
+            
           </div>
         ))
       }

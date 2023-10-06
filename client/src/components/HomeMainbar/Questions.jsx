@@ -8,11 +8,11 @@ const Questions = ({question}) => {
         <div className='display-question-details'>
             <Link to={`/Questions/${question._id}`}className='question-title-link'>{question.questionTitle}</Link>
             <div className='display-tags-time'>
-            <div className='display-tags all-tags'>
+            <div className='display-tags'>
                     {
                         question.questionTags.map((tag) => (
                             <div>
-                                <p key={tag}>{tag}</p>
+                                <p className="all-tags" key={tag}>{tag}</p>
                             </div>
                         ))
                     }

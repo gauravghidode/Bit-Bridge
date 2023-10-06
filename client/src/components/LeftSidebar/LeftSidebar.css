@@ -30,7 +30,7 @@
 
 .side-nav-links{
     text-decoration: none;
-    color: #3a3a3a;
+    color: rgb(255, 255, 255, 0.7);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -40,12 +40,12 @@
 }
 
 .side-nav-links:hover{
-    color: black;
+    color: white;
 }
 
 .active{
     font-weight: bolder;
-    color: black;
-    background-color: white;
-    border-right: solid 3px #ef8236;
+    color: white;
+    background-color: rgb(80, 76, 76);
+    /* border-right: solid 3px #a907b5; */
 }

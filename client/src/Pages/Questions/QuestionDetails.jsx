@@ -72,7 +72,7 @@ const QuestionDetails = () => {
                                             <p key={tag}>{tag}</p>
                                             ))}
                                         </div>
-                                        <div className="question-action-user">
+                                        <div className="question-actions-user">
                                             <div>
                                                 <CopyToClipboard text={url}>
                                                     <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
@@ -114,10 +114,10 @@ const QuestionDetails = () => {
                                     Checkout other questions tagged  
                                     {
                                         question.questionTags.map((tag) => (
-                                            <Link style={{color: 'green'}}key={tag} className='ans-tags'> {tag}</Link>
+                                            <Link key={tag} className='ans-tags all-tags all-links'> {tag}</Link>
                                         ))
                                     } or
-                                    <Link to='/AskQuestion' style={{textDecoration: 'none', color: 'green'}}> ask your own question</Link>
+                                    <Link to='/AskQuestion' className='all-links'> ask your own question</Link>
                                 </p>
                             </section>
                         </div>
