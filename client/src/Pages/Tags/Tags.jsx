@@ -37,7 +37,7 @@
         <LeftSidebar/>
         <div className='home-container-2'>
             <h1 className='tags-h1'>Tags</h1>
-            <p className='tags-p'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsum accusamus illum assumenda facere nemo eaque recusandae ab? Sint, sed animi quisquam corrupti iusto nam, iste mollitia, pariatur doloribus commodi quos.</p>
+            <p className='tags-p'>A tag is a keyword or label that categorizes your question with other, similar questions. <br></br><br></br>Using the right tags make it easier for others to find and answer your question.</p>
             <div className='tags-list-container'>
                 {
                     tagsList.map((tag) => (
