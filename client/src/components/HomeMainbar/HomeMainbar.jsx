@@ -9,8 +9,6 @@ const HomeMainbar = () => {
     const user=1;
     const navigate=useNavigate()
     
-    
-    
     const checkAuth=()=>{
         if(user==null){
             alert("Login or Signup to ask a question");

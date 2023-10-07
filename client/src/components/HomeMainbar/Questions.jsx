@@ -8,7 +8,7 @@ const Questions = ({question}) => {
         <div className='display-question-details'>
             <Link to={`/Questions/${question._id}`}className='question-title-link'>{question.questionTitle}</Link>
             <div className='display-tags-time'>
-            <div className='display-tags'>
+                <div className='display-tags'>
                     {
                         question.questionTags.map((tag) => (
                             <div>
@@ -17,9 +17,11 @@ const Questions = ({question}) => {
                         ))
                     }
                 </div>
-                <p className='display-time'>
-                    asked on {moment(question.askedOn).fromNow()} by {question.userPosted}
+                <div className='display-time'>
+                <p>
+                    Asked {moment(question.askedOn).fromNow()} by {question.userPosted}
                 </p>
+                </div>
                 
             </div>
         </div>
