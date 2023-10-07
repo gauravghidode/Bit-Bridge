@@ -15,9 +15,10 @@ const AskQuestion = () => {
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        
         // console.log(questionTitle, questionBody, questionTags);
-        dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}, navigate(-1)))
-
+        dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}),navigate("/"));
+        window.location.reload();
     }
 
     const handleEnter = (e)=>{
