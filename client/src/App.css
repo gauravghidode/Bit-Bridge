@@ -1,6 +1,6 @@
 body{
   color: white;
-  font-family: sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: 14px;
   background-color: black;
   background-image: url("./assets/home-bg.webp");
@@ -29,12 +29,11 @@ body{
 .grad-btn{
   border: 10px solid;
   border-image-slice: 1;
-  border-width: 3px;
+  border-width: 2px;
   border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
   background-color: black;
   /* background-image: linear-gradient(to right, rgb(163, 11, 252), rgb(4, 4, 121)); */
   color: white;
-  border-radius: 4px;
   cursor: pointer;
   transition: 0.3s;
   font-weight: 400;
@@ -44,10 +43,20 @@ body{
 .grad-btn:hover{
   /* transform: scale(1.01); */
   background-image: linear-gradient(to right, rgb(147, 16, 222), rgb(2, 2, 67));
+}
 
+.inner-grad-btn{
+  background-image: linear-gradient(to right, rgb(163, 11, 252), rgb(4, 4, 121));
+}
+
+.inner-grad-btn:hover{
+  background-image: linear-gradient(to right, rgb(147, 16, 222), rgb(2, 2, 67));
 }
 
 .all-tags {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 20px;
     color: white;
     padding: 3px 5px;
