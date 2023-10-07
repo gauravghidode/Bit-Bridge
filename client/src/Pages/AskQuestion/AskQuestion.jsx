@@ -7,18 +7,38 @@ import './AskQuestion.css'
 const AskQuestion = () => {
     const [questionTitle, setQuestionTitle] = useState('')
     const [questionBody, setQuestionBody] = useState('')
-    const [questionTags, setQuestionTags] = useState('')
-
+    const [validWords, setValidWords] = useState('')
+    let questionTags = []
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const User = useSelector((state) =>( state.currentUserReducer ))
 
     const handleSubmit = (e)=>{
         e.preventDefault();
+        let temp ='';
+        for(let i=0; i< validWords.length; i++){
+            if(validWords[i] !== ' '){
+                temp+=validWords[i];
+            }
+            else{
+                if(temp !==''){
+                    questionTags.push(temp);
+                    temp='';
+                }
+            }
+        }
+        if(temp !==''){
+            questionTags.push(temp);
+            temp='';
+        }
+        if(questionTags.length !== 0){
+            console.log(questionTags);
+            dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}),navigate("/"));
+            window.location.reload();
+        }
+        else
+            alert("Please Enter tags to submit");
         
-        // console.log(questionTitle, questionBody, questionTags);
-        dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}),navigate("/"));
-        window.location.reload();
     }
 
     const handleEnter = (e)=>{
@@ -47,7 +67,7 @@ const AskQuestion = () => {
                         <label htmlFor="ask-ques-tags">
                             <h4>Tags</h4>
                             <p>Add tags to describe what your question is about</p>
-                            <input type="text" autoComplete='off' name='questionTsag' id='ask-ques-tags' onChange={(e)=>{setQuestionTags(e.target.value.split(' '))}} placeholder='Example: css html frontend'/>
+                            <input type="text" autoComplete='off' name='questionTsag' id='ask-ques-tags' onChange={(e)=>{setValidWords(e.target.value)}} placeholder='Example: css html frontend'/>
                         </label>
                         <input type="submit" value='Review your question' className='review-btn border-gradient border-gradient-purple grad-btn'/>
                     </div>

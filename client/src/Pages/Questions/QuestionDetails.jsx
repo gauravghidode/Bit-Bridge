@@ -19,7 +19,7 @@ const QuestionDetails = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const location = useLocation();
-    const url = "http://localhost:3000" + location.pathname;
+    const url = "https://bitbrige.netlify.app" + location.pathname;
     const [Answer, setAnswer] = useState("");
     const User = useSelector((state) => (state.currentUserReducer));
     const handlePostAns = (e, answerLength)=>{
@@ -38,6 +38,7 @@ const QuestionDetails = () => {
 
     const handleDelete = ()=>{
         dispatch(deleteQuestion(id, navigate))
+        window.location.reload();
     }
 
     const handleUpVote =()=>{

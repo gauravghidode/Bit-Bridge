@@ -1,12 +1,14 @@
 .material-icons-like{ color: rgba(255, 255, 255, 1); 
+    cursor: pointer;
     background-color: green;
     border-radius: 50%;
     padding: 3px;}
     
 .material-icons-unlike{ color: rgba(255, 255, 255, 1); 
-      background-color: red;
-      border-radius: 50%;
-      padding: 3px;}
+    cursor: pointer;
+    background-color: red;
+    border-radius: 50%;
+    padding: 3px;}
 
 .question-details-page{
     width: calc( 100% - 24px );
