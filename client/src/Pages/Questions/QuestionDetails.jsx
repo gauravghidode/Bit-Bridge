@@ -108,13 +108,13 @@ const QuestionDetails = () => {
                                 <h3>Your answer</h3>
                                 <form onSubmit={ (e) => {handlePostAns(e, question.answer.length)}}>
                                     <textarea name="" id="" cols="30" rows="10" onChange={(e)=> setAnswer(e.target.value)}></textarea>
-                                    <input type="Submit" name="" id="" className='post-ans-btn' value='Post Your Answer'/>
+                                    <input type="Submit" name="" id="" className='post-ans-btn inner-grad-btn' value='Post Your Answer'/>
                                 </form>
                                 <p>
                                     Checkout other questions tagged  
                                     {
                                         question.questionTags.map((tag) => (
-                                            <Link key={tag} className='ans-tags all-tags all-links'> {tag}</Link>
+                                            <Link key={tag} className='ans-tag'>{tag}</Link>
                                         ))
                                     } or
                                     <Link to='/AskQuestion' className='all-links'> ask your own question</Link>
