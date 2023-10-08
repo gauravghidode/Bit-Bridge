@@ -9,7 +9,6 @@ const Questions = () => {
       <LeftSidebar/>
       <div className='home-container-2'>
         <HomeMainbar/>
-        {/* <RightSidebar/> */}
       </div>
     </div>
   )

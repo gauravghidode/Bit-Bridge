@@ -26,6 +26,22 @@ body{
   
 }
 
+.main-bar{
+  width: calc( 100% );
+  margin: 40px 0px;
+  padding: 0;
+}
+
+.main-bar-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-bar-header h1{
+  font-weight: 400;
+}
+
 .grad-btn{
   border: 10px solid;
   border-image-slice: 1;

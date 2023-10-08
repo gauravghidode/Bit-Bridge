@@ -28,7 +28,7 @@
     {
         id:5,
         tagName: "Network Security",
-        tagDesc: "It contains questions jo ki prateek sir class mai padhate hai "
+        tagDesc: "Questions about network security"
     },
 ]
 
@@ -36,14 +36,19 @@
      <div className='home-container-1'>
         <LeftSidebar/>
         <div className='home-container-2'>
-            <h1 className='tags-h1'>Tags</h1>
-            <p className='tags-p'>A tag is a keyword or label that categorizes your question with other, similar questions. <br></br><br></br>Using the right tags make it easier for others to find and answer your question.</p>
-            <div className='tags-list-container'>
-                {
-                    tagsList.map((tag) => (
-                        <TagsList tag={tag} key={tagsList.id}/>
-                    ))
-                }
+            <div className="main-bar">
+                <div className='main-bar-header'>
+                    <h1 className='tags-h1'>Tags</h1>
+                </div>
+                
+                <p className='tags-p'>A tag is a keyword or label that categorizes your question with other, similar questions. <br></br><br></br>Using the right tags make it easier for others to find and answer your question.</p>
+                <div className='tags-list-container'>
+                    {
+                        tagsList.map((tag) => (
+                            <TagsList tag={tag} key={tagsList.id}/>
+                        ))
+                    }
+                </div>
             </div>
         </div>
      </div>

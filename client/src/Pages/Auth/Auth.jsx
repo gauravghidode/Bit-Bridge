@@ -28,17 +28,25 @@ const Auth = () => {
     if(!email || !password){
       alert("Enter Email and Password.");
     }
-    if(password.length<8){
-      alert("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
-    }
+    let pass=[...password]
     if(isSignup){
-      if(!name){
+      if(password.length<8 || !pass.find((char)=>{
+        return (char>=48 && char<=57)||(char>=65 && char<=90)||(char>=97&&char<=112)
+      })){
+        alert("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
+      }
+      else if(!name){
         alert("Enter your name to continue");
       }else
         dispatch(signUp({name, email, password}, navigate))
     }
     else{
-      dispatch(logIn({email, password}, navigate))
+      try{
+        dispatch(logIn({email, password}, navigate))
+      }catch(e){
+        alert("Invalid credentials");
+      }
+      
     }
   }
 

@@ -5,11 +5,17 @@ import User from "./User";
 const UsersList = () => {
   const users = useSelector((state) => state.usersReducer);
   return (
-    <div className="user-list-container">
-      {users.map((user) => (
-        <User user={user} key={user?._id}></User>
-      ))}
+    <div className="main-bar">
+      <div className="main-bar-header">
+          <h1>Users</h1>
+      </div>
+      <div className="user-list-container">
+        {users.map((user) => (
+          <User user={user} key={user?._id}></User>
+        ))}
+      </div>
     </div>
+
   );
 };
 

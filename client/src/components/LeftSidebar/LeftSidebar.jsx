@@ -1,7 +1,7 @@
 import React from 'react'
 import './LeftSidebar.css';
 import {NavLink} from 'react-router-dom'
-import Globe from '../../assets/Globe.png'
+import Globe from '../../assets/globe-png-9.png'
 import Ganeshji from '../../assets/ganeshji.png'
 import Infinity from '../../assets/infinity.jpg'
 

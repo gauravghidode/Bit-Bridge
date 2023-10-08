@@ -1,5 +1,6 @@
 .web-icon{
     width: 20px;
+    filter: invert(1);
 }
 
 .left-sidebar{

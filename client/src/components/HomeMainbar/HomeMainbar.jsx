@@ -34,10 +34,10 @@ const HomeMainbar = () => {
             {
                 questionList.data===null?
                 <h1>Loading...</h1>:
-                <>
+                <div>
                     <p>{questionList.data.length} questions </p>
                     <QuestionList questionList={questionList.data}></QuestionList>
-                </>
+                </div>
             }
         </div>
     </div>
