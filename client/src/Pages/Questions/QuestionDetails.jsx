@@ -28,10 +28,11 @@ const QuestionDetails = () => {
             alert("Login or Signup to answer a question")
             navigate('/Auth')
         }else{
-            if(Answer === '' || Answer.trim() === ''){
+            if(Answer.trim() === ''){
                 alert("Enter an answer before submitting")
             }else{
                 dispatch(postAnswer({id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name, userId: User?.result?._id}, navigate(0)))
+                console.log(Answer);
             }
         }
     }

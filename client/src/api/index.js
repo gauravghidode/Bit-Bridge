@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const API = axios.create({baseURL: 'https://bitbridgeserver.onrender.com'});
+const API = axios.create({baseURL: 'http://localhost:5000'});
+// const API = axios.create({baseURL: 'https://bitbridgeserver.onrender.com'});
 
 
 export const logIn = (authData) => API.post('user/login', authData);
@@ -15,3 +16,4 @@ export const postAnswer = (id, noOfAnswers, answerBody, userAnswered, userId) =>
 export const deleteAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/delete/${id}`, {id, answerId, noOfAnswers});
 
 export const fetchAllUsers = () => API.get('/user/getAllUsers');
+export const updateProfile = (id, updateData) => API.patch(`/user/update/${id}`, updateData);
