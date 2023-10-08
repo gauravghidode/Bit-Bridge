@@ -10,7 +10,10 @@ const Avatar = ({children, backgroundColor, px, py, color, borderRadius, fontSiz
         fontSize,
         textAlign: "center",
         cursor: cursor||null,
-        textDecoration: "none"
+        textDecoration: "none",
+        minWidth: "12px",
+        display: "flex",
+        justifyContent: "center"
     };
     // console.log(borderRadius);
     // console.log("hello");

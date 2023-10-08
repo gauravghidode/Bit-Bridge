@@ -28,6 +28,9 @@ const Auth = () => {
     if(!email || !password){
       alert("Enter Email and Password.");
     }
+    if(password.length<8){
+      alert("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
+    }
     if(isSignup){
       if(!name){
         alert("Enter your name to continue");
