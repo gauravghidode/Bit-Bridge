@@ -31,8 +31,8 @@ const QuestionDetails = () => {
             if(Answer.trim() === ''){
                 alert("Enter an answer before submitting")
             }else{
-                dispatch(postAnswer({id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name, userId: User?.result?._id}, navigate(0)))
-                console.log(Answer);
+                dispatch(postAnswer({id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name, userId: User?.result?._id}, navigate))
+                e.target.reset();
             }
         }
     }

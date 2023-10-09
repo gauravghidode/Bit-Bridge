@@ -19,6 +19,7 @@ export const logIn = (authData, navigate)=> async (dispatch) =>{
 
         navigate('/');
     } catch (error) {
+        alert("Invalid Credentials...")
         console.log(error);
     }
 }

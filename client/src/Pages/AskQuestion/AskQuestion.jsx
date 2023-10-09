@@ -32,9 +32,9 @@ const AskQuestion = () => {
             temp='';
         }
         if(questionTags.length !== 0){
-            console.log(questionTags);
-            dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}),navigate("/"));
-            window.location.reload();
+            dispatch(askQuestion({questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id}),navigate('/'));
+            
+            console.log(questionTitle,questionBody, questionTags);
         }
         else
             alert("Please Enter tags to submit");
