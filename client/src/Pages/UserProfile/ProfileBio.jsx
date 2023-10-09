@@ -1,7 +1,7 @@
 import React from 'react'
 
 const ProfileBio = ({currentProfile}) => {
-    
+        console.log(currentProfile);
   return (
     <div>
         <div>
@@ -20,10 +20,10 @@ const ProfileBio = ({currentProfile}) => {
         </div>
         <div>
             {
-                currentProfile?.about?(
+                currentProfile?.users?(
                     <>
                         <h4>About</h4>
-                        <p>{currentProfile?.about}</p>
+                        <p>{currentProfile?.users}</p>
                     </>
                 ):(
                     <p>No bio found</p>

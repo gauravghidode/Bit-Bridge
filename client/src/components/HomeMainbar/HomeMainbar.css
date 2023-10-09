@@ -48,7 +48,7 @@
 .question-title-link:hover{
     background: linear-gradient(to right, rgb(5, 240, 240), rgb(248, 11, 248));
     -webkit-text-fill-color: transparent; 
-    -webkit-background-clip: text;
+    background-clip: text;
 }
 
 .display-question-details{

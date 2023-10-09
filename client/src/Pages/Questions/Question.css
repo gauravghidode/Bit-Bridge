@@ -106,11 +106,19 @@
 .user-link{
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .user-link div{
     padding-left: 10px;
+    color:lightskyblue;
 }
+
+/* .user-link:hover{
+    background: linear-gradient(to right, rgb(236, 3, 236), rgb(62, 62, 232));
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+} */
 
 .post-ans-container form textarea{
     padding: 10px;
@@ -125,6 +133,7 @@
 
 .post-ans-container form .post-ans-btn{
     margin: 20px 0px;
+    font-size: 13px;
     padding: 10px 10px;
     color: white;
     border: none;
