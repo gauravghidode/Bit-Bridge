@@ -50,6 +50,7 @@
   
   .nav-item:hover{
     background-color: rgb(200, 200, 200);
+    color: black;
   }
   
   .navbar form{
@@ -91,4 +92,5 @@
   
   .nav-links:hover{
     background-color: #d3e4eb;
+    color: black;
   }
