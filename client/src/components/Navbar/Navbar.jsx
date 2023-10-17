@@ -32,6 +32,7 @@ function Navbar(){
     },[])
     return(
         <nav className='main-nav'>
+            
             <div className="navbar">
                 <Link to='/' className='nav-item nav-logo'>
                     <img src={logo} alt="logo" id='bit-bridge-logo'></img>

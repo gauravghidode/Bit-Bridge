@@ -4,8 +4,10 @@
 }
 
 .left-sidebar{
-    /* position: fixed; */
+    /* position:fixed; */
+    right: 0;
     width: 164px;
+    height: 100vh;
     box-shadow: 1px 1px 0 rgb(0,0,0,0.2);
     transition: box-shadow ease-in-out 0.1s, transform ease-in-out 0.1s;
     transform: translateZ(0);

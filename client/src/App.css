@@ -18,6 +18,7 @@ body{
 }
 
 .home-container-2{
+  margin-left: 164px;
   float: right;
   max-width: 1100px;
   width: calc(100% - 164px);
@@ -91,3 +92,70 @@ body{
     text-decoration: none;
 }
 
+
+/*CSS for hamburger starts here*/
+.toggle-container{
+  position: fixed;
+}
+
+@media screen and (max-width: 720px) {
+  .left-sidebar{
+    position: absolute;
+    transform: translateX(-200px);
+    background-color: black;
+    border-right: 1px solid rgb(255, 255, 255, 0.5);
+  }
+
+  .home-container-2{
+    margin-left: 0px;
+    width: 100%;
+  }
+  
+  #toggle-checkbox{
+    position: absolute;
+    display: none;
+    visibility: hidden;
+  }
+
+  .toggle-container{
+    z-index: 6;
+    left:15;
+    top:15;
+  }
+  
+  .toggle{
+    z-index: 7;
+    position: fixed;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    /* box-shadow: 0px 0px 5px rgb(255, 255, 255, 0.9); */
+    border: solid white 1px;
+  }
+  
+  .toggle .common-line{
+    height: 2px;
+    width: 20px;
+    border-radius: 50px;
+    transition: 0.3s ease;
+    background-color: white;
+  }
+  
+  #toggle-checkbox:checked ~ .left-sidebar{
+    transform: translateX(164px);
+  }
+  
+  #toggle-checkbox:checked ~ .nav{
+    background-color: white;
+  }
+}
+
+
+/*hamburger css ends here */
