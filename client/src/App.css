@@ -110,7 +110,13 @@ body{
     margin-left: 0px;
     width: 100%;
   }
-  
+
+  .left-sidebar .left-links{
+    display: block;
+  }
+  .navbar .nav-btn{
+    display: none;
+  }
   #toggle-checkbox{
     position: absolute;
     display: none;
@@ -119,14 +125,14 @@ body{
 
   .toggle-container{
     z-index: 6;
-    left:15;
-    top:15;
+    
   }
   
   .toggle{
     z-index: 7;
     position: fixed;
-    
+    left:15px;
+    top:15px;
     display: flex;
     flex-direction: column;
     justify-content:space-evenly;
