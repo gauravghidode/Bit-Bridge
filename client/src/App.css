@@ -158,9 +158,23 @@ body{
     transform: translateX(164px);
   }
   
-  #toggle-checkbox:checked ~ .nav{
-    background-color: white;
+  #toggle-checkbox:checked ~ .toggle .middle-line{
+    background-color: red;
+    visibility: hidden;
   }
+  #toggle-checkbox:checked ~ .toggle .top-line{
+    transform: translateX(3px) rotate(45deg); 
+    transform-origin: 0%;
+    background-color: red;
+    width: 22px;
+  }
+  #toggle-checkbox:checked ~ .toggle .bottom-line{
+    transform: translateX(3px) rotate(-45deg);
+    transform-origin: 0%;
+    background-color: red;
+    width: 22px;
+  }
+
 }
 
 
