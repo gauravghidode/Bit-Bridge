@@ -9,6 +9,8 @@ import Tags from './Pages/Tags/Tags';
 import Users from './Pages/Users/Users';
 import UserProfile from './Pages/UserProfile/UserProfile';
 import Quiz from './Pages/Quiz/Quiz';
+import QuizQuestions from './Pages/Quiz/QuizQuestions';
+import AddQuiz from './Pages/Quiz/AddQuiz';
 
 const AllRoutes = () => {
   return ( 
@@ -22,6 +24,8 @@ const AllRoutes = () => {
         <Route path='/Users' element ={<Users/>}/>
         <Route path='/Users/:id' element={<UserProfile/>}/>
         <Route path='/Quiz' element={<Quiz/>}/>
+        <Route path='/Quiz/:id' element={<QuizQuestions/>}/>
+        <Route path='/AddQuiz' element ={<AddQuiz/>}/>
     </Routes>
   )
 }
