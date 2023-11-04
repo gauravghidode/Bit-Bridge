@@ -98,6 +98,46 @@
     color: black;
   }
 
-  
+  @media screen and (max-width: 720px){
+    .navbar{
+      margin-left: 50px;
+    }
+    .nav-logo{
+      padding-left: 0px;
+    }
+    #bit-bridge-logo{
+      margin-left: 0px;
+    }
+  }
+
+  @media screen and (max-width: 400px){
+    .main-nav{
+      height: 40px;
+    }
+    .navbar{
+      margin-left: 50px;
+    }
+    .nav-logo{
+      height:35px;
+      padding-left: 0px;
+    }
+    #bit-bridge-logo{
+      height: 40px;
+      margin-left: 0px;
+    }
+    .navbar input{
+      min-width: 40px;
+      width: 30%;
+      height: 10px;
+      font-size: 8px;
+    }
+    .nav-links{
+      font-size: 10px;
+      padding: 5px;
+    }
+    .main-nav{
+      justify-content: flex-start;
+    }
+  }
 
 

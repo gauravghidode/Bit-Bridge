@@ -18,7 +18,7 @@ const Avatar = ({children, backgroundColor, px, py, color, borderRadius, fontSiz
     // console.log(borderRadius);
     // console.log("hello");
   return (
-    <div style={style}>
+    <div id="avatar" style={style}>
         {children}
     </div>
   )

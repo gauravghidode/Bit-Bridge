@@ -37,7 +37,7 @@ const DisplayAns = ({question}) => {
                 <div>
                   <p>answered {moment(ans.answeredOn).fromNow()}</p>
                   <Link to={`/Users/${ans.userId}`} className='user-link' style={{color: '#white'}}>
-                      <Avatar backgroundColor="white" px="8px" py="5px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
+                      <Avatar backgroundColor="white" px="2px" py="2px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
                       <div>
                           {ans.userAnswered}
                       </div>

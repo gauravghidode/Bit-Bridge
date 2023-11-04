@@ -92,6 +92,18 @@ body{
     text-decoration: none;
 }
 
+#avatar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  background-color: white;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  border: solid black 1px;
+}
+
 
 /*CSS for hamburger starts here*/
 .toggle-container{
@@ -175,7 +187,48 @@ body{
     width: 22px;
   }
 
+  /*hamburger css ends here */
+
 }
 
 
-/*hamburger css ends here */
+
+
+
+@media screen and (max-width: 400px){
+  body{
+    font-size: 10px;
+  }
+  .toggle{
+    height: 22px;
+    width: 22px;
+    border: none;
+  }
+  .toggle .common-line{
+    height: 1.5px;
+  }
+  #toggle-checkbox:checked ~ .toggle .top-line{
+    transform: translateX(3px) rotate(45deg); 
+    transform-origin: 0%;
+    background-color: red;
+    width: 17px;
+  }
+  #toggle-checkbox:checked ~ .toggle .bottom-line{
+    transform: translateX(3px) rotate(-45deg);
+    transform-origin: 0%;
+    background-color: red;
+    width: 17px;
+  }
+  
+  #avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    background-color: white;
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
+
+  }
+}

@@ -163,3 +163,10 @@
 
 
 
+@media screen and (max-width: 400px){
+    body{
+      background-color: green;
+      font-size: x-small;
+    }
+  }
+

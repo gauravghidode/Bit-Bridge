@@ -27,7 +27,7 @@ const UserProfile = () => {
         <section className ="section-container">
             <div className='user-details-container'>
                 <div className='user-details'>
-                    <Avatar backgroundColor="purple" color='white' fontSize='50px' px="40px" py="30px">
+                    <Avatar id="avatar" backgroundColor="purple" color='white' fontSize='50px' px="30px" py="30px" style={{}}>
                         {currentProfile?.name.charAt(0).toUpperCase()}
                     </Avatar>
                     <div className='user-name'>
