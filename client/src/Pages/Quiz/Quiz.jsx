@@ -8,30 +8,38 @@ const Quiz = () => {
   const quizes=[
     {
       _id:"1",
-      type: "assessment",
+      type: "Practice",
+      author: "Mr. Gaurav",
       qname: "dsa quiz1",
       questions: [
         {
+          ques_id: "1",
           ques: "Which of the following is not a data structure?",
           options: ["Array", "List", "Quick Sort", "Tree"],
-          ans: 3
+          ans:"c",
+          ans_desc: "Quick Sort is a sorting algorithm and not a data structure"
         },
         {
+          ques_id: "2",
           ques: "What among the following is not a tree traversal method?",
           options: ["Morris Traversal", "preorder", "postorder", "inorder", "none of the above"],
-          ans: 5
+          ans: "e",
+          ans_desc: "All the above are valid tree traversal techniques, therefore correct answer is none of the above"
         }
       ]
     },
     {
       _id:"2",
-      type: "assessment",
+      type: "Assessment",
+      author: "Mr. Gaurav",
       qname: "Dcn quiz1",
       questions: [
         {
+          ques_id: "1",
           ques: "Which layer is responsible for routing?",
           options: ["Network Layer", "Transport Layer", "Data Link Layer", "Physical layer"],
-          ans:1
+          ans:"a",
+          ans_desc: "Netword layer is responsible for routing"
         }
       ]
     }
@@ -44,7 +52,7 @@ const Quiz = () => {
             <div className="main-bar">
                 <div className="main-bar-header">
                     <h1>Quiz</h1>
-                    <Link to='/AddQuiz'>Add Quiz</Link>
+                    <Link to='/AddQuiz' className='add-btn'>Add Quiz</Link>
                 </div>
                 <div className="quizes-container">
                   {

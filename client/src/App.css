@@ -60,11 +60,16 @@ body{
 
 .grad-btn:hover{
   /* transform: scale(1.01); */
-  background-image: linear-gradient(to right, rgb(147, 16, 222), rgb(2, 2, 67));
+  background-image: linear-gradient(to right, rgb(36, 4, 55), rgb(2, 2, 67));
 }
 
 .inner-grad-btn{
-  background-image: linear-gradient(to right, rgb(163, 11, 252), rgb(4, 4, 121));
+  /* background-image: linear-gradient(to right, rgb(103, 4, 160), rgb(3, 3, 80)); */
+  background-image: linear-gradient(to bottom, purple , black, black);
+  /* background-color: black; */
+  color: white;
+  border-radius: 5px;
+  /* border: 1px solid white; */
 }
 
 .inner-grad-btn:hover{

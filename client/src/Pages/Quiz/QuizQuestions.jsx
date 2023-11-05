@@ -8,6 +8,7 @@ const QuizQuestions = () => {
         {
           _id:"1",
           type: "Practice",
+          author: "Mr. Gaurav",
           qname: "dsa quiz1",
           questions: [
             {
@@ -28,7 +29,8 @@ const QuizQuestions = () => {
         },
         {
           _id:"2",
-          type: "Practice",
+          type: "Assessment",
+          author: "Mr. Gaurav",
           qname: "Dcn quiz1",
           questions: [
             {
@@ -55,9 +57,7 @@ const QuizQuestions = () => {
       }
 
   return (
-    <div className='home-container-1'>
-    <LeftSidebar></LeftSidebar>
-    <div className='home-container-2'>
+      <div className='quiz-main-container'>
         <div className="main-bar">
             <div className="main-bar-header">
                 <h1>{currentquiz.qname}</h1>
@@ -65,9 +65,11 @@ const QuizQuestions = () => {
             </div>
             <div className="quiz-questions-container">
               <form action="" onSubmit={submitQuiz}>
+              <ol type='1'>
               {
                 currentquiz.questions.map((question)=>(
                 <div className="quiz-question" key={question?._id}>
+                  <li>
                     <p>{question.ques}</p>
                     <ol type = "a">
                     {
@@ -79,6 +81,7 @@ const QuizQuestions = () => {
                           )) 
                     }
                     </ol>  
+                  </li>
                     
                     {currentquiz.type==="Practice" && <details>
                         <summary>Show Answer</summary>
@@ -90,12 +93,14 @@ const QuizQuestions = () => {
                 </div>
                 ))
               }
-              <button type='submit'>Submit</button>
+              </ol>
+              
+              <button type='submit' className='quiz-submit-btn'>Submit</button>
               </form>
             </div>
         </div>
-    </div>
-</div>
+      </div>
+
   )
 }
 

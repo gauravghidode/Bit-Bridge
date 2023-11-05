@@ -39,16 +39,25 @@ const AddQuiz = () => {
                     </div>
                     <div className="create-quiz-container">
                         <form action="">
-                            <label htmlFor="" id='quizType'>Quiz type:</label><br />
-                            <input type="radio" name='quizType' id='Assessment' />
-                            <label htmlFor="Assessment">Assessment</label>
-                            <input type="radio" name='quizType' id='Practice' />
-                            <label htmlFor="Practice">Practice</label>
-                            <p>Enter the name of quiz: <input type="text" id='quizName' /></p>
-                            <br />
+                            
+                            <p>
+                                <label htmlFor="" id='quizType'>Quiz type:</label>
+                                <input type="radio" name='quizType' id='Assessment' />
+                                <label htmlFor="Assessment">Assessment</label>
+                                <input type="radio" name='quizType' id='Practice' />
+                                <label htmlFor="Practice">Practice</label>
+                            </p>
+                            
+                            <label>
+                                <p>Quiz Name</p>
+                                <input type="text" id='quizName' />
+                            </label>
+                            <ol type='1'>
                             {
                                 currentquiz?.map((question) => (
+                                    
                                     <div className="quiz-question" key={question?._id}>
+                                        <li>
                                         <p>{question.ques}</p>
                                         <ol type="a">
                                             {
@@ -61,17 +70,26 @@ const AddQuiz = () => {
                                             }
                                             <div><p>Correct option: {question.ans}</p> <p>{question.ans_desc}</p></div>
                                         </ol>
+                                        </li>
                                     </div>
+                                    
                                 ))
                             }
-                            <p>Question: <input type="text" name="" id="questionName" /></p>
+                            </ol>
+                            <div className='add-quiz-question'>
+                            <label><p>Question </p><textarea type="text" name="" id="questionName" placeholder='Enter Question'/></label>
 
-                            <p>Options: <input id='option' type="text" /> <input type="button" value='Add option' onClick={addOption} /></p>
-                            <p>Correct Option: <input type="text" name="" id="correctOption" /></p>
-                            <p>Answer Description: <input type="text" id="answerDescription" /></p>
-                            <input type="button" value='Add Question' onClick={addQuestion} />
+                            <label><p>Option</p> <input id='option' type="text" placeholder='Enter options one by one'/> <input className='inner-grad-btn' type="button" value='Add option' onClick={addOption} /></label>
+                            <div className='add-quiz-ans'>
+                                <label><p>Correct option</p> <input type="text" name="" id="correctOption" placeholder='Enter the correct option'/></label>
+                                <label><p>Answer Description</p> <textarea rows='2'  cols='200' id="answerDescription" placeholder='Enter answer description'/></label>
+                            </div>
+                            
                             <br />
-                            <button type='submit'>Submit</button>
+                            <p><input type="button" className='inner-grad-btn' value='Add Question' onClick={addQuestion} /></p>
+                            </div>
+                            
+                            <button type='submit' className='grad-btn' >Submit</button>
                         </form>
                     </div>
                 </div>
