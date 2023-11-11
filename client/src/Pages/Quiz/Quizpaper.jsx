@@ -17,7 +17,7 @@ const Quizpaper = ({quiz}) => {
             </div> 
         </div> 
         <Link to={`/Quiz/${quiz._id}`}>
-            <button className='quiz-submit-btn'>Take Quiz</button>    
+            <button className='inner-grad-btn'>Take Quiz</button>    
         </Link>
     </div>
   )

@@ -56,24 +56,27 @@ body{
   transition: 0.3s;
   font-weight: 400;
   font-size: 13px;
+  padding: 5px 10px ;
 }
 
 .grad-btn:hover{
   /* transform: scale(1.01); */
-  background-image: linear-gradient(to right, rgb(36, 4, 55), rgb(2, 2, 67));
+  background-image: linear-gradient(to right, rgb(121, 6, 188), rgb(6, 6, 123));
 }
 
 .inner-grad-btn{
   /* background-image: linear-gradient(to right, rgb(103, 4, 160), rgb(3, 3, 80)); */
-  background-image: linear-gradient(to bottom, purple , black, black);
+  background-image: linear-gradient(to right, rgb(102, 1, 102) , rgb(17, 17, 99));
   /* background-color: black; */
   color: white;
   border-radius: 5px;
-  /* border: 1px solid white; */
+  font-size: 13px;
+  padding: 5px;
+  border: 1px solid black;
 }
-
 .inner-grad-btn:hover{
-  background-image: linear-gradient(to right, rgb(147, 16, 222), rgb(2, 2, 67));
+  background-image: linear-gradient(to top, black , black, black);
+  border-color: white;
 }
 
 .all-tags {

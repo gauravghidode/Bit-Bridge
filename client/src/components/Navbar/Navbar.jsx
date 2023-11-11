@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
 
@@ -9,12 +9,21 @@ import './Navbar.css'
 import { useEffect } from 'react';
 import { setCurrentUser } from '../../actions/currentUser';
 
-
-
 function Navbar(){
     var User = useSelector((state) => (state.currentUserReducer))
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const location= useLocation();
+
+    const [searchText, setSearchText] = useState("");
+    function handleSearch(e){
+        console.log("searh text: "+searchText);
+        console.log(location.pathname);
+    }
+    function handleChange(e){
+        setSearchText(e.target.value);
+    }
+
     const handleLogOut = ()=>{
         dispatch({type: 'LOGOUT'});
         navigate('/')
@@ -41,8 +50,8 @@ function Navbar(){
                 <Link to='/' className='nav-item nav-btn'>Contact</Link>
                 <Link to='/' className='nav-item nav-btn'>Feedback</Link>
                 <form action="">
-                    <input type="text" placeholder='Search...'/>
-                    <span class="material-symbols-outlined search-icon">search</span>
+                    <input type="text" id="search-bar" placeholder='Search...' onChange={handleChange}/>
+                    <span class="material-symbols-outlined search-icon" onClick={handleSearch}>search</span>
                 </form>
                 {
                     User===null?

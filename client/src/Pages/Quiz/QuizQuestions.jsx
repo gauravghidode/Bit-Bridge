@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
+import { useNavigate } from 'react-router-dom'
+
 
 const QuizQuestions = () => {
 
@@ -44,6 +46,9 @@ const QuizQuestions = () => {
         }
       ]
 
+      const navigate= useNavigate();
+      var path=useLocation();
+      var [flag, setFlag] = useState("end");
       const [submited, setsubmited] = useState(false);
       const {id}= useParams();
       const currentquiz = quizes.filter((quiz)=>(
@@ -51,14 +56,48 @@ const QuizQuestions = () => {
       ))[0];
       
       // console.log(currentquiz);
+      function startQuiz(e){
+        setFlag("start");
+      }
+
       function submitQuiz(e){
+        setFlag(false);
+        console.log(flag);
         setsubmited(true);
         e.preventDefault();
       }
+      window.onfocus = function (ev) {
+          console.log("flag "+flag);
+      };
+      
+      
+      
 
   return (
       <div className='quiz-main-container'>
+        {
+        flag==="end"? 
+        <div>
+            <h1>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</h1>
+            <button onClick={startQuiz}>Click here to start</button>
+        </div>
+        :
         <div className="main-bar">
+          {
+            window.onblur = async function (ev) {
+              // console.log(path.pathname);
+              // console.log("/Quiz/"+id);
+              if(flag==="start"){
+                console.log("lost focus");
+                
+                setFlag("end");
+                submitQuiz(ev);
+                console.log(flag);
+                alert("Your quiz has been auto submitted");
+                // navigate('/Quiz');
+              }
+            }
+          }
             <div className="main-bar-header">
                 <h1>{currentquiz.qname}</h1>
                 <h2>{currentquiz.type} Quiz</h2>
@@ -99,6 +138,8 @@ const QuizQuestions = () => {
               </form>
             </div>
         </div>
+
+        } 
       </div>
 
   )
