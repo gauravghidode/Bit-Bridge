@@ -46,9 +46,9 @@ function Navbar(){
                 <Link to='/' className='nav-item nav-logo'>
                     <img src={logo} alt="logo" id='bit-bridge-logo'></img>
                 </Link>
-                <Link to='/' className='nav-item nav-btn'>About</Link>
-                <Link to='/' className='nav-item nav-btn'>Contact</Link>
-                <Link to='/' className='nav-item nav-btn'>Feedback</Link>
+                <Link to='/About' className='nav-item nav-btn'>About</Link>
+                <Link to='/Contact' className='nav-item nav-btn'>Contact</Link>
+                {/* <Link to='/' className='nav-item nav-btn'>Feedback</Link> */}
                 <form action="">
                     <input type="text" id="search-bar" placeholder='Search...' onChange={handleChange}/>
                     <span class="material-symbols-outlined search-icon" onClick={handleSearch}>search</span>

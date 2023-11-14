@@ -36,9 +36,9 @@ const LeftSidebar = () => {
                     
                 </div>
                 <div className="left-links side-nav-div">
-                    <Link to='/' className='side-nav-links' style={{paddingLeft: "40px", paddingTop: "20px"}}>About</Link>
-                    <Link to='/' className='side-nav-links' style={{paddingLeft: "40px", paddingTop: "20px"}}>Contact</Link>
-                    <Link to='/' className='side-nav-links' style={{paddingLeft: "40px", paddingTop: "20px"}}>Feedback</Link>
+                    <Link to='/About' className='side-nav-links' style={{paddingLeft: "40px", paddingTop: "20px"}}>About</Link>
+                    <Link to='/Contact' className='side-nav-links' style={{paddingLeft: "40px", paddingTop: "20px"}}>Contact</Link>
+                    {/* <Link to='/' className='side-nav-links' style={{paddingLeft: "40px", paddingTop: "20px"}}>Feedback</Link> */}
                 </div>
             </nav>
         </div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
+import './Quiz.css';
 
 
 const QuizQuestions = () => {
@@ -69,17 +71,37 @@ const QuizQuestions = () => {
       window.onfocus = function (ev) {
           console.log("flag "+flag);
       };
-      
-      
+
+      const User = useSelector((state) =>( state.currentUserReducer ))
+      console.log(User);
       
 
   return (
       <div className='quiz-main-container'>
         {
         flag==="end"? 
-        <div>
-            <h1>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</h1>
-            <button onClick={startQuiz}>Click here to start</button>
+        <div className='main-bar'>
+            <div className="main-bar-header">
+                <h1>{currentquiz.qname}</h1>
+                <h2>{currentquiz.type} Quiz</h2>
+            </div>
+            <p>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</p>
+            <form action="">
+              <label htmlFor="">
+                <p>Name: </p>
+                <input type="text" name="" id="" value={User.result.name}/>
+              </label>
+              <label htmlFor="">
+                <p>Email: </p>
+                <input type="text" name="" id="" value={User.result.email} />
+              </label>
+              <p>
+                <button onClick={startQuiz} className='quiz-submit-btn'>Click here to start</button>
+              </p>
+              
+            </form>
+            
+            
         </div>
         :
         <div className="main-bar">
@@ -133,7 +155,6 @@ const QuizQuestions = () => {
                 ))
               }
               </ol>
-              
               <button type='submit' className='quiz-submit-btn'>Submit</button>
               </form>
             </div>
