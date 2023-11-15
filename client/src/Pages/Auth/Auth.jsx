@@ -41,7 +41,10 @@ const Auth = () => {
     let pass = [...password]
     // console.log(pass);
     if (isSignup) {
-      if (password.length < 8 || !check(pass)){
+      if(!email.endsWith('@nitj.ac.in')){
+        alert("Invalid email address, enter your institute email to continue")
+      }
+      else if (password.length < 8 || !check(pass)){
         alert("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
       }
       else if (!name) {

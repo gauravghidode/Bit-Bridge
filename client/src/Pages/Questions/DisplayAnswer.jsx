@@ -16,7 +16,8 @@ const DisplayAns = ({question}) => {
   const handleDelete = (answerId, noOfAnswers)=>{
     dispatch(deleteAnswer(id, answerId, noOfAnswers-1));
   }
-  console.log(question);
+  // console.log(question);
+  console.log(User);
   return (
     <div>
       {
@@ -29,7 +30,7 @@ const DisplayAns = ({question}) => {
                   <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
                 </CopyToClipboard>
                 {
-                  User?.result?._id === ans?.userId && (
+                  (User?.result?._id === ans?.userId  || User?.result?.role==='admin') && (
                     <button type='button' onClick={()=>handleDelete(ans._id, question.noOfAnswers)}>Delete</button>
                   )
                 }
