@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import decode from 'jwt-decode'
+import Searchbar from './Searchbar';
 
 import logo from '../../assets/logo.png';
 import Avatar from '../Avatar/Avatar';
@@ -15,14 +16,6 @@ function Navbar(){
     const navigate = useNavigate();
     const location= useLocation();
 
-    const [searchText, setSearchText] = useState("");
-    function handleSearch(e){
-        console.log("searh text: "+searchText);
-        console.log(location.pathname);
-    }
-    function handleChange(e){
-        setSearchText(e.target.value);
-    }
 
     const handleLogOut = ()=>{
         dispatch({type: 'LOGOUT'});
@@ -49,10 +42,7 @@ function Navbar(){
                 <Link to='/About' className='nav-item nav-btn'>About</Link>
                 <Link to='/Contact' className='nav-item nav-btn'>Contact</Link>
                 {/* <Link to='/' className='nav-item nav-btn'>Feedback</Link> */}
-                <form action="">
-                    <input type="text" id="search-bar" placeholder='Search...' onChange={handleChange}/>
-                    <span class="material-symbols-outlined search-icon" onClick={handleSearch}>search</span>
-                </form>
+                <Searchbar></Searchbar>
                 {
                     User===null?
                     <Link to='/Auth' className='nav-item nav-links'>Login</Link>:

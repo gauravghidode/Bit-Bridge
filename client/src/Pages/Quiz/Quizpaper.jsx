@@ -8,7 +8,7 @@ const Quizpaper = ({quiz}) => {
     // console.log(quiz);
     const navigate=useNavigate();
     const User = useSelector((state) =>( state.currentUserReducer ))
-      console.log(User);
+    //   console.log(User);
 
       function redirect(){
         if(User===null){

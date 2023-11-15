@@ -1,7 +1,19 @@
 import React, { useState } from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { createQuiz } from '../../actions/quiz';
 
 const AddQuiz = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const User = useSelector((state) =>( state.currentUserReducer ))
+
+    const [quizName, setQuizName] = useState("General Quiz");
+    const [quizAuthor] = useState(User?.result?._id);
+    const [quizType, setQuizType] = useState("Practice");
+
     const [currentquiz, setCurrentQuiz] = useState([]);
     console.log(currentquiz);
     var obj = {}
@@ -21,12 +33,23 @@ const AddQuiz = () => {
         obj = {};
         temp = [];
         e.preventDefault();
-        console.log(currentquiz);
+        // console.log(currentquiz);
     }
 
     function addOption() {
         temp.push(document.getElementById("option").value);
         document.getElementById("option").value = "";
+    }
+
+    function handleSubmit(e){
+        e.preventDefault();
+
+        // console.log(quizType);
+        // console.log(quizAuthor);
+        // console.log(quizName);
+        dispatch(createQuiz({quizName, quizAuthor, quizType}), navigate('/Quiz'));
+        
+        // dispatch(postQuizQuestions({currentquiz}), navigate('/Quiz'));
     }
 
     return (
@@ -38,24 +61,23 @@ const AddQuiz = () => {
                         <h1>Create your own quiz</h1>
                     </div>
                     <div className="create-quiz-container">
-                        <form action="">
+                        <form action="" onSubmit={handleSubmit}>
                             
                             <p>
                                 <label htmlFor="" id='quizType'>Quiz type:</label>
-                                <input type="radio" name='quizType' id='Assessment' />
+                                <input type="radio" name='quizType' id='Assessment' value='Assessment' onClick={(e)=>{setQuizType("Assessment")}}/>
                                 <label htmlFor="Assessment">Assessment</label>
-                                <input type="radio" name='quizType' id='Practice' />
+                                <input type="radio" name='quizType' id='Practice' value='Practice' onClick={(e)=>{setQuizType("Practice")}}/>
                                 <label htmlFor="Practice">Practice</label>
                             </p>
                             
                             <label>
                                 <p>Quiz Name</p>
-                                <input type="text" id='quizName' />
+                                <input type="text" id='quizName' onChange={(e)=>{setQuizName(e.target.value)}} />
                             </label>
                             <ol type='1'>
                             {
                                 currentquiz?.map((question) => (
-                                    
                                     <div className="quiz-question" key={question?._id}>
                                         <li>
                                         <p>{question.ques}</p>

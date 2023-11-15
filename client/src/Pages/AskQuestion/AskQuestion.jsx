@@ -12,6 +12,7 @@ const AskQuestion = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const User = useSelector((state) =>( state.currentUserReducer ))
+    
 
     const handleSubmit = (e)=>{
         e.preventDefault();

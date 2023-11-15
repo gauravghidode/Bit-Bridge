@@ -73,11 +73,17 @@ const QuizQuestions = () => {
       };
 
       const User = useSelector((state) =>( state.currentUserReducer ))
-      console.log(User);
+      // console.log(User);
       
 
   return (
       <div className='quiz-main-container'>
+        {
+          submited && <div className='main-bar-header'>
+            <h2>You scored : </h2>
+          </div>
+        }
+        
         {
         flag==="end"? 
         <div className='main-bar'>
@@ -89,11 +95,11 @@ const QuizQuestions = () => {
             <form action="">
               <label htmlFor="">
                 <p>Name: </p>
-                <input type="text" name="" id="" value={User.result.name}/>
+                <input type="text" name="" id="" value={User?.result?.name}/>
               </label>
               <label htmlFor="">
                 <p>Email: </p>
-                <input type="text" name="" id="" value={User.result.email} />
+                <input type="text" name="" id="" value={User?.result?.email} />
               </label>
               <p>
                 <button onClick={startQuiz} className='quiz-submit-btn'>Click here to start</button>
@@ -150,7 +156,6 @@ const QuizQuestions = () => {
                           <p>Correct option: {question.ans}</p> <p>{question.ans_desc}</p>
                         </div>
                     </details>}
-                    {(submited) && <div><p>Correct option: {question.ans}</p> <p>{question.ans_desc}</p></div> }
                 </div>
                 ))
               }
@@ -159,8 +164,8 @@ const QuizQuestions = () => {
               </form>
             </div>
         </div>
-
         } 
+        
       </div>
 
   )

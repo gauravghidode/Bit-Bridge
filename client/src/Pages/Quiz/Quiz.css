@@ -73,6 +73,7 @@ input{
     padding: 5px;
     }
 textarea{
+    color: white;
     background-color: rgb(57 50 57 / 76%);;
 }
 .add-quiz-question{

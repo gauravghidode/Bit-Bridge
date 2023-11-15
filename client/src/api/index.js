@@ -17,3 +17,5 @@ export const deleteAnswer = (id, answerId, noOfAnswers) => API.patch(`/answer/de
 
 export const fetchAllUsers = () => API.get('/user/getAllUsers');
 export const updateProfile = (id, updateData) => API.patch(`/user/update/${id}`, updateData);
+
+export const postQuiz = (quizData) => API.post('quiz/createQuiz', quizData);

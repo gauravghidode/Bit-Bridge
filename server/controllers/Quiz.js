@@ -8,12 +8,14 @@ import quizAnswer from '../models/quizAnswer.js';
 
 export const createQuiz = async (req, res) => {
     try {
-        const { quizDetails } = req.body;
+        const { quizName, quizAuthor, quizType } = req.body;
+        console.log(req.body);
 
-        const quizCreated = await Quiz.create(quizDetails);
+        const quizCreated = await Quiz.create({quizName:quizName, authorName: quizAuthor, type: quizType});
+
         res.status(200).json({
             message: "Quiz Created Successfully",
-            data: quizCreated
+            // data: quizCreated
         });
     } catch (error) {
         console.log(error);
