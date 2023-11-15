@@ -6,6 +6,14 @@ const userSchema = mongoose.Schema({
     password: {type: String, required: true},
     about: {type: String},
     tags: {type: [String]},
+    result: [{
+        quizId:{
+            type: mongoose.Schema.Types.ObjectId,
+        },
+        marks:{
+            type: Number
+        }
+    }],
     joinedOn: {type: Date, default: Date.now}
 })
 
