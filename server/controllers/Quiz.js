@@ -13,30 +13,32 @@ export const createQuiz = async (req, res) => {
 
         const quizCreated = await Quiz.create({ quizName: quizName, authorName: quizAuthor, type: quizType });
 
-        const options = currentquiz[0].options;
-        const ans = currentquiz[0].ans;
-        const answerDescription = currentquiz[0].answerDescription;
-        const ques = currentquiz[0].ques;
+        currentquiz.forEach(async (question) => {
+            const options = question.options;
+            const ans = question.ans;
+            const answerDescription = question.answerDescription;
+            const ques = question.ques;
 
-        const quesDetails = await QuizQuestions.create({ ques });
-        var ansDetails;
-        options.forEach(async option => {
-            var optionDetails = await Option.create({ option });
-            await QuizQuestions.findByIdAndUpdate(quesDetails._id, {
+            const quesDetails = await QuizQuestions.create({ ques });
+            var ansDetails;
+            options.forEach(async option => {
+                var optionDetails = await Option.create({ option });
+                await QuizQuestions.findByIdAndUpdate(quesDetails._id, {
+                    $push: {
+                        options: optionDetails._id
+                    }
+                }, { new: true })
+                if (ans.toLowerCase() == option.toLowerCase()) {
+                    ansDetails = await QuizAnswer.create({ answer: optionDetails._id, answerDescription })
+                    await QuizQuestions.findByIdAndUpdate(quesDetails._id, { ans: ansDetails._id, answerTitle: option });
+                }
+            });
+            await Quiz.findByIdAndUpdate(quizCreated._id, {
                 $push: {
-                    options: optionDetails._id
+                    questions: quesDetails._id
                 }
             }, { new: true })
-            if (ans.toLowerCase() == option.toLowerCase()) {
-                ansDetails = await QuizAnswer.create({ answer: optionDetails._id, answerDescription })
-                await QuizQuestions.findByIdAndUpdate(quesDetails._id, { ans: ansDetails._id, answerTitle: option });
-            }
-        });
-        await Quiz.findByIdAndUpdate(quizCreated._id, {
-            $push: {
-                questions: quesDetails._id
-            }
-        }, { new: true })
+        })
 
         res.status(200).json({
             message: "Quiz Created Successfully",
@@ -48,9 +50,33 @@ export const createQuiz = async (req, res) => {
     }
 }
 
+export const getAllQuiz = async (req, res) =>{
+    try{
+        const allQuiz = await Quiz.find({},{
+            _id: true,
+            quizName: true,
+            type: true,
+            authorName: true
+        }).populate({
+            path: "authorName",
+            select: {name: true}
+        });
+        return res.status(200).json({
+            success: true,
+            allQuiz,
+            message: "Quiz fetched Successfully."
+        })
+    } catch(error){
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong while fetching quizzes."
+        })
+    }
+}
+
 export const getQuiz = async (req, res) => {
     try {
-        const { quizId } = req.body;
+        const { quizId } = req.params;
         const quiz = await Quiz.findById(quizId)
             .populate(
                 {
