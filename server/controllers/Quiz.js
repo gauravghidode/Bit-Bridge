@@ -3,16 +3,40 @@ import Option from '../models/Option.js';
 import Quiz from '../models/Quiz.js'
 import QuizQuestions from '../models/QuizQuestions.js';
 import User from '../models/auth.js';
-import QuizAnswer  from "../models/quizAnswer.js"
+import QuizAnswer from "../models/quizAnswer.js"
 import quizAnswer from '../models/quizAnswer.js';
 
 export const createQuiz = async (req, res) => {
     try {
         console.log(req.body);
-        const { quizName, quizAuthor, quizType } = req.body;
-        console.log(req.body);
+        const { quizName, quizAuthor, quizType, currentquiz } = req.body;
 
-        const quizCreated = await Quiz.create({quizName:quizName, authorName: quizAuthor, type: quizType});
+        const quizCreated = await Quiz.create({ quizName: quizName, authorName: quizAuthor, type: quizType });
+
+        const options = currentquiz[0].options;
+        const ans = currentquiz[0].ans;
+        const answerDescription = currentquiz[0].answerDescription;
+        const ques = currentquiz[0].ques;
+
+        const quesDetails = await QuizQuestions.create({ ques });
+        var ansDetails;
+        options.forEach(async option => {
+            var optionDetails = await Option.create({ option });
+            await QuizQuestions.findByIdAndUpdate(quesDetails._id, {
+                $push: {
+                    options: optionDetails._id
+                }
+            }, { new: true })
+            if (ans.toLowerCase() == option.toLowerCase()) {
+                ansDetails = await QuizAnswer.create({ answer: optionDetails._id, answerDescription })
+                await QuizQuestions.findByIdAndUpdate(quesDetails._id, { ans: ansDetails._id, answerTitle: option });
+            }
+        });
+        await Quiz.findByIdAndUpdate(quizCreated._id, {
+            $push: {
+                questions: quesDetails._id
+            }
+        }, { new: true })
 
         res.status(200).json({
             message: "Quiz Created Successfully",
@@ -28,22 +52,22 @@ export const getQuiz = async (req, res) => {
     try {
         const { quizId } = req.body;
         const quiz = await Quiz.findById(quizId)
-        .populate(
-            {
-                path: "questions",
-                populate: {
-                    path: "options",
-                },
-            }
-        )
-        .populate(
-            {
-                path: "questions",
-                populate: {
-                    path: "ans",
-                },
-            }
-        ).exec();
+            .populate(
+                {
+                    path: "questions",
+                    populate: {
+                        path: "options",
+                    },
+                }
+            )
+            .populate(
+                {
+                    path: "questions",
+                    populate: {
+                        path: "ans",
+                    },
+                }
+            ).exec();
 
         return res.status(200).json({
             success: true,
@@ -68,9 +92,9 @@ export const addQuestion = async (req, res) => {
                     options: optionDetails._id
                 }
             }, { new: true })
-            if(ans.toLowerCase() == option.toLowerCase()){
+            if (ans.toLowerCase() == option.toLowerCase()) {
                 ansDetails = await QuizAnswer.create({ answer: optionDetails._id, answerDescription })
-                await QuizQuestions.findByIdAndUpdate(quesDetails._id, {ans: ansDetails._id, answerTitle: option});
+                await QuizQuestions.findByIdAndUpdate(quesDetails._id, { ans: ansDetails._id, answerTitle: option });
             }
         });
         await Quiz.findByIdAndUpdate(quizId, {
@@ -110,9 +134,9 @@ export const getAllQuesitons = async (req, res) => {
     }
 }
 
-export const deleteQuestion = async (req, res)=>{
+export const deleteQuestion = async (req, res) => {
     try {
-        const {quesId} = req.body;
+        const { quesId } = req.body;
         const questionDetails = await QuizQuestions.findById(quesId);
         questionDetails.options.forEach(async (optionId) => {
             await Option.findByIdAndDelete(optionId);
@@ -133,8 +157,8 @@ export const deleteQuestion = async (req, res)=>{
     }
 }
 
-async function deleteQuestionWhileDeletingQuiz(quesId){
-    let message="";
+async function deleteQuestionWhileDeletingQuiz(quesId) {
+    let message = "";
     try {
         const questionDetails = await QuizQuestions.findById(quesId);
         questionDetails.options.forEach(async (optionId) => {
@@ -155,7 +179,7 @@ async function deleteQuestionWhileDeletingQuiz(quesId){
 
 export const deleteQuiz = async (req, res) => {
     try {
-        const {quizId} = req.body;
+        const { quizId } = req.body;
         const quizDetails = await Quiz.findById(quizId);
 
         quizDetails.questions.forEach(async (question) => {
@@ -174,22 +198,22 @@ export const deleteQuiz = async (req, res) => {
     }
 }
 
-export const submitQuiz = async (req, res) =>{
+export const submitQuiz = async (req, res) => {
     try {
         // console.log(req.body);
-        const {response, quizId, userId} = req.body;
-        let cnt = 0; 
+        const { response, quizId, userId } = req.body;
+        let cnt = 0;
         response.forEach(async (ans) => {
             // const ansId = mongoose.Types.ObjectId(ans)
-            if(await QuizAnswer.find({answer:ans})){
+            if (await QuizAnswer.find({ answer: ans })) {
                 cnt++;
             }
         })
-        
-        await User.findByIdAndUpdate(userId, 
+
+        await User.findByIdAndUpdate(userId,
             {
                 $push: {
-                    result:{
+                    result: {
                         quizId,
                         marks: cnt
                     }
