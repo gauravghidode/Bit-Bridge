@@ -4,7 +4,7 @@ import './Quiz.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
-const Quizpaper = ({quiz}) => {
+const Quizpaper = ({quiz, index}) => {
     // console.log(quiz);
     const navigate=useNavigate();
     const User = useSelector((state) =>( state.currentUserReducer ))
@@ -25,12 +25,12 @@ const Quizpaper = ({quiz}) => {
     <div className='quiz-name-container'>
         <div className='quiz-name'>
             <div>
-                <p>{quiz._id}</p>
-                <p>{quiz.qname}</p> 
+                <p>{index}</p> 
+                <p>{quiz.quizName}</p>
             </div>
             <div>
                 <p>{quiz.type} Quiz </p>
-                <p>Created by {quiz.author}</p>
+                <p>Created by {quiz.authorName.name}</p>
             </div> 
         </div> 
         {/* <Link to={`/Quiz/${quiz._id}`}> */}

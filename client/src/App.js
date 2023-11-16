@@ -6,13 +6,14 @@ import React from 'react';
 import Navbar from './components/Navbar/Navbar.jsx';
 import AllRoutes from './AllRoutes';
 import {fetchAllUsers} from './actions/users.js'
-
+import { fetchAllQuiz } from './actions/quiz.js';
 import { fetchAllQuestions } from './actions/question';
 
 function App() {
 
   const dispatch = useDispatch();
   useEffect(() =>{
+    dispatch(fetchAllQuiz())
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
   },[dispatch])
