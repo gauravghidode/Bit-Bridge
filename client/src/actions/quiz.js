@@ -8,14 +8,14 @@ export const createQuiz = (quizData, navigate) => async (dispatch) => {
         // navigate('/');
     } catch (error) {
         console.log(error);
-        console.log('Error ho riya h');
-        console.log(quizData);
+        // console.log('Error ho riya h');
+        // console.log(quizData);
     }
 }
 
 // export const postQuizQuestions = (quizQuestionData, navigate) => async (dispatch) => {
 //     try {
-//         const {data} = await api.postQuestion(quizQuestionData)
+//         const {data} = await api.postQuizQuestions(quizQuestionData)
 //         dispatch({type: "POST_QUIZ_QUESTION", payload: data})
 //         navigate('/Quiz')
 //     } catch (error) {

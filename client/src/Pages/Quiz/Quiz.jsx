@@ -2,8 +2,10 @@ import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import Quizpaper from './Quizpaper'
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 const Quiz = () => {
+  const User = useSelector((state) =>( state.currentUserReducer ))
 
   const quizes=[
     {
@@ -52,7 +54,9 @@ const Quiz = () => {
             <div className="main-bar">
                 <div className="main-bar-header">
                     <h1>Quiz</h1>
-                    <Link to='/AddQuiz' className='add-btn'>Add Quiz</Link>
+                    {
+                      (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to='/AddQuiz' className='add-btn'>Add Quiz</Link>
+                    }
                 </div>
                 <div className="quizes-container">
                   {

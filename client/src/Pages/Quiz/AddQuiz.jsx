@@ -21,11 +21,10 @@ const AddQuiz = () => {
 
     function addQuestion(e) {
         obj = {
-            ques_id: String(Math.random()*10000),
             ques: document.getElementById("questionName").value,
             options: temp,
             ans: document.getElementById("correctOption").value,
-            ans_desc: document.getElementById("answerDescription").value
+            answerDescription: document.getElementById("answerDescription").value
         }
 
         setCurrentQuiz([...currentquiz, obj])
@@ -44,10 +43,10 @@ const AddQuiz = () => {
     function handleSubmit(e){
         e.preventDefault();
 
-        // console.log(quizType);
+        console.log(User.result.role);
         // console.log(quizAuthor);
         // console.log(quizName);
-        dispatch(createQuiz({quizName, quizAuthor, quizType}), navigate('/Quiz'));
+        dispatch(createQuiz({quizName, quizAuthor, quizType, currentquiz}), navigate('/Quiz'));
         
         // dispatch(postQuizQuestions({currentquiz}), navigate('/Quiz'));
     }

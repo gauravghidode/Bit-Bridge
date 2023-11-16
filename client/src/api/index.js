@@ -19,3 +19,4 @@ export const fetchAllUsers = () => API.get('/user/getAllUsers');
 export const updateProfile = (id, updateData) => API.patch(`/user/update/${id}`, updateData);
 
 export const postQuiz = (quizData) => API.post('quiz/createQuiz', quizData);
+// export const postQuizQuestions = (quizQuestionData) => API.post('quiz/createQuizQuestion', quizQuestionData);

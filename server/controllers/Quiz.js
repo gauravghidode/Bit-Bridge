@@ -8,6 +8,7 @@ import quizAnswer from '../models/quizAnswer.js';
 
 export const createQuiz = async (req, res) => {
     try {
+        console.log(req.body);
         const { quizName, quizAuthor, quizType } = req.body;
         console.log(req.body);
 

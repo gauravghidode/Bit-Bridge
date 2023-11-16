@@ -80,7 +80,7 @@ const QuestionDetails = () => {
                                                     <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
                                                 </CopyToClipboard>
                                                 {
-                                                    User?.result?._id === question?.userId && (
+                                                    (User?.result?._id === question?.userId || User?.result?.role==='admin') && (
                                                         <button type='button' onClick={handleDelete} >Delete</button>
                                                     )
                                                 }

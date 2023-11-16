@@ -126,6 +126,7 @@ const QuizQuestions = () => {
               }
             }
           }
+          
             <div className="main-bar-header">
                 <h1>{currentquiz.qname}</h1>
                 <h2>{currentquiz.type} Quiz</h2>
