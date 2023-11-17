@@ -4,9 +4,6 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const Searchbar = () => {
-  const location = useLocation();
-  const [searchText, setSearchText] = useState("");
-
     const location=useLocation();
     const [searchText, setSearchText] = useState("");
     function handleSearch(e){
