@@ -226,31 +226,31 @@ export const deleteQuiz = async (req, res) => {
 
 export const submitQuiz = async (req, res) => {
     try {
-        // console.log(req.body);
-        const { response, quizId, userId } = req.body;
-        let cnt = 0;
-        response.forEach(async (ans) => {
-            // const ansId = mongoose.Types.ObjectId(ans)
-            if (await QuizAnswer.find({ answer: ans })) {
-                cnt++;
-            }
-        })
+        console.log(req.body);
+        // const { response, quizId, userId } = req.body;
+        // let cnt = 0;
+        // response.forEach(async (ans) => {
+        //     // const ansId = mongoose.Types.ObjectId(ans)
+        //     if (await QuizAnswer.find({ answer: ans })) {
+        //         cnt++;
+        //     }
+        // })
 
-        await User.findByIdAndUpdate(userId,
-            {
-                $push: {
-                    result: {
-                        quizId,
-                        marks: cnt
-                    }
-                }
-            }
-        )
+        // await User.findByIdAndUpdate(userId,
+        //     {
+        //         $push: {
+        //             result: {
+        //                 quizId,
+        //                 marks: cnt
+        //             }
+        //         }
+        //     }
+        // )
 
         res.status(200).json({
             success: true,
             message: "Successfully Submitted.",
-            cnt
+            // cnt
         })
     } catch (error) {
         return res.status(500).json({

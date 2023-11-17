@@ -4,12 +4,11 @@ const quizReducer = (state = {data: null}, action)=>{
             return {...state }
         case "FETCH_ALL_QUIZ":
             {
-                console.log("1");
                 return {...state, data: action.payload}
             }
-            
+        case "SUBMIT_QUIZ":
+            return {...state}    
         default:
-            console.log("2");
             return state;
     }
 }

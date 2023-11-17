@@ -4,17 +4,16 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const Searchbar = () => {
-  const location = useLocation();
-  const [searchText, setSearchText] = useState("");
-
-  function handleSearch(e) {
-    console.log("searh text: " + searchText);
-    console.log(location.pathname);
-  }
-  function handleChange(e) {
-    setSearchText(e.target.value);
-  }
-
+    const location=useLocation();
+    const [searchText, setSearchText] = useState("");
+    function handleSearch(e){
+        console.log("searh text: "+searchText);
+        console.log(location.pathname);
+    }
+    function handleChange(e){
+        setSearchText(e.target.value);
+    }
+    console.log(searchText);
   return (
     <div>
       <form action="">

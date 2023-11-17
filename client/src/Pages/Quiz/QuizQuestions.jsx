@@ -4,11 +4,15 @@ import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import './Quiz.css';
+import { useDispatch } from 'react-redux'
+import { submitQuiz } from '../../actions/quiz'
+
 import axios from 'axios'
 
 
 const QuizQuestions = () => {
 
+      const dispatch = useDispatch();
       const [loading, setLoading] = useState(true);
       const {id}= useParams();
       const [quizes, setQuizes] = useState(undefined);
@@ -24,31 +28,38 @@ const QuizQuestions = () => {
       useEffect(() => {
         fetchQuiz(id);
       }, [])
-        
-        
-        
+
+      console.log(currentquiz);
+      const length = currentquiz?.questions?.length;
+      const ansArray = Array(length).fill(undefined);
+      console.log(ansArray);
+      
         const navigate= useNavigate();
         var path=useLocation();
         var [flag, setFlag] = useState("end");
         const [submited, setsubmited] = useState(false);
           
-      console.log(currentquiz);
       function startQuiz(e){
-        setFlag("start");
+        setFlag(undefined);
       }
 
-      function submitQuiz(e){
+      function handleSubmit(e){
         setFlag(false);
         console.log(flag);
         setsubmited(true);
-        e.preventDefault();
+        dispatch(submitQuiz({ansArray}), navigate('/Quiz'));
+        // e.preventDefault();
       }
       window.onfocus = function (ev) {
           console.log("flag "+flag);
       };
 
       const User = useSelector((state) =>( state.currentUserReducer ))
-      console.log(User);
+      // console.log(User);
+      function handleSelect(optionId, index){
+        ansArray[index]=optionId;
+        console.log(ansArray);
+      }
       
 
   return (
@@ -65,7 +76,7 @@ const QuizQuestions = () => {
         }
         
         {
-        flag==="end"? 
+        flag===undefined? 
         <div className='main-bar'>
             <div className="main-bar-header">
                 <h1>{currentquiz.quizName}</h1>
@@ -100,31 +111,31 @@ const QuizQuestions = () => {
                 
                 setFlag("end");
                 submitQuiz(ev);
-                console.log(flag);
-                alert("Your quiz has been auto submitted");
+                // console.log(flag);
+                // alert("Your quiz has been auto submitted");
                 // navigate('/Quiz');
               }
             }
           }
           
             <div className="main-bar-header">
-                <h1>{currentquiz.qname}</h1>
-                <h2>{currentquiz.type} Quiz</h2>
+                <h1>{currentquiz?.quizName}</h1>
+                <h2>{currentquiz?.type} Quiz</h2>
             </div>
             <div className="quiz-questions-container">
-              <form action="" onSubmit={submitQuiz}>
+              <form action="" onSubmit={handleSubmit}>
               <ol type='1'>
               {
-                currentquiz.questions.map((question)=>(
-                <div className="quiz-question" key={question?._id}>
+                currentquiz?.questions?.map((question, index)=>(
+                <div className="quiz-question">
                   <li>
-                    <p>{question.ques}</p>
+                    <p>{question?.ques}</p>
                     <ol type = "a">
                     {
-                          question.options.map((opt)=>(
-                            <li key={opt}>
-                                <input type='radio' name={question.ques_id} id= {question.ques_id + opt}/>
-                                <label htmlFor={question.ques_id + opt}>{opt}</label>
+                          question?.options?.map((opt)=>(
+                            <li key={opt._id}>
+                                <input type='radio' name={question._id} id= {opt._id} onChange={()=>handleSelect(opt._id, index)}/>
+                                <label htmlFor={opt._id}>{opt.option}</label>
                             </li>
                           )) 
                     }
@@ -134,7 +145,7 @@ const QuizQuestions = () => {
                     {currentquiz.type==="Practice" && <details>
                         <summary>Show Answer</summary>
                         <div>
-                          <p>Correct option: {question.ans}</p> <p>{question.ans_desc}</p>
+                          <p>Correct option: {question?.ans?.answer}</p> <p>{question?.ans?.answerDescription}</p>
                         </div>
                     </details>}
                 </div>

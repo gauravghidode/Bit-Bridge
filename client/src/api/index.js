@@ -3,7 +3,6 @@ import axios from 'axios'
 const API = axios.create({baseURL: 'http://localhost:4000'});
 // const API = axios.create({baseURL: 'https://bitbridgeserver.onrender.com'});
 
-
 export const logIn = (authData) => API.post('user/login', authData);
 export const signUp = (authData) => API.post('user/signup', authData);
 
@@ -21,3 +20,4 @@ export const updateProfile = (id, updateData) => API.patch(`/user/update/${id}`,
 export const postQuiz = (quizData) => API.post('quiz/createQuiz', quizData);
 // export const postQuizQuestions = (quizQuestionData) => API.post('quiz/createQuizQuestion', quizQuestionData);
 export const fetchAllQuiz = () => API.get('quiz/getAllQuiz');
+export const submitQuizapi = (quizData) => API.post('quiz/submitQuiz', quizData);
