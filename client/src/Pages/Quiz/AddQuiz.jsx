@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createQuiz } from "../../actions/quiz";
 
-const answers = []
+const answers = [];
 
 const AddQuiz = () => {
   const dispatch = useDispatch();
@@ -22,45 +22,65 @@ const AddQuiz = () => {
   var temp = [];
 
   function addQuestion(e) {
-    obj = {
-      ques: document.getElementById("questionName").value,
-      options: temp,
-      ans: document.getElementById("correctOption").value,
-      answerDescription: document.getElementById("answerDescription").value,
-    };
-    answers.push("undefined")
-    document.getElementById("questionName").value = "";
-    document.getElementById("correctOption").value = "";
-
-    setCurrentQuiz([...currentquiz, obj]);
-    currentquiz.push(obj);
-    obj = {};
-    temp = [];
     e.preventDefault();
-    // console.log(currentquiz);
+    if (document.getElementById("questionName").value === "") {
+      alert("Please add question title name");
+    } else {
+      console.log(document.getElementById("quizName"));
+      obj = {
+        ques: document.getElementById("questionName").value,
+        options: temp,
+        ans: document.getElementById("correctOption").value,
+        answerDescription: document.getElementById("answerDescription").value,
+      };
+      answers.push(undefined);
+      document.getElementById("questionName").value = "";
+      document.getElementById("correctOption").value = "";
+      setCurrentQuiz([...currentquiz, obj]);
+      currentquiz.push(obj);
+      obj = {};
+      temp = [];
+      // console.log(currentquiz);
+    }
   }
 
   function addOption() {
-    temp.push(document.getElementById("option").value);
-    document.getElementById("option").value = "";
+    if (document.getElementById("option").value === "") {
+      alert("Add some options please");
+    } else {
+      temp.push(document.getElementById("option").value);
+      document.getElementById("option").value = "";
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
+    for (let i = 0; i < currentquiz.length; i++) {
+      currentquiz[i].ans = answers[i];
+    }
 
-    console.log(User.result.role);
-    // console.log(quizAuthor);
-    // console.log(quizName);
-    dispatch(
-      createQuiz({ quizName, quizAuthor, quizType, currentquiz, answers }),
-      navigate("/Quiz")
-    );
+    let cnt = 0;
+    for (let i = 0; i < answers.length; i++) {
+      if (answers[i] === undefined) {
+        continue;
+      } else {
+        cnt++;
+      }
+    }
 
-    // dispatch(postQuizQuestions({currentquiz}), navigate('/Quiz'));
+    if (cnt === answers.length) {
+      dispatch(
+        createQuiz({ quizName, quizAuthor, quizType, currentquiz }),
+        navigate("/Quiz")
+      );
+    }
+    else{
+      alert("Answer all the questions")
+    }
   }
 
-  function handleSelect(index, value){
-    answers[index] = value
+  function handleSelect(index, value) {
+    answers[index] = value;
   }
 
   return (
@@ -115,15 +135,15 @@ const AddQuiz = () => {
                     <li>
                       <p>{question.ques}</p>
                       <ol type="a">
-                        {question.options?.map((opt) => (
+                        {question.options?.map((opt, i) => (
                           <li key={opt}>
                             <input
                               type="radio"
                               name={`ForQues${index}`}
                               onChange={() => handleSelect(index, opt)}
-                              id={``}
+                              id={`ForQues${index}${i}`}
                             />
-                            <label htmlFor={question.ques_id + opt}>
+                            <label htmlFor={`ForQues${index}${i}`}>
                               {opt}
                             </label>
                           </li>

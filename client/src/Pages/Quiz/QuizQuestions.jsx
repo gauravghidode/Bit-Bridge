@@ -16,7 +16,7 @@ const QuizQuestions = () => {
       async function fetchQuiz(quizId){
         setLoading(true);
         console.log("Fetching quiz Data: ");
-        const a = await axios.get(`http://localhost:5000/quiz/getQuiz/${quizId}`);
+        const a = await axios.get(`http://localhost:4000/quiz/getQuiz/${quizId}`);
         console.log("Quiz fetched");
         setCurrentquiz(a?.data?.quiz);
         setLoading(false);

@@ -9,7 +9,7 @@ router.post('/createQuizQuestion', addQuestion)
 router.get('/getQuiz/:quizId', getQuiz);
 router.post('/submitQuiz', submitQuiz);
 router.post('/deleteQuestion', deleteQuestion);
-router.post('/deleteQuiz', deleteQuiz);
+router.get('/deleteQuiz/:quizId', deleteQuiz);
 router.get('/getAllQuiz', getAllQuiz);
 
 
