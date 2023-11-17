@@ -33,11 +33,16 @@ const QuizQuestions = () => {
       const ansArray = Array(length).fill(undefined);
       console.log(ansArray);
       
-        const navigate= useNavigate();
-        var path=useLocation();
-        var [flag, setFlag] = useState(undefined);
-        const [submited, setsubmited] = useState(false);
-          
+      const navigate= useNavigate();
+      var path=useLocation();
+      var [flag, setFlag] = useState(undefined);
+      const [submited, setsubmited] = useState(false);
+
+      const User = useSelector((state) =>( state.currentUserReducer ))
+      const userid = User?.result._id; 
+      const quizid = currentquiz?._id;
+
+
       function startQuiz(e){
         setFlag("start");
       }
@@ -46,14 +51,14 @@ const QuizQuestions = () => {
         setFlag(false);
         console.log(flag);
         setsubmited(true);
-        dispatch(submitQuiz({ansArray}));
+        dispatch(submitQuiz({ansArray, userid, quizid}));
         // e.preventDefault();
       }
       window.onfocus = function (ev) {
           console.log("flag "+flag);
       };
 
-      const User = useSelector((state) =>( state.currentUserReducer ))
+      
       function handleSelect(optionId, index){
         ansArray[index]=optionId;
         console.log(ansArray);
@@ -68,7 +73,7 @@ const QuizQuestions = () => {
           submited&&
           <div className='main-bar-header'>
             <h2>You scored : </h2>
-            <button value="Click to exit" className="submit-btn" onClick={setFlag(undefined), navigate('/Quiz')}></button>
+            <button value="Click to exit" className="submit-btn" onClick={setFlag(undefined)}></button>
           </div>
           
         }
@@ -106,7 +111,7 @@ const QuizQuestions = () => {
                 console.log("lost focus");
                 submitQuiz(ev);
                 // console.log(flag);
-                alert("Your quiz has been auto submitted");
+                // alert("Your quiz has been auto submitted");
                 // navigate('/Quiz');
               }
             }
