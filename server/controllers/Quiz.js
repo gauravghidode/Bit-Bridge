@@ -28,7 +28,7 @@ export const createQuiz = async (req, res) => {
                         options: optionDetails._id
                     }
                 }, { new: true })
-                if (ans.toLowerCase() == option.toLowerCase()) {
+                if (ans.toLowerCase() === option.toLowerCase()) {
                     ansDetails = await QuizAnswer.create({ answer: optionDetails._id, answerDescription })
                     await QuizQuestions.findByIdAndUpdate(quesDetails._id, { ans: ansDetails._id, answerTitle: option });
                 }
@@ -118,7 +118,7 @@ export const addQuestion = async (req, res) => {
                     options: optionDetails._id
                 }
             }, { new: true })
-            if (ans.toLowerCase() == option.toLowerCase()) {
+            if (ans === option) {
                 ansDetails = await QuizAnswer.create({ answer: optionDetails._id, answerDescription })
                 await QuizQuestions.findByIdAndUpdate(quesDetails._id, { ans: ansDetails._id, answerTitle: option });
             }
@@ -205,7 +205,7 @@ async function deleteQuestionWhileDeletingQuiz(quesId) {
 
 export const deleteQuiz = async (req, res) => {
     try {
-        const { quizId } = req.body;
+        const { quizId } = req.params;
         const quizDetails = await Quiz.findById(quizId);
 
         quizDetails.questions.forEach(async (question) => {
