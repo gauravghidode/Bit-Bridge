@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 
 const Quiz = () => {
   const User = useSelector((state) =>( state.currentUserReducer))
+  console.log(User);
 
   const quizes = useSelector((state) => state.quizReducer?.data?.allQuiz);
 
