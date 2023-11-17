@@ -24,6 +24,8 @@ const QuizQuestions = () => {
       useEffect(() => {
         fetchQuiz(id);
       }, [])
+
+      console.log(currentquiz);
         
         
         
@@ -32,7 +34,6 @@ const QuizQuestions = () => {
         var [flag, setFlag] = useState("end");
         const [submited, setsubmited] = useState(false);
           
-      console.log(currentquiz);
       function startQuiz(e){
         setFlag("start");
       }
@@ -48,7 +49,7 @@ const QuizQuestions = () => {
       };
 
       const User = useSelector((state) =>( state.currentUserReducer ))
-      console.log(User);
+      // console.log(User);
       
 
   return (
@@ -100,31 +101,31 @@ const QuizQuestions = () => {
                 
                 setFlag("end");
                 submitQuiz(ev);
-                console.log(flag);
-                alert("Your quiz has been auto submitted");
+                // console.log(flag);
+                // alert("Your quiz has been auto submitted");
                 // navigate('/Quiz');
               }
             }
           }
           
             <div className="main-bar-header">
-                <h1>{currentquiz.qname}</h1>
-                <h2>{currentquiz.type} Quiz</h2>
+                <h1>{currentquiz?.quizName}</h1>
+                <h2>{currentquiz?.type} Quiz</h2>
             </div>
             <div className="quiz-questions-container">
               <form action="" onSubmit={submitQuiz}>
               <ol type='1'>
               {
-                currentquiz.questions.map((question)=>(
-                <div className="quiz-question" key={question?._id}>
+                currentquiz?.questions?.map((question)=>(
+                <div className="quiz-question">
                   <li>
                     <p>{question.ques}</p>
                     <ol type = "a">
                     {
-                          question.options.map((opt)=>(
-                            <li key={opt}>
-                                <input type='radio' name={question.ques_id} id= {question.ques_id + opt}/>
-                                <label htmlFor={question.ques_id + opt}>{opt}</label>
+                          question?.options?.map((opt)=>(
+                            <li key={opt._id}>
+                                <input type='radio' name={question._id} id= {opt._id}/>
+                                <label htmlFor={opt._id}>{opt.option}</label>
                             </li>
                           )) 
                     }
@@ -134,7 +135,7 @@ const QuizQuestions = () => {
                     {currentquiz.type==="Practice" && <details>
                         <summary>Show Answer</summary>
                         <div>
-                          <p>Correct option: {question.ans}</p> <p>{question.ans_desc}</p>
+                          <p>Correct option: {question?.ans?.answer}</p> <p>{question?.ans?.answerDescription}</p>
                         </div>
                     </details>}
                 </div>

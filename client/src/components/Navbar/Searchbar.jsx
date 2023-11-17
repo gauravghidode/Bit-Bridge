@@ -14,7 +14,7 @@ const Searchbar = () => {
     function handleChange(e){
         setSearchText(e.target.value);
     }
-
+    console.log(searchText);
   return (
     <div>
         <form action="">
