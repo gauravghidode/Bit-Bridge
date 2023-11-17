@@ -35,4 +35,19 @@ export const fetchAllQuiz = () => async (dispatch) =>{
     }
 }
 
+export const submitQuiz = (quizData, navigate) => async (dispatch) => {
+    try {
+        const {data} = await api.submitQuizapi(quizData)
+        dispatch({type: "SUBMIT_QUIZ", payload: data});
+        console.log(data);
+        // navigate('/');
+    } catch (error) {
+        console.log(error);
+        console.log('Error ho riya h');
+        // console.log(quizData);
+    }
+}
+
+
+
 
