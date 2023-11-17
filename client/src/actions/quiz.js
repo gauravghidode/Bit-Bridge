@@ -28,7 +28,7 @@ export const fetchAllQuiz = () => async (dispatch) =>{
     try {
         const {data} = await api.fetchAllQuiz();
         dispatch({type: "FETCH_ALL_QUIZ", payload: data})
-        console.log("data Fetched");
+        // console.log("data Fetched");
     } catch (error) {
         console.log(error);
         console.log("data not fetched");

@@ -7,9 +7,7 @@ import { useSelector } from 'react-redux'
 const Quiz = () => {
   const User = useSelector((state) =>( state.currentUserReducer))
 
-  const quizes = useSelector((state) => state.quizReducer.data.allQuiz);
-  console.log(quizes);
-  console.log(User);
+  const quizes = useSelector((state) => state.quizReducer?.data?.allQuiz);
 
   return (
     <div className='home-container-1'>

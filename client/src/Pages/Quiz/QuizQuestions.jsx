@@ -1,63 +1,38 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
 import './Quiz.css';
+import axios from 'axios'
 
 
 const QuizQuestions = () => {
 
-    const quizes=[
-        {
-          _id:"1",
-          type: "Practice",
-          author: "Mr. Gaurav",
-          qname: "dsa quiz1",
-          questions: [
-            {
-              ques_id: "1",
-              ques: "Which of the following is not a data structure?",
-              options: ["Array", "List", "Quick Sort", "Tree"],
-              ans:"c",
-              ans_desc: "Quick Sort is a sorting algorithm and not a data structure"
-            },
-            {
-              ques_id: "2",
-              ques: "What among the following is not a tree traversal method?",
-              options: ["Morris Traversal", "preorder", "postorder", "inorder", "none of the above"],
-              ans: "e",
-              ans_desc: "All the above are valid tree traversal techniques, therefore correct answer is none of the above"
-            }
-          ]
-        },
-        {
-          _id:"2",
-          type: "Assessment",
-          author: "Mr. Gaurav",
-          qname: "Dcn quiz1",
-          questions: [
-            {
-              ques_id: "1",
-              ques: "Which layer is responsible for routing?",
-              options: ["Network Layer", "Transport Layer", "Data Link Layer", "Physical layer"],
-              ans:"a",
-              ans_desc: "Netword layer is responsible for routing"
-            }
-          ]
-        }
-      ]
-
-      const navigate= useNavigate();
-      var path=useLocation();
-      var [flag, setFlag] = useState("end");
-      const [submited, setsubmited] = useState(false);
+      const [loading, setLoading] = useState(true);
       const {id}= useParams();
-      const currentquiz = quizes.filter((quiz)=>(
-        (quiz._id)===(id)
-      ))[0];
-      
-      // console.log(currentquiz);
+      const [quizes, setQuizes] = useState(undefined);
+      const [currentquiz, setCurrentquiz] = useState(undefined);
+      async function fetchQuiz(quizId){
+        setLoading(true);
+        console.log("Fetching quiz Data: ");
+        const a = await axios.get(`http://localhost:5000/quiz/getQuiz/${quizId}`);
+        console.log("Quiz fetched");
+        setCurrentquiz(a?.data?.quiz);
+        setLoading(false);
+      }
+      useEffect(() => {
+        fetchQuiz(id);
+      }, [])
+        
+        
+        
+        const navigate= useNavigate();
+        var path=useLocation();
+        var [flag, setFlag] = useState("end");
+        const [submited, setsubmited] = useState(false);
+          
+      console.log(currentquiz);
       function startQuiz(e){
         setFlag("start");
       }
@@ -73,11 +48,16 @@ const QuizQuestions = () => {
       };
 
       const User = useSelector((state) =>( state.currentUserReducer ))
-      // console.log(User);
+      console.log(User);
       
 
   return (
-      <div className='quiz-main-container'>
+    <div>
+      {
+        loading?
+          <div>Loading</div>
+        :
+          <div className='quiz-main-container'>
         {
           submited && <div className='main-bar-header'>
             <h2>You scored : </h2>
@@ -88,7 +68,7 @@ const QuizQuestions = () => {
         flag==="end"? 
         <div className='main-bar'>
             <div className="main-bar-header">
-                <h1>{currentquiz.qname}</h1>
+                <h1>{currentquiz.quizName}</h1>
                 <h2>{currentquiz.type} Quiz</h2>
             </div>
             <p>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</p>
@@ -168,6 +148,11 @@ const QuizQuestions = () => {
         } 
         
       </div>
+        }
+      
+    </div>
+    // <div className=""></div>
+      
 
   )
 }
