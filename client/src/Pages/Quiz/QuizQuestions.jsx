@@ -15,12 +15,11 @@ const QuizQuestions = () => {
       const dispatch = useDispatch();
       const [loading, setLoading] = useState(true);
       const {id}= useParams();
-      const [quizes, setQuizes] = useState(undefined);
       const [currentquiz, setCurrentquiz] = useState(undefined);
       async function fetchQuiz(quizId){
         setLoading(true);
         console.log("Fetching quiz Data: ");
-        const a = await axios.get(`http://localhost:5000/quiz/getQuiz/${quizId}`);
+        const a = await axios.get(`http://localhost:4000/quiz/getQuiz/${quizId}`);
         console.log("Quiz fetched");
         setCurrentquiz(a?.data?.quiz);
         setLoading(false);
@@ -36,18 +35,18 @@ const QuizQuestions = () => {
       
         const navigate= useNavigate();
         var path=useLocation();
-        var [flag, setFlag] = useState("end");
+        var [flag, setFlag] = useState(undefined);
         const [submited, setsubmited] = useState(false);
           
       function startQuiz(e){
-        setFlag(undefined);
+        setFlag("start");
       }
 
       function handleSubmit(e){
         setFlag(false);
         console.log(flag);
         setsubmited(true);
-        dispatch(submitQuiz({ansArray}), navigate('/Quiz'));
+        dispatch(submitQuiz({ansArray}));
         // e.preventDefault();
       }
       window.onfocus = function (ev) {
@@ -55,7 +54,6 @@ const QuizQuestions = () => {
       };
 
       const User = useSelector((state) =>( state.currentUserReducer ))
-      // console.log(User);
       function handleSelect(optionId, index){
         ansArray[index]=optionId;
         console.log(ansArray);
@@ -65,22 +63,22 @@ const QuizQuestions = () => {
   return (
     <div>
       {
-        loading?
-          <div>Loading</div>
-        :
-          <div className='quiz-main-container'>
+        <div className='quiz-main-container'>
         {
-          submited && <div className='main-bar-header'>
+          submited&&
+          <div className='main-bar-header'>
             <h2>You scored : </h2>
+            <button value="Click to exit" className="submit-btn" onClick={setFlag(undefined), navigate('/Quiz')}></button>
           </div>
+          
         }
         
         {
-        flag===undefined? 
+        flag===undefined&& 
         <div className='main-bar'>
             <div className="main-bar-header">
-                <h1>{currentquiz.quizName}</h1>
-                <h2>{currentquiz.type} Quiz</h2>
+                <h1>{currentquiz?.quizName}</h1>
+                <h2>{currentquiz?.type} Quiz</h2>
             </div>
             <p>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</p>
             <form action="">
@@ -97,22 +95,18 @@ const QuizQuestions = () => {
               </p>
               
             </form>
-            
-            
         </div>
-        :
+        }
+        {
+        flag==="start"&&
         <div className="main-bar">
           {
             window.onblur = async function (ev) {
-              // console.log(path.pathname);
-              // console.log("/Quiz/"+id);
               if(flag==="start"){
                 console.log("lost focus");
-                
-                setFlag("end");
                 submitQuiz(ev);
                 // console.log(flag);
-                // alert("Your quiz has been auto submitted");
+                alert("Your quiz has been auto submitted");
                 // navigate('/Quiz');
               }
             }
