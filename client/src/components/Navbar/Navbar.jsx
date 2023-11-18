@@ -36,23 +36,26 @@ function Navbar(){
         <nav className='main-nav'>
             
             <div className="navbar">
-                <Link to='/' className='nav-item nav-logo'>
-                    <img src={logo} alt="logo" id='bit-bridge-logo'></img>
-                </Link>
-                <Link to='/About' className='nav-item nav-btn'>About</Link>
-                <Link to='/Contact' className='nav-item nav-btn'>Contact</Link>
-                {/* <Link to='/' className='nav-item nav-btn'>Feedback</Link> */}
-                <Searchbar></Searchbar>
+                <div>
+                    <Link to='/' className='nav-item nav-logo'>
+                        <img src={logo} alt="logo" id='bit-bridge-logo'></img>
+                    </Link>
+                    <Link to='/About' className='nav-item nav-btn'>About</Link>
+                    <Link to='/Contact' className='nav-item nav-btn'>Contact</Link>
+                    {/* <Link to='/' className='nav-item nav-btn'>Feedback</Link> */}
+                    <Searchbar></Searchbar>
+                </div>
+                
                 {
                     User===null?
                     <Link to='/Auth' className='nav-item nav-links'>Login</Link>:
                     <>
-                        <div id="avatar">
-                            <Avatar><Link to={`/Users/${User?.result._id}`} style={{color:"black", textDecoration:"none"}}>{User.result.name.charAt(0).toUpperCase()}</Link></Avatar>
-                        </div>
+                        <Avatar backgroundColor="white" px="2px" py="2px"><Link to={`/Users/${User?.result._id}`} style={{color:"black", textDecoration:"none"}}>{User.result.name.charAt(0).toUpperCase()}</Link></Avatar>
+
                         <button className="nav-item nav-links" onClick={handleLogOut}>Logout</button>
                     </>
                 }
+                
             </div>
         </nav>
     )
