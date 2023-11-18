@@ -13,6 +13,8 @@ import UserProfile from './Pages/UserProfile/UserProfile';
 import Quiz from './Pages/Quiz/Quiz';
 import QuizQuestions from './Pages/Quiz/QuizQuestions';
 import AddQuiz from './Pages/Quiz/AddQuiz';
+import Subjects from './Pages/Subjects/Subjects';
+import SubjectName from './Pages/Subjects/SubjectName';
 
 const AllRoutes = () => {
   return ( 
@@ -30,6 +32,8 @@ const AllRoutes = () => {
         <Route path='/Quiz' element={<Quiz/>}/>
         <Route path='/Quiz/:id' element={<QuizQuestions/>}/>
         <Route path='/AddQuiz' element ={<AddQuiz/>}/>
+        <Route path='/Subjects' element ={<Subjects/>}/>
+        <Route path='/Subjects/:id' element={<SubjectName/>}></Route>
     </Routes>
   )
 }

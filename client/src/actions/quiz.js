@@ -35,7 +35,7 @@ export const fetchAllQuiz = () => async (dispatch) =>{
     }
 }
 
-export const submitQuiz = (quizData) => async (dispatch) => {
+export const submitQuiz = (quizData, navigate) => async (dispatch) => {
     try {
         const {data} = await api.submitQuizapi(quizData)
         dispatch({type: "SUBMIT_QUIZ", payload: data});
