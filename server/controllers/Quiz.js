@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import Option from '../models/Option.js';
 import Quiz from '../models/Quiz.js'
 import QuizQuestions from '../models/QuizQuestions.js';
@@ -49,23 +48,23 @@ export const createQuiz = async (req, res) => {
     }
 }
 
-export const getAllQuiz = async (req, res) =>{
-    try{
-        const allQuiz = await Quiz.find({},{
+export const getAllQuiz = async (req, res) => {
+    try {
+        const allQuiz = await Quiz.find({}, {
             _id: true,
             quizName: true,
             type: true,
             authorName: true
         }).populate({
             path: "authorName",
-            select: {name: true}
+            select: { name: true }
         });
         return res.status(200).json({
             success: true,
             allQuiz,
             message: "Quiz fetched Successfully."
         })
-    } catch(error){
+    } catch (error) {
         return res.status(500).json({
             success: false,
             message: "Something went wrong while fetching quizzes."
@@ -90,7 +89,7 @@ export const getQuiz = async (req, res) => {
                     path: "questions",
                     populate: {
                         path: "ans",
-                        populate:{
+                        populate: {
                             path: "answer"
                         }
                     },
@@ -230,28 +229,46 @@ export const submitQuiz = async (req, res) => {
     try {
 
         // console.log(req.body);
-        const {ansArray, userid, quizid} = req.body;
-        let cnt = 0, i=0;
+        const { ansArray, userid, quizid } = req.body;
+        let cnt = 0, i = 0;
         let user;
-        ansArray.forEach( async (ans) =>{
-            const check = await QuizAnswer.find({answer: ans}).exec()
+        ansArray.forEach(async (ans) => {
+            const check = await QuizAnswer.find({ answer: ans }).exec()
             i++;
             // console.log(check, i, cnt, ansArray.length);
-            if(check.length !== 0){
+            if (check.length !== 0) {
                 cnt++;
                 // console.log(cnt);
             }
-            if(i===ansArray.length){
-                user = await User.findByIdAndUpdate(userid,{
-                    $push:{
+            if (i === ansArray.length) {
+                user = await User.findByIdAndUpdate(userid, {
+                    $push: {
                         result: {
                             quizId: quizid,
                             marks: cnt,
                             totalMarks: ansArray.length
                         }
                     }
-                }, {new :true})
-                // console.log(user);
+                }, { new: true })
+                const quizDetails = await Quiz.findById(quizid);
+                var totalScore = quizDetails.totalScore ?
+                    quizDetails.totalScore : 0;
+                totalScore = totalScore + cnt;
+                var attempts = quizDetails.attempts ? quizDetails.attempts : 0;
+                attempts = attempts + 1;
+                var average = quizDetails.average ? quizDetails.average : 0;
+                average = totalScore/attempts;
+                await Quiz.findByIdAndUpdate(quizid, {
+                    $set: { totalScore: totalScore, attempts: attempts,
+                    average: average },
+                    $push:{
+                        user:{
+                            userName: userid,
+                            marks: cnt
+                        },
+
+                    }
+                }, { upsert: true })
             }
         })
 

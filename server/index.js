@@ -8,6 +8,7 @@ import questionRoutes from './routes/Questions.js'
 import answerRoutes from './routes/Answers.js'
 import quizRoutes from './routes/Quiz.js'
 import subjectRoutes from './routes/subject.js'
+import resultRoutes from './routes/Result.js'
 
 const app = express();
 dotenv.config()
@@ -24,6 +25,7 @@ app.use('/questions', questionRoutes);
 app.use('/answer', answerRoutes);
 app.use('/quiz', quizRoutes)
 app.use('/subject', subjectRoutes)
+app.use('/result', resultRoutes)
 const PORT = process.env.PORT || 4000;
 const DATABASE_URL = process.env.CONNECTION_URL
 mongoose.connect(DATABASE_URL, {useNewUrlParser: true, useUnifiedTopology: true})

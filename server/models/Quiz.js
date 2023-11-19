@@ -17,7 +17,31 @@ const quizSchema = mongoose.Schema({
     type: {
         type: String,
         required: true
-    }
+    },
+    totalScore:{
+        type: Number,
+        default: 0
+    },
+    attempts:{
+        type: Number,
+        default: 0
+    },
+    average: {
+        type: Number,
+        default: 0
+    },
+    user:[
+        {
+            userName:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+            },
+            marks:{
+                type: Number,
+            }
+        }
+
+    ]
 })
 
 export default mongoose.model("Quiz", quizSchema);
