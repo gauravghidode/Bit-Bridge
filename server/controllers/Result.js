@@ -40,7 +40,7 @@ export const QuizResult = async (req, res)=>{
             })
         }
         console.log("reached");
-        const quiz = await Quiz.findById(quizid).populate({
+        const quiz = await Quiz.findById(quizid,{average:true, quizName: true, type: true, questions: true}).populate({
             path:"user",
             populate:{
                 path: "userName",
