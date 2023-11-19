@@ -11,7 +11,7 @@ export const getMyResult = async (req, res)=>{
             path:"result",
             populate:({
                 path: "quizId",
-                select: {quizName: true, type: true}
+                select: {quizName: true, type: true, authorName: true, average: true}
             }),
         })
         return res.status(200).json({
