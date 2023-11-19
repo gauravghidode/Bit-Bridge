@@ -10,7 +10,7 @@ const EditProfileForm = ({currentUser, setSwitch}) => {
     const dispatch = useDispatch();
     const handleSubmit = (e) =>{
         e.preventDefault();
-        if(tags.length === 0){
+        if(tags===""){
             dispatch(updateProfile(currentUser?.result?._id, {name, about, tags: currentUser?.result?.tags}))
         }
         else{

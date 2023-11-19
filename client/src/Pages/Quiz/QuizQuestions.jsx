@@ -51,7 +51,7 @@ const QuizQuestions = () => {
         setFlag(false);
         console.log(flag);
         setsubmited(true);
-        dispatch(submitQuiz({ansArray, userid, quizid}));
+        dispatch(submitQuiz({ansArray, userid, quizid}, navigate(0)));
         // e.preventDefault();
       }
       window.onfocus = function (ev) {

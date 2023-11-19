@@ -15,7 +15,7 @@ const Searchbar = () => {
     }
     console.log(searchText);
   return (
-    <div>
+    <span>
       <form action="">
         <input
           type="text"
@@ -30,7 +30,7 @@ const Searchbar = () => {
           search
         </span>
       </form>
-    </div>
+    </span>
   );
 };
 
