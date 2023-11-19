@@ -145,7 +145,7 @@ const QuizQuestions = () => {
                     {currentquiz.type==="Practice" && <details>
                         <summary className='show-answer'>Show Answer</summary>
                         <div>
-                          <p>Correct option: {question?.ans?.answer}</p> <p>{question?.ans?.answerDescription}</p>
+                          <p>Correct option: {question?.ans?.answer?.option}</p> <p>{question?.ans?.answerDescription}</p>
                         </div>
                     </details>}
                 </div>

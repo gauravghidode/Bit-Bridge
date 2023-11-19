@@ -4,7 +4,6 @@ import Quiz from '../models/Quiz.js'
 import QuizQuestions from '../models/QuizQuestions.js';
 import User from '../models/auth.js';
 import QuizAnswer from "../models/quizAnswer.js"
-import quizAnswer from '../models/quizAnswer.js';
 
 export const createQuiz = async (req, res) => {
     try {
@@ -91,6 +90,9 @@ export const getQuiz = async (req, res) => {
                     path: "questions",
                     populate: {
                         path: "ans",
+                        populate:{
+                            path: "answer"
+                        }
                     },
                 }
             ).exec();
@@ -226,31 +228,37 @@ export const deleteQuiz = async (req, res) => {
 
 export const submitQuiz = async (req, res) => {
     try {
-        console.log(req.body);
-        // const { response, quizId, userId } = req.body;
-        // let cnt = 0;
-        // response.forEach(async (ans) => {
-        //     // const ansId = mongoose.Types.ObjectId(ans)
-        //     if (await QuizAnswer.find({ answer: ans })) {
-        //         cnt++;
-        //     }
-        // })
 
-        // await User.findByIdAndUpdate(userId,
-        //     {
-        //         $push: {
-        //             result: {
-        //                 quizId,
-        //                 marks: cnt
-        //             }
-        //         }
-        //     }
-        // )
+        // console.log(req.body);
+        const {ansArray, userid, quizid} = req.body;
+        let cnt = 0, i=0;
+        let user;
+        ansArray.forEach( async (ans) =>{
+            const check = await QuizAnswer.find({answer: ans}).exec()
+            i++;
+            // console.log(check, i, cnt, ansArray.length);
+            if(check.length !== 0){
+                cnt++;
+                // console.log(cnt);
+            }
+            if(i===ansArray.length){
+                user = await User.findByIdAndUpdate(userid,{
+                    $push:{
+                        result: {
+                            quizId: quizid,
+                            marks: cnt,
+                            totalMarks: ansArray.length
+                        }
+                    }
+                }, {new :true})
+                // console.log(user);
+            }
+        })
+
 
         res.status(200).json({
             success: true,
-            message: "Successfully Submitted.",
-            // cnt
+            message: "Successfully Submitted."
         })
     } catch (error) {
         return res.status(500).json({
