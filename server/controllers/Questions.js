@@ -4,7 +4,6 @@ import Subject from '../models/subjects.js';
 export const AskQuestion = async (req, res) =>{
     const postQuestionData = req.body;
     const postQuestion = new Questions(postQuestionData);
-    console.log(postQuestion);
 
     await Subject.findOneAndUpdate({subjectName: postQuestion.selectedSubject}, {
         $push: {
