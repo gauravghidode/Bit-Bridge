@@ -25,11 +25,11 @@ export const addSubject = async (req, res) =>{
 
 export const getSubjects = async(req, res) =>{
     try{
-        const subjects = await Subject.find({},{subjectName: true, subjectDescription: true});
+        const data = await Subject.find({},{subjectName: true, subjectDescription: true});
         return res.status(200).json({
             success: true,
             message:"Subjects fetched successfully.",
-            subjects
+            data
         })
     } catch(error){
         return res.status(500).json({

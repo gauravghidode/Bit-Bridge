@@ -24,7 +24,6 @@ export const createQuiz = (quizData, navigate) => async (dispatch) => {
 // }
 
 export const fetchAllQuiz = () => async (dispatch) =>{
-    console.log("data Fetched");
     try {
         const {data} = await api.fetchAllQuiz();
         dispatch({type: "FETCH_ALL_QUIZ", payload: data})

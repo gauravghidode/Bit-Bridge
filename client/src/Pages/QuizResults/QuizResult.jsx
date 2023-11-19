@@ -30,7 +30,7 @@ const QuizResult = () => {
                 {
                     <div className='main-bar'>
                         <div className="main-bar-header">
-                            <h1>Your Results</h1>
+                            <h1>Quizes set by </h1>
                             <h2>{User?.result.name}</h2>
                         </div>
 

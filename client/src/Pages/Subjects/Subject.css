@@ -12,6 +12,8 @@
 }
 
 .subject-link{
+    display: flex;
+    flex-wrap: wrap;
     text-decoration: none;
     color: white;
 }
