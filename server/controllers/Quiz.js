@@ -4,7 +4,6 @@ import Quiz from '../models/Quiz.js'
 import QuizQuestions from '../models/QuizQuestions.js';
 import User from '../models/auth.js';
 import QuizAnswer from "../models/quizAnswer.js"
-import quizAnswer from '../models/quizAnswer.js';
 
 export const createQuiz = async (req, res) => {
     try {
@@ -247,7 +246,8 @@ export const submitQuiz = async (req, res) => {
                     $push:{
                         result: {
                             quizId: quizid,
-                            marks: cnt
+                            marks: cnt,
+                            totalMarks: ansArray.length
                         }
                     }
                 }, {new :true})

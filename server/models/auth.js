@@ -16,6 +16,9 @@ const userSchema = mongoose.Schema({
             },
             marks: {
                 type: Number
+            },
+            totalMarks:{
+                type: Number
             }
         }
     ]
