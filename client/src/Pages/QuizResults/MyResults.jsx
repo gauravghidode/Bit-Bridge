@@ -1,12 +1,32 @@
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-const quiz = [];
+
 
 const MyResults = () => {
-    const User = useSelector((state) => (state.currentUserReducer))
-    const quizes = useSelector((state) => state.quizReducer?.data?.allQuiz);
+    const User = useSelector((state) =>( state.currentUserReducer))
+    const urlMyResultsUserId= `http://localhost:4000/result/getMyResult/`+User?.result?._id;
+    
+    const [quizes, setQuizes] = useState(null)
+    const [loading, setLoading] = useState(true);
+    
+    async function fetchSubject(){
+      setLoading(true)
+      const a = await axios.get(urlMyResultsUserId);
+      setQuizes(a?.data?.data.result);
+      setLoading(false);
+    //   console.log(quizes[0].quizId.average);
+    }
+    useEffect(() => {
+      fetchSubject();
+    }, [])
+
+    // const quizes = useSelector((state) => state.quizReducer?.data?.allQuiz);
     return (
         <div className='home-container-1'>
             <LeftSidebar></LeftSidebar>
@@ -25,15 +45,19 @@ const MyResults = () => {
                             <div className='quiz-name-container'>
                                 <div className='quiz-name'>
                                     <div>
-                                        <p>{index+1}. {quiz?.quizName}</p>
-                                        <p>Average Score: {quiz?.averageScore}</p>
+                                        <p>{quiz?.quizId?.quizName}</p>
+                                        <p>Average Score: {quiz?.quizId.average}</p>
                                     </div>
                                     <div>
-                                        <p>{quiz.type} Quiz </p>
-                                        <p>Created by {quiz?.authorName?.name}</p>
+                                        <p>{quiz?.quizId?.type} Quiz </p>
+                                        <p>Created by {quiz?.quizId.authorName.name}</p>
                                     </div>
                                 </div>
-                                <p>Score: {quiz.score} / {quiz.total}</p>
+                                <div>
+                                    <p>Your Score</p>
+                                    <p> {quiz?.marks} / {quiz?.totalMarks}</p>
+                                </div>
+                                
 
                             </div>
                         ))

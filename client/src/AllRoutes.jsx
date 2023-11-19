@@ -17,6 +17,7 @@ import Subjects from './Pages/Subjects/Subjects';
 import SubjectName from './Pages/Subjects/SubjectName';
 import QuizResult from './Pages/QuizResults/QuizResult';
 import MyResults from './Pages/QuizResults/MyResults';
+import TutorResult from './Pages/QuizResults/TutorResult';
 import TagsQuestions from './Pages/Tags/TagQuestions';
 
 const AllRoutes = () => {
@@ -43,6 +44,7 @@ const AllRoutes = () => {
         <Route path='/QuizResult' element={<QuizResult/>}></Route>
         <Route path='/QuizResult/:id' element={<QuizResult/>}></Route>
         <Route path='/MyResults/:id' element={<MyResults></MyResults>}></Route>
+        <Route path='/QuizResult/:id/:id' element={<TutorResult></TutorResult>}></Route>
 
         <Route path='/Subjects' element ={<Subjects/>}/>
         <Route path='/Subjects/:id' element={<SubjectName/>}></Route>
