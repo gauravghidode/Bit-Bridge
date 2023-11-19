@@ -10,14 +10,14 @@ const SubjectsList = () => {
   const [subjects, setSubjects] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  async function fetchQuiz(quizId){
+  async function fetchSubject(quizId){
     setLoading(true)
     const a = await axios.get(`http://localhost:4000/subject/getSubjects`);
     setSubjects(a?.data?.data);
     setLoading(false);
   }
   useEffect(() => {
-    fetchQuiz();
+    fetchSubject();
   }, [])
 
   return (
@@ -33,7 +33,7 @@ const SubjectsList = () => {
               {subjects && subjects.map((subject) => (
                 <Link key={subject._id} to={`/Subjects/${subject._id}`} className='subject-link'>
                   <div className='subject'>
-                    <h4>{subject.subjectName}</h4>
+                    <h3>{subject.subjectName}</h3>
                     <p>{subject.subjectDescription}</p>
                   </div>
                 </Link>

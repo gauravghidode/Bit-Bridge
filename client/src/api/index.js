@@ -21,3 +21,5 @@ export const postQuiz = (quizData) => API.post('quiz/createQuiz', quizData);
 // export const postQuizQuestions = (quizQuestionData) => API.post('quiz/createQuizQuestion', quizQuestionData);
 export const fetchAllQuiz = () => API.get('quiz/getAllQuiz');
 export const submitQuizapi = (quizData) => API.post('quiz/submitQuiz', quizData);
+
+export const fetchAllSubject = () => API.get('/subject/getSubjects');

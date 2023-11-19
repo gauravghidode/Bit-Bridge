@@ -19,13 +19,15 @@ const Quiz = () => {
             <div className="main-bar">
                 <div className="main-bar-header">
                     <h1>Quiz</h1>
-                    {
-                      (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to='/AddQuiz' className='add-btn'>Add Quiz</Link>
-                    }
-                    {
-                      (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to={urlQuizResultUserId} className='add-btn'>View all Results</Link>
-                    }
-                    <Link to={urlMyResultsUserId} className='add-btn'>View your results</Link>
+                    <div className='result-btn-container'>
+                      {
+                        (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to='/AddQuiz' className='add-btn'>Add Quiz</Link>
+                      }
+                      {
+                        (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to={urlQuizResultUserId} className='add-btn'>View all Results</Link>
+                      }
+                      <Link to={urlMyResultsUserId} className='add-btn'>View your results</Link>
+                    </div>
                     
                 </div>
                 <div className="quizes-container">

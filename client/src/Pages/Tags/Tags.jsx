@@ -1,32 +1,33 @@
  import React from 'react'
  import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
- import TagsList from './TagsList';
+ import TagsList from './TagQuestions';
  import './Tags.css'
+ import { Link } from 'react-router-dom';
  
  const Tags = () => {
 
     const tagsList = [{
-        id:1,
+        _id:1,
         tagName: "javascript",
         tagDesc: "For question regarding javascript and its various implementations and dialects"
     },
     {
-        id:2,
+        _id:2,
         tagName: "DSA",
         tagDesc: "For questions regarding Data structures and algorithms"
     },
     {
-        id:3,
+        _id:3,
         tagName: "C++",
         tagDesc: "For questions regarding Cpp language and OOPs concepts in cpp"
     },
     {
-        id:4,
+        _id:4,
         tagName: "Java",
         tagDesc: "Question about java Programming."
     },
     {
-        id:5,
+        _id:5,
         tagName: "Network Security",
         tagDesc: "Questions about network security"
     },
@@ -45,7 +46,14 @@
                 <div className='tags-list-container'>
                     {
                         tagsList.map((tag) => (
-                            <TagsList tag={tag} key={tagsList.id}/>
+                            // <TagsList tag={tag} key={tagsList.id}/>
+                            <Link key={tag._id} to={`/Tags/${tag._id}`} className='subject-link tag'>
+                                <div>
+                                    <h5 className='all-tags'>{tag.tagName}</h5>
+                                    <p>{tag.tagDesc}</p>
+                                </div>
+                            </Link>
+                            
                         ))
                     }
                 </div>

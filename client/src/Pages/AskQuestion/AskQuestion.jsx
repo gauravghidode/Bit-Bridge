@@ -15,7 +15,47 @@ const AskQuestion = () => {
     const navigate = useNavigate();
     const User = useSelector((state) => (state.currentUserReducer))
 
-    const subjects=[{_id:"1", subjectName: "DCN"}, {_id:"2", subjectName: "Data Structures"}, {_id:"3", subjectName: "Operating Systems"}, {_id:"4", subjectName: "Computer Graphics"}, {_id:"5", subjectName: "Automata Theory"}, {_id:"6", subjectName: "Java"}, {_id:"7", subjectName: "Object Oriented Programming"}, {_id:"8", subjectName: "cryptography"}, {_id:"9", subjectName: "Discrete Mathematics"}, {_id:"10", subjectName: "Software engineering"}];
+    const subjects=[
+        {
+        "_id":"6559b7667aad4a8fff67f68e",
+        "subjectName": "DCN"
+      },
+      {
+        "_id":"6559b7cb7aad4a8fff67f6a6",
+        "subjectName": "Data Structures"
+      },
+      {
+        "_id":"6559b8267aad4a8fff67f6a8",
+        "subjectName": "Operating Systems"
+      },
+      {
+        "_id":"6559b85f7aad4a8fff67f6aa",
+        "subjectName": "Computer Graphics"
+      },
+      {
+        "_id":"6559b8877aad4a8fff67f6ac",
+        "subjectName": "Automata Theory"
+      },
+      {
+        "_id":"6559b8a37aad4a8fff67f6ae",
+        "subjectName": "Java"
+      },
+      {
+        "_id":"6559b8d17aad4a8fff67f6b0",
+        "subjectName": "Object Oriented Programming"
+      },
+      {
+        "_id":"6559b8f27aad4a8fff67f6b2",
+        "subjectName": "Cryptography"
+      },
+      {
+        "_id":"6559b9217aad4a8fff67f6b4",
+        "subjectName": "Discrete Mathematics"
+      },
+      {
+        "_id":"6559b94b7aad4a8fff67f6b6",
+        "subjectName": "Software Engineering"
+      }]
 
     function selectSubject(e){
         setSubject(e.target.value);

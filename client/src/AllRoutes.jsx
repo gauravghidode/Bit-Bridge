@@ -17,6 +17,7 @@ import Subjects from './Pages/Subjects/Subjects';
 import SubjectName from './Pages/Subjects/SubjectName';
 import QuizResult from './Pages/QuizResults/QuizResult';
 import MyResults from './Pages/QuizResults/MyResults';
+import TagsQuestions from './Pages/Tags/TagQuestions';
 
 const AllRoutes = () => {
   return ( 
@@ -31,6 +32,7 @@ const AllRoutes = () => {
         <Route path='/Questions/:id' element={<DisplayQuestion/>}/>
 
         <Route path='/Tags' element={<Tags/>}/>
+        <Route path='/Tags/:id' element={<TagsQuestions/>}/>
 
         <Route path='/Users' element ={<Users/>}/>
         <Route path='/Users/:id' element={<UserProfile/>}/>

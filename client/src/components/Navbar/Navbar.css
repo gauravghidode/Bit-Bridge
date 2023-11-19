@@ -33,15 +33,21 @@
   }
   
   #bit-bridge-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: 50px;
     border-radius: 50%;;
   }
   
   .nav-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-left: 35px;
-    padding-bottom: 10px;
+    padding-right: 10px;
   }
   
   .nav-item{
@@ -87,10 +93,13 @@
   }
   
   .navbar form .search-icon{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     left:25px;
-    
-    top:5px;
+    top:9.5px;
   }
   
   .nav-links{

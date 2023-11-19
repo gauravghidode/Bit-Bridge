@@ -25,7 +25,7 @@ const MyResults = () => {
                             <div className='quiz-name-container'>
                                 <div className='quiz-name'>
                                     <div>
-                                        <p>{index} {quiz?.quizName}</p>
+                                        <p>{index+1}. {quiz?.quizName}</p>
                                         <p>Average Score: {quiz?.averageScore}</p>
                                     </div>
                                     <div>

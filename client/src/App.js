@@ -8,6 +8,7 @@ import AllRoutes from './AllRoutes';
 import {fetchAllUsers} from './actions/users.js'
 import { fetchAllQuiz } from './actions/quiz.js';
 import { fetchAllQuestions } from './actions/question';
+import { fetchAllSubjects } from './actions/subject.js';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     dispatch(fetchAllQuiz())
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
+    dispatch(fetchAllSubjects())
   },[dispatch])
 
   return (

@@ -37,9 +37,11 @@ function Navbar(){
             
             <div className="navbar">
                 <div>
-                    <Link to='/' className='nav-item nav-logo'>
-                        <img src={logo} alt="logo" id='bit-bridge-logo'></img>
-                    </Link>
+                    <span className='nav-logo'>
+                        <Link to='/' >
+                                <img src={logo} alt="logo" id='bit-bridge-logo'></img>
+                        </Link>
+                    </span>
                     <Link to='/About' className='nav-item nav-btn'>About</Link>
                     <Link to='/Contact' className='nav-item nav-btn'>Contact</Link>
                     {/* <Link to='/' className='nav-item nav-btn'>Feedback</Link> */}

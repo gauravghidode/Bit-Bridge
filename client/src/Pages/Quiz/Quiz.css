@@ -52,6 +52,7 @@
 }
 
 .main-bar-header .add-btn{
+    margin: 10px;
     padding: 10px 15px;
     border-radius: 4px;
     background: linear-gradient(to right, #3a3add, rgb(185, 24, 185));
@@ -95,6 +96,12 @@ textarea{
 .show-answer:hover{
     cursor: pointer;
 }
+
+.result-btn-container{
+    display: flex;
+}
+
+
 
 @media screen and (max-width: 600px) {
     .quiz-main-container{

@@ -17,19 +17,9 @@ const Searchbar = () => {
   return (
     <span>
       <form action="">
-        <input
-          type="text"
-          id="search-bar"
-          placeholder="Search..."
-          onChange={handleChange}
-        />
-        <span
-          class="material-symbols-outlined search-icon"
-          onClick={handleSearch}
-        >
-          search
-        </span>
-      </form>
+        <input type="text" id="search-bar" placeholder='Search...' onChange={handleChange}/>
+        <span class="material-symbols-outlined search-icon" onClick={handleSearch}><i class="fa fa-search" aria-hidden="true"></i></span>
+        </form>
     </span>
   );
 };
