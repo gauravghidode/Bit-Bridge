@@ -1,10 +1,16 @@
 import Questions from '../models/Questions.js'
 import mongoose from 'mongoose'
+import Subject from '../models/subjects.js';
 export const AskQuestion = async (req, res) =>{
     const postQuestionData = req.body;
-    console.log(req.body);
     const postQuestion = new Questions(postQuestionData);
+    console.log(postQuestion);
 
+    await Subject.findOneAndUpdate({subjectName: postQuestion.selectedSubject}, {
+        $push: {
+            question: postQuestion._id
+        }
+    })
     try {
         await postQuestion.save();
         res.status(200).json("Posted a question successfully")

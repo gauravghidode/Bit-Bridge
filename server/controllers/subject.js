@@ -38,3 +38,26 @@ export const getSubjects = async(req, res) =>{
         })
     }
 }
+
+export const getSubjectQuestion = async (req, res) =>{
+    const {subjectId} = req.params;
+    try {
+        if(!subjectId){
+            return res.status(404).json({
+                success: false,
+                message: "Subject id is required."
+            })
+        }
+        const questions = await Subject.findById(subjectId).populate("question");
+        return res.status(200).json({
+            success: true,
+            message: "fetched Successfully.",
+            questions
+        })
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Something went wrong."
+        })
+    }
+}

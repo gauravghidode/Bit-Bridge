@@ -17,8 +17,7 @@ const QuestionSchema = mongoose.Schema({
         answeredOn: {type: Date, default: Date.now},
     }],
     selectedSubject:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Subject"
+        type: String,
     }
 })
 export default mongoose.model("Queston", QuestionSchema);
