@@ -7,6 +7,8 @@ import { useSelector } from 'react-redux'
 const Quiz = () => {
   const User = useSelector((state) =>( state.currentUserReducer))
   console.log(User);
+  const urlMyResultsUserId= "/MyResults/"+User?.result?._id;
+  const urlQuizResultUserId= "/QuizResult/"+User?.result._id;
 
   const quizes = useSelector((state) => state.quizReducer?.data?.allQuiz);
 
@@ -20,6 +22,11 @@ const Quiz = () => {
                     {
                       (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to='/AddQuiz' className='add-btn'>Add Quiz</Link>
                     }
+                    {
+                      (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to={urlQuizResultUserId} className='add-btn'>View all Results</Link>
+                    }
+                    <Link to={urlMyResultsUserId} className='add-btn'>View your results</Link>
+                    
                 </div>
                 <div className="quizes-container">
                   {

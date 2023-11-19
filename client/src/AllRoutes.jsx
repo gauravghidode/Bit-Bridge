@@ -15,6 +15,8 @@ import QuizQuestions from './Pages/Quiz/QuizQuestions';
 import AddQuiz from './Pages/Quiz/AddQuiz';
 import Subjects from './Pages/Subjects/Subjects';
 import SubjectName from './Pages/Subjects/SubjectName';
+import QuizResult from './Pages/QuizResults/QuizResult';
+import MyResults from './Pages/QuizResults/MyResults';
 
 const AllRoutes = () => {
   return ( 
@@ -23,15 +25,23 @@ const AllRoutes = () => {
         <Route path='/About' element={<About/>}></Route>
         <Route path='/Contact' element={<Contact></Contact>}></Route>
         <Route path='/Auth' element={<Auth/>}></Route>
+
         <Route path='/Questions' element={<Questions/>}></Route>
         <Route path='/AskQuestion' element={<AskQuestion/>}></Route>
         <Route path='/Questions/:id' element={<DisplayQuestion/>}/>
+
         <Route path='/Tags' element={<Tags/>}/>
+
         <Route path='/Users' element ={<Users/>}/>
         <Route path='/Users/:id' element={<UserProfile/>}/>
+
         <Route path='/Quiz' element={<Quiz/>}/>
         <Route path='/Quiz/:id' element={<QuizQuestions/>}/>
         <Route path='/AddQuiz' element ={<AddQuiz/>}/>
+        <Route path='/QuizResult' element={<QuizResult/>}></Route>
+        <Route path='/QuizResult/:id' element={<QuizResult/>}></Route>
+        <Route path='/MyResults/:id' element={<MyResults></MyResults>}></Route>
+
         <Route path='/Subjects' element ={<Subjects/>}/>
         <Route path='/Subjects/:id' element={<SubjectName/>}></Route>
     </Routes>

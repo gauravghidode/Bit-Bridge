@@ -92,6 +92,10 @@ textarea{
      margin-right: 20px;
 }
 
+.show-answer:hover{
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     .quiz-main-container{
         margin: 20px;
