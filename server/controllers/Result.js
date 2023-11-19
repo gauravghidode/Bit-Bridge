@@ -24,21 +24,37 @@ export const getMyResult = async (req, res)=>{
     }
 }
 
-// export const QuizResult = async (req, res)=>{
-//     try {
-//         const {quizid, userid} = req.params;
-//         const user = await User.findById(userid);
-//         if(user.role !== "admin" || user.role !== "instructor"){
-//             return res.status(403).json({
-//                 success: false,
-//                 message: "Your are not allowed to see this section"
-//             })
-//         }
-//         const quiz = await Quiz.findById({})
-//     } catch (error) {
-        
-//     }
-// }
+export const QuizResult = async (req, res)=>{
+    try {
+        const {quizid, userid} = req.params;
+        const user = await User.findById(userid);
+        if(user.role !== "admin" && user.role !== "instructor"){
+            return res.status(403).json({
+                success: false,
+                message: "Your are not allowed to see this section",
+                user:user.role
+            })
+        }
+        console.log("reached");
+        const quiz = await Quiz.findById(quizid).populate({
+            path:"user",
+            populate:{
+                path: "userName",
+                select:{name: true, email: true,}
+            }
+        })
+        console.log("reached also");
+        return res.status(200).json({
+            quiz,
+            message: "fetched successfully"
+        })
+    } catch (error) {
+        res.status(500).json({
+            success:false,
+            message: "Something went wrong"
+        })
+    }
+}
 export const Quizzes = async (req, res)=>{
     try {
         const {userid} = req.params;
