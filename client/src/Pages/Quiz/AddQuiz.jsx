@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createQuiz } from "../../actions/quiz";
+import "./AddQuiz.css";
 
 const answers = [];
 
@@ -68,14 +69,16 @@ const AddQuiz = () => {
       }
     }
 
-    if (cnt === answers.length) {
+    if (cnt === answers.length && currentquiz.length !== 0) {
       dispatch(
         createQuiz({ quizName, quizAuthor, quizType, currentquiz }),
         navigate("/Quiz")
       );
+    } else if(currentquiz.length === 0){
+      alert("Please add at least one question.")
     }
-    else{
-      alert("Answer all the questions")
+     else {
+      alert("Answer all the questions");
     }
   }
 
@@ -87,15 +90,15 @@ const AddQuiz = () => {
     <div className="home-container-1">
       <LeftSidebar></LeftSidebar>
       <div className="home-container-2">
-        <div className="main-bar">
-          <div className="main-bar-header">
+        <div className="main-bar-page">
+          <div id="add-quiz-header">
             <h1>Create your own quiz</h1>
           </div>
           <div className="create-quiz-container">
             <form action="" onSubmit={handleSubmit}>
-              <p>
+              <p id="quiz-type-box">
                 <label htmlFor="" id="quizType">
-                  Quiz type:
+                  Quiz type :
                 </label>
                 <input
                   type="radio"
@@ -120,7 +123,7 @@ const AddQuiz = () => {
               </p>
 
               <label>
-                <p>Quiz Name</p>
+                <p id="quiz-name-heading">Quiz Name</p>
                 <input
                   type="text"
                   id="quizName"
@@ -129,7 +132,7 @@ const AddQuiz = () => {
                   }}
                 />
               </label>
-              <ol type="1">
+              <ol id="ques-num" type="1">
                 {currentquiz?.map((question, index) => (
                   <div className="quiz-question" key={question?._id}>
                     <li>
@@ -143,12 +146,10 @@ const AddQuiz = () => {
                               onChange={() => handleSelect(index, opt)}
                               id={`ForQues${index}${i}`}
                             />
-                            <label htmlFor={`ForQues${index}${i}`}>
-                              {opt}
-                            </label>
+                            <label htmlFor={`ForQues${index}${i}`}>{opt}</label>
                           </li>
                         ))}
-                        <div>
+                        <div id="correct-option-div">
                           <p>Correct option: {question.ans}</p>{" "}
                           <p>{question.ans_desc}</p>
                         </div>
@@ -159,7 +160,7 @@ const AddQuiz = () => {
               </ol>
               <div className="add-quiz-question">
                 <label>
-                  <p>Question </p>
+                  <p id="ques-desc">Question </p>
                   <textarea
                     type="text"
                     name=""
@@ -169,7 +170,7 @@ const AddQuiz = () => {
                 </label>
 
                 <label>
-                  <p>Option</p>{" "}
+                  <p id="option-heading">Option</p>{" "}
                   <input
                     id="option"
                     type="text"
@@ -177,13 +178,14 @@ const AddQuiz = () => {
                   />{" "}
                   <input
                     className="inner-grad-btn"
+                    id="add-option-btn"
                     type="button"
                     value="Add option"
                     onClick={addOption}
                   />
                 </label>
                 <div className="add-quiz-ans">
-                  <label>
+                <label id="correct-option-label">
                     <p>Correct option</p>{" "}
                     <input
                       type="text"
@@ -193,7 +195,7 @@ const AddQuiz = () => {
                     />
                   </label>
                   <label>
-                    <p>Answer Description</p>{" "}
+                    <p id="ans-desc">Answer Description</p>{" "}
                     <textarea
                       rows="2"
                       cols="200"
@@ -208,13 +210,14 @@ const AddQuiz = () => {
                   <input
                     type="button"
                     className="inner-grad-btn"
+                    id="add-question-btn"
                     value="Add Question"
                     onClick={addQuestion}
                   />
                 </p>
               </div>
 
-              <button type="submit" className="grad-btn">
+              <button type="submit" className="grad-btn" id="submit-btn">
                 Submit
               </button>
             </form>
