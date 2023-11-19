@@ -246,7 +246,7 @@ export const submitQuiz = async (req, res) => {
                 user = await User.findByIdAndUpdate(userid,{
                     $push:{
                         result: {
-                            quizid: quizid,
+                            quizId: quizid,
                             marks: cnt
                         }
                     }

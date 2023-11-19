@@ -12,6 +12,7 @@ const userSchema = mongoose.Schema({
         {
             quizId:{
                 type: mongoose.Schema.Types.ObjectId,
+                ref:"Quiz"
             },
             marks: {
                 type: Number
