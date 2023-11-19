@@ -48,10 +48,11 @@ const QuizQuestions = () => {
       }
 
       function handleSubmit(e){
-        setFlag(false);
+        setFlag(undefined);
         console.log(flag);
         setsubmited(true);
-        dispatch(submitQuiz({ansArray, userid, quizid}, navigate(0)));
+        alert("Quiz has been submitted");
+        dispatch(submitQuiz({ansArray, userid, quizid}, navigate('/Quiz')));
         // e.preventDefault();
       }
       window.onfocus = function (ev) {
@@ -142,7 +143,7 @@ const QuizQuestions = () => {
                   </li>
                     
                     {currentquiz.type==="Practice" && <details>
-                        <summary>Show Answer</summary>
+                        <summary className='show-answer'>Show Answer</summary>
                         <div>
                           <p>Correct option: {question?.ans?.answer}</p> <p>{question?.ans?.answerDescription}</p>
                         </div>

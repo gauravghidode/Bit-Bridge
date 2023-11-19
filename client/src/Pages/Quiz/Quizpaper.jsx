@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import './Quiz.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom';
 
 const Quizpaper = ({quiz, index}) => {
     // console.log(quiz);
     const navigate=useNavigate();
+    const location = useLocation();
     const User = useSelector((state) =>( state.currentUserReducer ))
     //   console.log(User);
 
@@ -18,24 +20,25 @@ const Quizpaper = ({quiz, index}) => {
         else{
             navigate(`/Quiz/${quiz._id}`);
         }
-        
       }
+      
 
   return (
     <div className='quiz-name-container'>
         <div className='quiz-name'>
             <div>
                 <p>{index}</p> 
-                <p>{quiz.quizName}</p>
+                <p>{quiz?.quizName}</p>
             </div>
             <div>
                 <p>{quiz.type} Quiz </p>
-                <p>Created by {quiz.authorName.name}</p>
+                <p>Created by {quiz?.authorName?.name}</p>
             </div> 
         </div> 
-        {/* <Link to={`/Quiz/${quiz._id}`}> */}
-            <button className='inner-grad-btn' onClick={redirect}>Take Quiz</button>    
-        {/* </Link> */}
+        {
+            <button className='inner-grad-btn' onClick={redirect}>Take Quiz</button> 
+        }  
+        
     </div>
   )
 }
