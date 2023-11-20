@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 
 
 const MyResults = () => {
+    const {userid} = useParams();
     const User = useSelector((state) =>( state.currentUserReducer))
-    const urlMyResultsUserId= `http://localhost:4000/result/getMyResult/`+User?.result?._id;
+    const urlMyResultsUserId= `http://localhost:4000/result/getMyResult/${userid}`;
     
     const [quizes, setQuizes] = useState(null)
     const [loading, setLoading] = useState(true);
