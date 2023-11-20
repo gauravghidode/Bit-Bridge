@@ -5,13 +5,15 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import { backend_URL } from '../../api/url.js';
+
 
 
 
 const MyResults = () => {
     const {userid} = useParams();
     const User = useSelector((state) =>( state.currentUserReducer))
-    const urlMyResultsUserId= `http://localhost:4000/result/getMyResult/${userid}`;
+    const urlMyResultsUserId= `${backend_URL}/result/getMyResult/${userid}`;
     
     const [quizes, setQuizes] = useState(null)
     const [loading, setLoading] = useState(true);

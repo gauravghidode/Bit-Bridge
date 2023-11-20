@@ -5,12 +5,13 @@ import LeftSidebar from '../../components/LeftSidebar/LeftSidebar';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect } from 'react';
+import { backend_URL } from '../../api/url';
 
 const QuizResult = () => {
     const location = useLocation();
     const userid = location.pathname.split('/')[2];
     const User = useSelector((state) =>( state.currentUserReducer))
-    const urlMyResultsUserId= `http://localhost:4000/result/${userid}`;
+    const urlMyResultsUserId= `${backend_URL}/result/${userid}`;
     
     const [quizes, setQuizes] = useState(null)
     const [loading, setLoading] = useState(true);

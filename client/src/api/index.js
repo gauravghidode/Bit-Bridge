@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { backend_URL } from './url';
 
-const API = axios.create({baseURL: 'http://localhost:4000'});
+const API = axios.create({baseURL: backend_URL});
 // const API = axios.create({baseURL: 'https://bitbridgeserver.onrender.com'});
 
 export const logIn = (authData) => API.post('user/login', authData);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './Subject.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { backend_URL } from '../../api/url';
 
 const SubjectsList = () => {
   const [subjects, setSubjects] = useState(null);
@@ -9,7 +10,7 @@ const SubjectsList = () => {
 
   async function fetchSubject(quizId){
     setLoading(true)
-    const a = await axios.get(`http://localhost:4000/subject/getSubjects`);
+    const a = await axios.get(`${backend_URL}/subject/getSubjects`);
     const b = a?.data?.data;
     b?.sort((a, b) => {
       const nameA = a.subjectName.toUpperCase(); // ignore upper and lowercase

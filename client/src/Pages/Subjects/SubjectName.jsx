@@ -7,6 +7,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import './Subject.css';
+import { backend_URL } from '../../api/url';
 
 const SubjectName = () => {
 
@@ -18,8 +19,8 @@ const SubjectName = () => {
 
     async function fetchSubjectQuestions(quizId){
         setLoading(true)
-        // console.log(`http://localhost:4000/subject/getSubjectQuestions/`+subjectId);
-        const a = await axios.get(`http://localhost:4000/subject/getSubjectQuestions/`+subjectId);
+        // console.log(`${backend_URL}/subject/getSubjectQuestions/`+subjectId);
+        const a = await axios.get(`${backend_URL}/subject/getSubjectQuestions/`+subjectId);
         setSubjects(a?.data?.questions);
         setLoading(false);
       }
