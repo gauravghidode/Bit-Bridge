@@ -6,6 +6,12 @@ export const AskQuestion = async (req, res) => {
     try {
         const postQuestionData = req.body;
         // console.log(postQuestionData);
+        if(!postQuestionData.questionTitle || !postQuestionData.questionBody || !postQuestionData.userPosted || !postQuestionData.userId || !postQuestionData.selectedSubject){
+            return res.status(500).json({
+                success: false,
+                message:"All fields are required."
+            })
+        }
         const postQuestion = await Questions.create({questionTitle:postQuestionData.questionTitle,
             questionBody: postQuestionData.questionBody,
             userPosted: postQuestionData.userPosted,
@@ -80,8 +86,7 @@ export const deleteQuestions = async (req, res) => {
                     question: ques._id
                 }
             })
-            console.log(tags);
-            if(tags.question.length === 0){
+            if(tags.question.length === 1){
                 await Tag.findByIdAndRemove(tag);
             }
         })
