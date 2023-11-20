@@ -33,6 +33,9 @@ export const getQuestionByTagName = async (req, res) =>{
         }
         const tagQuestion = await Tag.findById(tagId).populate({
             path: "question",
+            populate:{
+                path: "questionTags"
+            }
         })
 
         return res.status(200).json({

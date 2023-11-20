@@ -20,39 +20,10 @@ const TagsList = () => {
       const a = await axios.get(url);
       setTagData(a?.data?.data);
       setLoading(false);
-        console.log(a?.data?.data);
     }
     useEffect(() => {
       fetchTags();
     }, [])
-
-
-//   const tagsList = [{
-//     _id:1,
-//     tagName: "javascript",
-//     tagDesc: "For question regarding javascript and its various implementations and dialects"
-// },
-// {
-//     _id:2,
-//     tagName: "DSA",
-//     tagDesc: "For questions regarding Data structures and algorithms"
-// },
-// {
-//     _id:3,
-//     tagName: "C++",
-//     tagDesc: "For questions regarding Cpp language and OOPs concepts in cpp"
-// },
-// {
-//     _id:4,
-//     tagName: "Java",
-//     tagDesc: "Question about java Programming."
-// },
-// {
-//     _id:5,
-//     tagName: "Network Security",
-//     tagDesc: "Questions about network security"
-// }]
-
   const questionList = tagData?.question;
 
   return (

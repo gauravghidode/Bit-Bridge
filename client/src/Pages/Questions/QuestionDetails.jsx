@@ -70,8 +70,9 @@ const QuestionDetails = () => {
                                     <div style={{width: '100%'}}>
                                         <p className='question-body'>{question.questionBody}</p>
                                         <div className='question-details-tags'>
-                                            {question.questionTags.map((tag)=> (
-                                            <p key={tag}>{tag}</p>
+                                            {question?.questionTags?.map((tag)=> (
+                                                <Link key={tag._id} to={`/Tags/${tag._id}`}>
+                                            <p >{tag.tagName}</p></Link>
                                             ))}
                                         </div>
                                         <div className="question-actions-user">
@@ -115,8 +116,8 @@ const QuestionDetails = () => {
                                 <p>
                                     Checkout other questions tagged  
                                     {
-                                        question.questionTags.map((tag) => (
-                                            <Link key={tag} className='ans-tag'>{tag}</Link>
+                                        question?.questionTags?.map((tag) => (
+                                            <Link key={tag._id} to={`/Tags/${tag._id}`} className='ans-tag'>{tag.tagName}</Link>
                                         ))
                                     } or
                                     <Link to='/AskQuestion' className='all-links'> ask your own question</Link>

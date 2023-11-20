@@ -5,12 +5,12 @@ import Tag from '../models/Tag.js';
 export const AskQuestion = async (req, res) => {
     try {
         const postQuestionData = req.body;
-        const postQuestion = new Questions(postQuestionData);
-
-        await Subject.findOneAndUpdate({ subjectName: postQuestion.selectedSubject }, {
-            $push: {
-                question: postQuestion._id
-            }
+        // console.log(postQuestionData);
+        const postQuestion = await Questions.create({questionTitle:postQuestionData.questionTitle,
+            questionBody: postQuestionData.questionBody,
+            userPosted: postQuestionData.userPosted,
+            userId: postQuestionData.userId,
+            selectedSubject: postQuestionData.selectedSubject
         })
         postQuestionData.questionTags.forEach(async (tag) => {
             tag = tag.toLowerCase()
@@ -21,11 +21,25 @@ export const AskQuestion = async (req, res) => {
                         question: postQuestion._id
                     }
                 })
+                await Questions.findByIdAndUpdate(postQuestion._id, {
+                    $push:{
+                        questionTags: tagDetails._id
+                    }
+                })
             } else {
-                await Tag.create({ tagName: tag, question: [postQuestion._id] })
+                const newTag = await Tag.create({ tagName: tag, question: [postQuestion._id] })
+                await Questions.findByIdAndUpdate(postQuestion._id, {
+                    $push:{
+                        questionTags: newTag._id
+                    }
+                })
             }
         })
-        await postQuestion.save();
+        await Subject.findOneAndUpdate({ subjectName: postQuestion.selectedSubject }, {
+            $push: {
+                question: postQuestion._id
+            }
+        })
         res.status(200).json("Posted a question successfully")
     } catch (error) {
         console.log(error);
@@ -35,7 +49,10 @@ export const AskQuestion = async (req, res) => {
 
 export const getAllQuestion = async (req, res) => {
     try {
-        const questionList = await Questions.find();
+        const questionList = await Questions.find({}).populate({
+            path: "questionTags",
+            select:{tagName: true, tagDescription: true}
+        });
         res.status(200).json(questionList);
     } catch (error) {
         res.status(404).json({ message: error.message });
@@ -49,7 +66,21 @@ export const deleteQuestions = async (req, res) => {
         return res.status(404).send('Question unavailable...');
     }
     try {
+        const ques = await Questions.findById(_id);
         await Questions.findByIdAndRemove(_id);
+        await Subject.findOneAndUpdate({subjectName: ques.selectedSubject},
+            {
+                $pull:{
+                    question: ques._id
+                }
+            })
+        ques.questionTags.forEach(async(tag)=>{
+            await Tag.findOneAndUpdate({tagName: tag},{
+                $pull:{
+                    question: ques._id
+                }
+            })
+        })
         res.status(200).json("Question deleted Successfully...");
     } catch (error) {
         res.status(404).json({ message: error.message });

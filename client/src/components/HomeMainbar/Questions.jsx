@@ -10,10 +10,10 @@ const Questions = ({question}) => {
             <div className='display-tags-time'>
                 <div className='display-tags'>
                     {
-                        question.questionTags.map((tag) => (
-                            <div>
-                                <p className="all-tags" key={tag}>{tag}</p>
-                            </div>
+                        question?.questionTags?.map((tag) => (
+                            <Link to={`/Tags/${tag._id}`}>
+                                <p className="all-tags" key={tag._id} >{tag.tagName}</p>
+                            </Link>
                         ))
                     }
                 </div>
