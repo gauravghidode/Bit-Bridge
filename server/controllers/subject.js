@@ -48,7 +48,12 @@ export const getSubjectQuestion = async (req, res) =>{
                 message: "Subject id is required."
             })
         }
-        const questions = await Subject.findById(subjectId).populate("question");
+        const questions = await Subject.findById(subjectId).populate({
+            path: "question",
+            populate:{
+                path: "questionTags"
+            }
+        });
         return res.status(200).json({
             success: true,
             message: "fetched Successfully.",
