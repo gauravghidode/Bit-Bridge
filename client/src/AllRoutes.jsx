@@ -43,8 +43,8 @@ const AllRoutes = () => {
         <Route path='/AddQuiz' element ={<AddQuiz/>}/>
         <Route path='/QuizResult' element={<QuizResult/>}></Route>
         <Route path='/QuizResult/:id' element={<QuizResult/>}></Route>
-        <Route path='/MyResults/:id' element={<MyResults></MyResults>}></Route>
-        <Route path='/QuizResult/:id/:id' element={<TutorResult></TutorResult>}></Route>
+        <Route path='/MyResults/:userid' element={<MyResults></MyResults>}></Route>
+        <Route path='/QuizResult/:userid/:quizid' element={<TutorResult></TutorResult>}></Route>
 
         <Route path='/Subjects' element ={<Subjects/>}/>
         <Route path='/Subjects/:id' element={<SubjectName/>}></Route>

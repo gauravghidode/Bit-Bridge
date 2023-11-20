@@ -2,18 +2,28 @@ import React, { useEffect, useState } from 'react'
 import './Subject.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { backend_URL } from '../../api/url';
 
 const SubjectsList = () => {
-
-  // console.log(data);
-  // const subjects=[{_id:"1", subjectName: "DCN"}, {_id:"2", subjectName: "Data Structures"}, {_id:"3", subjectName: "Operating Systems"}, {_id:"4", subjectName: "Computer Graphics"}, {_id:"5", subjectName: "Automata Theory"}, {_id:"6", subjectName: "Java"}, {_id:"7", subjectName: "Object Oriented Programming"}, {_id:"8", subjectName: "cryptography"}, {_id:"9", subjectName: "Discrete Mathematics"}, {_id:"10", subjectName: "Software engineering"}];
   const [subjects, setSubjects] = useState(null);
   const [loading, setLoading] = useState(true);
 
   async function fetchSubject(quizId){
     setLoading(true)
-    const a = await axios.get(`http://localhost:4000/subject/getSubjects`);
-    setSubjects(a?.data?.data);
+    const a = await axios.get(`${backend_URL}/subject/getSubjects`);
+    const b = a?.data?.data;
+    b?.sort((a, b) => {
+      const nameA = a.subjectName.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.subjectName.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    setSubjects(b);
     setLoading(false);
   }
   useEffect(() => {

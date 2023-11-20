@@ -39,7 +39,6 @@ export const QuizResult = async (req, res)=>{
                 user:user.role
             })
         }
-        console.log("reached");
         const quiz = await Quiz.findById(quizid,{average:true, quizName: true, type: true, questions: true}).populate({
             path:"user",
             populate:{
@@ -47,7 +46,6 @@ export const QuizResult = async (req, res)=>{
                 select:{name: true, email: true,}
             }
         })
-        console.log("reached also");
         return res.status(200).json({
             quiz,
             message: "fetched successfully"

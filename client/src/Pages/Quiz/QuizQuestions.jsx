@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { submitQuiz } from '../../actions/quiz'
 
 import axios from 'axios'
+import { backend_URL } from '../../api/url'
 
 
 const QuizQuestions = () => {
@@ -19,7 +20,7 @@ const QuizQuestions = () => {
       async function fetchQuiz(quizId){
         setLoading(true);
         console.log("Fetching quiz Data: ");
-        const a = await axios.get(`http://localhost:4000/quiz/getQuiz/${quizId}`);
+        const a = await axios.get(`${backend_URL}/quiz/getQuiz/${quizId}`);
         console.log("Quiz fetched");
         setCurrentquiz(a?.data?.quiz);
         setLoading(false);

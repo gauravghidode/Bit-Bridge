@@ -26,7 +26,10 @@ const Quiz = () => {
                       {
                         (User?.result?.role==='admin'||User?.result?.role==='instructor')&&<Link to={urlQuizResultUserId} className='add-btn'>View all Results</Link>
                       }
-                      <Link to={urlMyResultsUserId} className='add-btn'>View your results</Link>
+                      {
+                        User && <Link to={urlMyResultsUserId} className='add-btn'>View your results</Link>
+                      }
+                      
                     </div>
                     
                 </div>
