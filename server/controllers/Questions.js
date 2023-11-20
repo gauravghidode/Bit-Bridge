@@ -75,11 +75,15 @@ export const deleteQuestions = async (req, res) => {
                 }
             })
         ques.questionTags.forEach(async(tag)=>{
-            await Tag.findOneAndUpdate({tagName: tag},{
+            const tags = await Tag.findByIdAndUpdate(tag,{
                 $pull:{
                     question: ques._id
                 }
             })
+            console.log(tags);
+            if(tags.question.length === 0){
+                await Tag.findByIdAndRemove(tag);
+            }
         })
         res.status(200).json("Question deleted Successfully...");
     } catch (error) {
