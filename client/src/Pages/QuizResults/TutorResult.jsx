@@ -1,6 +1,6 @@
 import React from 'react'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -9,11 +9,10 @@ import { useSelector } from 'react-redux';
 const TutorResult = () => {
 
     const location = useLocation();
-    const quizId = location.pathname.split('/')[3];
-    const userid = location.pathname.split('/')[2];
+    const {userid, quizid} = useParams();
 
     const User = useSelector((state) => (state.currentUserReducer))
-    const urlMyResultsUserId = `http://localhost:4000/result/quizResult/${userid}/${quizId}`;
+    const urlMyResultsUserId = `http://localhost:4000/result/quizResult/${userid}/${quizid}`;
 
     const [participants, setParticipants] = useState(null);
     const [quizData, setQuizData] =useState(null);
