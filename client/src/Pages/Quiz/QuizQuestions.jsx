@@ -35,7 +35,7 @@ const QuizQuestions = () => {
       
       const navigate= useNavigate();
       var path=useLocation();
-      var [flag, setFlag] = useState(undefined);
+      var [flag, setFlag] = useState(true);
       const [submited, setsubmited] = useState(false);
 
       const User = useSelector((state) =>( state.currentUserReducer ))
@@ -44,13 +44,13 @@ const QuizQuestions = () => {
 
 
       function startQuiz(e){
-        setFlag("start");
+        setFlag(false);
       }
 
       function handleSubmit(e){
-        setFlag(undefined);
-        console.log(flag);
         setsubmited(true);
+        console.log(submited);
+        
         alert("Quiz has been submitted");
         dispatch(submitQuiz({ansArray, userid, quizid}, navigate('/Quiz')));
         // e.preventDefault();
@@ -67,26 +67,15 @@ const QuizQuestions = () => {
       
 
   return (
-    <div>
-      {
-        <div className='quiz-main-container'>
+    <divc className="quiz-start-container">
         {
-          submited&&
-          <div className='main-bar-header'>
-            <h2>You scored : </h2>
-            <button value="Click to exit" className="submit-btn" onClick={setFlag(undefined)}></button>
-          </div>
-          
-        }
-        
-        {
-        flag===undefined&& 
+        flag && 
         <div className='main-bar'>
             <div className="main-bar-header">
                 <h1>{currentquiz?.quizName}</h1>
                 <h2>{currentquiz?.type} Quiz</h2>
             </div>
-            <p>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</p>
+            {/* <p>Once the quiz is started you cannot change tabs or click anywhere outside the window. In case you do so the quiz will be automatically submitted.</p> */}
             <form action="">
               <label htmlFor="">
                 <p>Name: </p>
@@ -104,13 +93,13 @@ const QuizQuestions = () => {
         </div>
         }
         {
-        flag==="start"&&
+        !flag &&
         <div className="main-bar">
           {
             window.onblur = async function (ev) {
-              if(flag==="start"){
+              if(!flag){
                 console.log("lost focus");
-                submitQuiz(ev);
+                // handleSubmit(ev);
                 // console.log(flag);
                 // alert("Your quiz has been auto submitted");
                 // navigate('/Quiz');
@@ -158,12 +147,7 @@ const QuizQuestions = () => {
         </div>
         } 
         
-      </div>
-        }
-      
-    </div>
-    // <div className=""></div>
-      
+      </divc>
 
   )
 }

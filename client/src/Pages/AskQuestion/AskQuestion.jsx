@@ -16,7 +16,11 @@ const AskQuestion = () => {
     const User = useSelector((state) => (state.currentUserReducer))
 
     const subjects=[
-        {
+      {
+            "_id":"655a5b3cfad70e6d022c1a7c",
+            "subjectName": "General Questions"
+      },
+      {
         "_id":"6559b7667aad4a8fff67f68e",
         "subjectName": "DCN"
       },
@@ -55,7 +59,12 @@ const AskQuestion = () => {
       {
         "_id":"6559b94b7aad4a8fff67f6b6",
         "subjectName": "Software Engineering"
-      }]
+      },
+      {
+        "_id":"655a5c0dfad70e6d022c1a7e",
+        "subjectName": "Web Development"
+      }
+    ]
 
     function selectSubject(e){
         setSubject(e.target.value);
