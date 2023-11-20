@@ -60,7 +60,7 @@ const QuestionDetails = () => {
                     questionList.data.filter(question => question._id===id).map(question => (
                         <div key={question._id}>
                             <section className='question-details-container'> 
-                                <h1>{question.questionTitle} lalajlkgjlasknl;ananvlkjl</h1>
+                                <h1>{question.questionTitle}</h1>
                                 <div className='question-details-container-2'>
                                     <div className="question-votes">
                                         <img src={upvote} alt="" className='material-icons-like' onClick={handleUpVote} />
