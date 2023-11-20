@@ -33,7 +33,7 @@ const AllRoutes = () => {
         <Route path='/Questions/:id' element={<DisplayQuestion/>}/>
 
         <Route path='/Tags' element={<Tags/>}/>
-        <Route path='/Tags/:id' element={<TagsQuestions/>}/>
+        <Route path='/Tags/:tagId' element={<TagsQuestions/>}/>
 
         <Route path='/Users' element ={<Users/>}/>
         <Route path='/Users/:id' element={<UserProfile/>}/>
