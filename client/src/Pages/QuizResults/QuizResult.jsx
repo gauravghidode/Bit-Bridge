@@ -62,6 +62,7 @@ const QuizResult = () => {
                 }
                 <div className="quizes-container">
                     {
+                        quizes?.length === 0 ? "Your have not Created any quiz.":
                         quizes?.map((quiz, index) => (
                             <div className='quiz-name-container'>
                                 <div className='quiz-name'>

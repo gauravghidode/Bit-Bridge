@@ -14,6 +14,9 @@ const MyResults = () => {
     
     const [quizes, setQuizes] = useState(null)
     const [loading, setLoading] = useState(true);
+    function trueRound(value, digits){
+        return (Math.round((value*Math.pow(10,digits)).toFixed(digits-1))/Math.pow(10,digits)).toFixed(digits);
+    }
     
     async function fetchSubject(){
       setLoading(true)
@@ -41,12 +44,13 @@ const MyResults = () => {
 
                 <div className="quizes-container">
                     {
+                        quizes?.length === 0 ? "Your have not take any quiz.":
                         quizes?.map((quiz, index) => (
                             <div className='quiz-name-container'>
                                 <div className='quiz-name'>
                                     <div>
                                         <p>{quiz?.quizId?.quizName}</p>
-                                        <p>Average Score: {quiz?.quizId.average}</p>
+                                        <p>Average Score: {trueRound(quiz?.quizId.average, 2)}</p>
                                     </div>
                                     <div>
                                         <p>{quiz?.quizId?.type} Quiz </p>
