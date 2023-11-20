@@ -7,8 +7,8 @@ import './AskQuestion.css'
 const AskQuestion = () => {
     const [selectedSubject, setSubject] = useState(undefined);
     const [dropDown, setDropDown] = useState(false);
-    const [questionTitle, setQuestionTitle] = useState('')
-    const [questionBody, setQuestionBody] = useState('')
+    const [questionTitle, setQuestionTitle] = useState(undefined)
+    const [questionBody, setQuestionBody] = useState(undefined)
     const [validWords, setValidWords] = useState('')
     let questionTags = []
     const dispatch = useDispatch();
@@ -94,10 +94,16 @@ const AskQuestion = () => {
             questionTags.push(temp);
             temp = '';
         }
-        if (questionTags.length !== 0 && selectedSubject!==undefined) {
+        if (questionTags.length !== 0 && selectedSubject!==undefined && questionTitle!==undefined && questionBody!==undefined) {
             dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User?.result?._id ,selectedSubject}), navigate('/'));
 
-            console.log(questionTitle, questionBody, questionTags);
+            // console.log(questionTitle, questionBody, questionTags);
+        }
+        else if(questionTitle===undefined){
+          alert("Please enter question title to submit");
+        }
+        else if(questionBody===undefined){
+          alert("Please enter question body to submit");
         }
         else
             alert("Please Enter tags and subject to submit");
