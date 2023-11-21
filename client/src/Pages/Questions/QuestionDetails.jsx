@@ -10,12 +10,8 @@ import './Question.css'
 import Avatar from '../../components/Avatar/Avatar'
 import DisplayAns from './DisplayAnswer'
 import { postAnswer, deleteQuestion, voteQuestion } from "../../actions/question.js";
-<<<<<<< HEAD
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { FaUserTie } from "react-icons/fa6";
-=======
-import toast from 'react-hot-toast'
->>>>>>> 2f513baaf56cd5488e087c3d0b910b9b928b7e5c
 
 const QuestionDetails = () => {
 
@@ -30,7 +26,6 @@ const QuestionDetails = () => {
     const User = useSelector((state) => (state.currentUserReducer));
     const handlePostAns = (e, answerLength) => {
         e.preventDefault();
-<<<<<<< HEAD
         if (User === null) {
             alert("Login or Signup to answer a question")
             navigate('/Auth')
@@ -39,16 +34,6 @@ const QuestionDetails = () => {
                 alert("Enter an answer before submitting")
             } else {
                 dispatch(postAnswer({ id, noOfAnswers: answerLength + 1, answerBody: Answer, userAnswered: User.result.name, userId: User?.result?._id }, navigate))
-=======
-        if(User === null){
-            toast.error("Login or Signup to answer a question")
-            navigate('/Auth')
-        }else{
-            if(Answer.trim() === ''){
-                toast.error("Enter an answer before submitting")
-            }else{
-                dispatch(postAnswer({id, noOfAnswers: answerLength+1, answerBody: Answer, userAnswered: User.result.name, userId: User?.result?._id}, navigate))
->>>>>>> 2f513baaf56cd5488e087c3d0b910b9b928b7e5c
                 e.target.reset();
             }
         }
@@ -65,7 +50,6 @@ const QuestionDetails = () => {
     const handleDownVote = () => {
         dispatch(voteQuestion(id, 'downVote', User.result._id))
     }
-<<<<<<< HEAD
 
     return (
         <div className='question-details-page'>
@@ -84,45 +68,6 @@ const QuestionDetails = () => {
                                                 <img src={upvote} alt="" className='material-icons-like' onClick={handleUpVote} />
                                                 <p>{question.upVote.length - question.downVote.length}</p>
                                                 <img src={downvote} className='material-icons-unlike' alt="downvoteButton" onClick={handleDownVote} ></img>
-=======
-    
-  return (
-    <div className='question-details-page'>
-        {
-            questionList.data===null?
-            <h1>Loading...</h1>:
-            <>
-                {
-                    
-                    questionList.data.filter(question => question._id===id).map(question => (
-                        <div key={question._id}>
-                            <section className='question-details-container'> 
-                                <h1>{question.questionTitle}</h1>
-                                <div className='question-details-container-2'>
-                                    <div className="question-votes">
-                                        <img src={upvote} alt="" className='material-icons-like' onClick={handleUpVote} />
-                                        <p>{question.upVote.length-question.downVote.length}</p>
-                                        <img src={downvote} className='material-icons-unlike' alt="downvoteButton" onClick={handleDownVote} ></img>
-                                    </div>
-                                    <div style={{width: '100%'}}>
-                                        <p className='question-body'>{question.questionBody}</p>
-                                        <div className='question-details-tags'>
-                                            {question?.questionTags?.map((tag)=> (
-                                                <Link key={tag._id} to={`/Tags/${tag._id}`}>
-                                            <p >{tag.tagName}</p></Link>
-                                            ))}
-                                        </div>
-                                        <div className="question-actions-user">
-                                            <div>
-                                                <CopyToClipboard text={url}>
-                                                    <button type='button' onClick={ ()=>{toast.success(`Copied url: ${url}`)}}>Share</button>
-                                                </CopyToClipboard>
-                                                {
-                                                    (User?.result?._id === question?.userId || User?.result?.role==='admin') && (
-                                                        <button type='button' onClick={handleDelete} >Delete</button>
-                                                    )
-                                                }
->>>>>>> 2f513baaf56cd5488e087c3d0b910b9b928b7e5c
                                             </div>
                                             <div style={{ width: '100%' }}>
                                                 <p className='question-body'>{question.questionBody}</p>
@@ -150,11 +95,11 @@ const QuestionDetails = () => {
                                                                 question.userId.role === "student" &&
                                                                 <Avatar backgroundColor="white" px="2px" py="2px">{question.userPosted.charAt(0).toUpperCase()}</Avatar>
                                                             }{
-                                                                question.userId.role === "instructor" &&
-                                                                <Avatar backgroundColor="purple" px="2px" py="2px"><FaChalkboardTeacher /></Avatar>
-                                                            }{
                                                                 question.userId.role === "admin" &&
                                                                 <Avatar backgroundColor="purple" px="2px" py="2px"><FaUserTie /></Avatar>
+                                                            }{
+                                                                question.userId.role === "instructor" &&
+                                                                <Avatar backgroundColor="green" px="2px" py="2px"><FaChalkboardTeacher /></Avatar>
                                                             }
                                                             
                                                             <div>

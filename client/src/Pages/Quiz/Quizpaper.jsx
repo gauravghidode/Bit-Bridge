@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import toast from "react-hot-toast"
+import axios from 'axios';
+import {MdDelete} from "react-icons/md"
+
 import './Quiz.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
+import { backend_URL } from '../../api/url';
 
 const Quizpaper = ({quizArray, quiz, index}) => {
     // console.log(quiz);

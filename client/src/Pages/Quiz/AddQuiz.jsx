@@ -4,13 +4,8 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createQuiz } from "../../actions/quiz";
-<<<<<<< HEAD
-// import "./AddQuiz.css";
-
-=======
 import "./AddQuiz.css";
 import toast from 'react-hot-toast'
->>>>>>> 2f513baaf56cd5488e087c3d0b910b9b928b7e5c
 const answers = [];
 
 const AddQuiz = () => {

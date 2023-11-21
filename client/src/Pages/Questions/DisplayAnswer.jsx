@@ -4,12 +4,9 @@ import Avatar from '../../components/Avatar/Avatar'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import moment from 'moment'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
-<<<<<<< HEAD
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { FaUserTie } from "react-icons/fa6";
-=======
 import {toast} from 'react-hot-toast'
->>>>>>> 2f513baaf56cd5488e087c3d0b910b9b928b7e5c
 
 import {deleteAnswer} from '../../actions/question.js'
 
@@ -49,7 +46,7 @@ const DisplayAns = ({question}) => {
                         <Avatar backgroundColor="white" px="2px" py="2px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
                     }{
                       ans.userId.role==="instructor" &&
-                        <Avatar backgroundColor="purple" px="2px" py="2px"><FaChalkboardTeacher /></Avatar>
+                        <Avatar backgroundColor="green" px="2px" py="2px"><FaChalkboardTeacher /></Avatar>
                     }{
                       ans.userId.role==="admin" &&
                         <Avatar backgroundColor="purple" px="2px" py="2px"><FaUserTie /></Avatar>
