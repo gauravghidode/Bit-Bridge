@@ -21,7 +21,21 @@ const userSchema = mongoose.Schema({
                 type: Number
             }
         }
-    ]
+    ],
+    token: {
+        type: String,
+    },
+    resetPasswordExpires: {
+        type: Date,
+    },
+    active: {
+        type: Boolean,
+        default: true,
+    },
+    approved: {
+        type: Boolean,
+        default: true,
+    },
 })
 
 export default mongoose.model("User", userSchema);
