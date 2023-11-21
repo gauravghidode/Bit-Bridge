@@ -4,6 +4,7 @@ import './Quiz.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
+import toast from 'react-hot-toast'
 
 const Quizpaper = ({quiz, index}) => {
     // console.log(quiz);
@@ -14,7 +15,7 @@ const Quizpaper = ({quiz, index}) => {
 
       function redirect(){
         if(User===null){
-            alert("Please login to take quiz");
+            toast.error("Please login to take quiz");
             navigate('/Auth');
         }
         else{

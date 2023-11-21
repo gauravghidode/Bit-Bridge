@@ -39,7 +39,7 @@ const QuizResult = () => {
 
     // function redirectQuizResult(quizId){
     //     if(User===null){
-    //         alert("Please login to view all results");
+    //         toast.error("Please login to view all results");
     //         navigate('/Auth');
     //     }
     //     else{

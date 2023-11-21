@@ -4,6 +4,7 @@ import Avatar from '../../components/Avatar/Avatar'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import moment from 'moment'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
+import {toast} from 'react-hot-toast'
 
 import {deleteAnswer} from '../../actions/question.js'
 
@@ -27,7 +28,7 @@ const DisplayAns = ({question}) => {
             <div className='question-actions-user'>
                 <div>
                 <CopyToClipboard text={url}>
-                  <button type='button' onClick={ ()=>{alert(`Copied url: ${url}`)}}>Share</button>
+                  <button type='button' onClick={ ()=>{toast.success(`Copied url: ${url}`)}}>Share</button>
                 </CopyToClipboard>
                 {
                   (User?.result?._id === ans?.userId  || User?.result?.role==='admin') && (

@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import * as api from '../api'
 import { setCurrentUser } from './currentUser';
 
@@ -19,7 +20,7 @@ export const logIn = (authData, navigate)=> async (dispatch) =>{
 
         navigate('/');
     } catch (error) {
-        alert("Invalid Credentials...")
+        toast.error("Invalid Credentials...")
         console.log(error);
     }
 }

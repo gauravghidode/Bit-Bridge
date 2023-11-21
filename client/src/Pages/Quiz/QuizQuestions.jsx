@@ -52,7 +52,7 @@ const QuizQuestions = () => {
         setsubmited(true);
         console.log(submited);
         
-        alert("Quiz has been submitted");
+        toast.success("Quiz has been submitted");
         dispatch(submitQuiz({ansArray, userid, quizid}, navigate('/Quiz')));
         // e.preventDefault();
       }
@@ -102,7 +102,7 @@ const QuizQuestions = () => {
                 console.log("lost focus");
                 // handleSubmit(ev);
                 // console.log(flag);
-                // alert("Your quiz has been auto submitted");
+                // toast.success("Your quiz has been auto submitted");
                 // navigate('/Quiz');
               }
             }

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { askQuestion } from '../../actions/question.js'
 import './AskQuestion.css'
+import toast from 'react-hot-toast'
 
 const AskQuestion = () => {
     const [selectedSubject, setSubject] = useState(undefined);
@@ -100,13 +101,13 @@ const AskQuestion = () => {
             // console.log(questionTitle, questionBody, questionTags);
         }
         else if(questionTitle===undefined){
-          alert("Please enter question title to submit");
+          toast.error("Please enter question title to submit");
         }
         else if(questionBody===undefined){
-          alert("Please enter question body to submit");
+          toast.error("Please enter question body to submit");
         }
         else
-            alert("Please Enter tags and subject to submit");
+        toast.error("Please Enter tags and subject to submit");
 
     }
 
