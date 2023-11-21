@@ -4,9 +4,11 @@ import {useSelector} from 'react-redux'
 import './HomeMainbar.css';
 import QuestionList from './QuestionList';
 import toast from 'react-hot-toast';
+import { filteredQuestion } from '../Navbar/Searchbar';
 
 const HomeMainbar = () => {
 
+    console.log(filteredQuestion);
     const user=1;
     const navigate=useNavigate()
     
@@ -36,7 +38,7 @@ const HomeMainbar = () => {
                 questionList.data===null?
                 <h1>Loading...</h1>:
                 <div>
-                    <p>{questionList.data.length} questions </p>
+                    <p>{filteredQuestion.length} questions </p>
                     <QuestionList questionList={questionList.data}></QuestionList>
                 </div>
             }

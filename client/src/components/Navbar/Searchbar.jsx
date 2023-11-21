@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+const filteredQuestion = new Set(); 
+
 const Searchbar = () => {
   const location = useLocation();
   const [searchText, setSearchText] = useState("");
@@ -18,7 +20,6 @@ const Searchbar = () => {
   const questions = useSelector((state) => state.questionsReducer);
   const questionList = questions?.data
   console.log(questionList);
-  // const temp = []
 
   const unnecessaryWords = [
     "a",
@@ -40,7 +41,7 @@ const Searchbar = () => {
     (word) => !unnecessaryWords?.includes(word)
   );
 
-  const filteredQuestion = new Set();
+  
 
   for(let q = 0; q < questionList?.length; q++){
     necessaryWords?.forEach(word => {
@@ -66,7 +67,7 @@ const Searchbar = () => {
     })
   }
 
-  console.log(filteredQuestion)
+  
 
   return (
     <span>
@@ -89,3 +90,4 @@ const Searchbar = () => {
 };
 
 export default Searchbar;
+export {filteredQuestion};

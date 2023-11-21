@@ -15,6 +15,7 @@ const Auth = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmedPassword, setConfirmedPassword] = useState("");
 
 
   const dispatch = useDispatch();
@@ -86,6 +87,12 @@ const Auth = () => {
               <h4>Password</h4>
             </div>
             <input type="password" name='password' placeholder='Enter password' id='password' onChange={(e) => { setPassword(e.target.value) }} />
+          </label>
+          <label htmlFor="confirm-password">
+            <div>
+              <h4>Password</h4>
+            </div>
+            <input type="password" name='password' placeholder='Enter password' id='confirm-password' onChange={(e) => { setConfirmedPassword(e.target.value) }} />
             {isSignup && <p style={{ color: "#666767", fontSize: "13px" }}>Password must contain atleast 8 characters,<br />including atleast 1 number and 1 letter.</p>}
           </label>
           {!isSignup && <p style={{ color: '#007ac6' }}>Forgot password?</p>}
