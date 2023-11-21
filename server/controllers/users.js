@@ -3,12 +3,13 @@ import User from '../models/auth.js'
 
 export const getAllUsers = async (req, res) =>{
     try {
-        const allUsers = await User.find();
-        const allUsersDetails = []
-        allUsers.forEach((users) =>{
-            allUsersDetails.push({_id: users._id, name: users.name, users: users.about, tags: users.tags, joinedOn: users.joinedOn})
+        const allUsers = await User.find({},{
+            name: true,
+            email: true,
+            joinedOn: true,
+            role: true,
         })
-        res.status(200).json(allUsersDetails);
+        res.status(200).json(allUsers);
     } catch (error) {
         res.status(404).json({message: error.message });
     }

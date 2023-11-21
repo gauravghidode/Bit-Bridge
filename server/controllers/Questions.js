@@ -58,7 +58,13 @@ export const getAllQuestion = async (req, res) => {
         const questionList = await Questions.find({}).populate({
             path: "questionTags",
             select:{tagName: true, tagDescription: true}
-        });
+        }).populate({
+            path:"userId",
+            select:{role:true}
+        }).populate({
+            path:"answer.userId",
+            select:{role:true}
+        });;
         res.status(200).json(questionList);
     } catch (error) {
         res.status(404).json({ message: error.message });
