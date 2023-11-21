@@ -56,7 +56,6 @@ const Auth = () => {
     else {
       try {
         dispatch(logIn({ email, password }, navigate))
-        toast.success("Logged In successfully.")
       } catch (e) {
         toast.error("Invalid credentials");
       }

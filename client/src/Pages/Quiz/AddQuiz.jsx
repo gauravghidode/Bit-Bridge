@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createQuiz } from "../../actions/quiz";
 import "./AddQuiz.css";
-
+import toast from 'react-hot-toast'
 const answers = [];
 
 const AddQuiz = () => {
