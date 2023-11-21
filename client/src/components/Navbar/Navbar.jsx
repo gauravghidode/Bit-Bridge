@@ -52,7 +52,7 @@ function Navbar(){
                     User===null?
                     <Link to='/Auth' className='nav-item nav-links'>Login</Link>:
                     <>
-                        <Avatar backgroundColor="white" px="2px" py="2px"><Link to={`/Users/${User?.result._id}`} style={{color:"black", textDecoration:"none"}}>{User.result.name.charAt(0).toUpperCase()}</Link></Avatar>
+                        <Avatar role={User?.result?.role} backgroundColor="white" px="2px" py="2px"><Link to={`/Users/${User?.result._id}`} style={{color:"black", textDecoration:"none"}}>{User.result.name.charAt(0).toUpperCase()}</Link></Avatar>
 
                         <button className="nav-item nav-links" onClick={handleLogOut}>Logout</button>
                     </>

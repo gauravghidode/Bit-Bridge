@@ -4,6 +4,8 @@ import Avatar from '../../components/Avatar/Avatar'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import moment from 'moment'
 import {CopyToClipboard} from 'react-copy-to-clipboard'
+import { FaChalkboardTeacher } from "react-icons/fa";
+import { FaUserTie } from "react-icons/fa6";
 
 import {deleteAnswer} from '../../actions/question.js'
 
@@ -37,8 +39,18 @@ const DisplayAns = ({question}) => {
                 </div>
                 <div>
                   <p>answered {moment(ans.answeredOn).fromNow()}</p>
-                  <Link to={`/Users/${ans.userId}`} className='user-link' style={{color: '#white'}}>
-                      <Avatar backgroundColor="white" px="2px" py="2px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
+                  <Link to={`/Users/${ans.userId._id}`} className='user-link' style={{color: '#white'}}>
+                    {
+                      ans.userId.role==="student" &&
+                        <Avatar backgroundColor="white" px="2px" py="2px">{ans.userAnswered.charAt(0).toUpperCase()}</Avatar>
+                    }{
+                      ans.userId.role==="instructor" &&
+                        <Avatar backgroundColor="purple" px="2px" py="2px"><FaChalkboardTeacher /></Avatar>
+                    }{
+                      ans.userId.role==="admin" &&
+                        <Avatar backgroundColor="purple" px="2px" py="2px"><FaUserTie /></Avatar>
+                    }
+                      
                       <div>
                           {ans.userAnswered}
                       </div>

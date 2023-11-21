@@ -36,7 +36,7 @@ const Quiz = () => {
                 <div className="quizes-container">
                   {
                       quizes?.map((quiz, index)=>(
-                          <Quizpaper quiz={quiz} index={index+1} key={quiz?._id}></Quizpaper>
+                          <Quizpaper quizArray={quizes} quiz={quiz} index={index+1} key={quiz?._id}></Quizpaper>
                       ))
                   }
                   

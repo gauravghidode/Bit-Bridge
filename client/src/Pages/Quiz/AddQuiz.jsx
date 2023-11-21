@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createQuiz } from "../../actions/quiz";
-import "./AddQuiz.css";
+// import "./AddQuiz.css";
 
 const answers = [];
 
@@ -90,7 +90,7 @@ const AddQuiz = () => {
     <div className="home-container-1">
       <LeftSidebar></LeftSidebar>
       <div className="home-container-2">
-        <div className="main-bar-page">
+        <div className="main-bar">
           <div id="add-quiz-header">
             <h1>Create your own quiz</h1>
           </div>

@@ -101,6 +101,12 @@ textarea{
     display: flex;
 }
 
+.delete-quiz{
+    margin-left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
 
 
 @media screen and (max-width: 600px) {

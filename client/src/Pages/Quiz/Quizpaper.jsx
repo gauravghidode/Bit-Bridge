@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './Quiz.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
+import { MdDelete } from "react-icons/md";
+import axios from 'axios';
+import { backend_URL } from '../../api/url';
 
-const Quizpaper = ({quiz, index}) => {
+
+const Quizpaper = ({quizArray, quiz, index}) => {
     // console.log(quiz);
     const navigate=useNavigate();
     const location = useLocation();
@@ -21,6 +25,13 @@ const Quizpaper = ({quiz, index}) => {
             navigate(`/Quiz/${quiz._id}`);
         }
       }
+
+      async function deleteQuiz(quizId){
+        const a = await axios.get(`${backend_URL}/quiz/deleteQuiz/${quizId}`);
+        console.log(a);
+        quizArray.splice(index);
+        window.location.reload();
+      }
       
 
   return (
@@ -35,8 +46,11 @@ const Quizpaper = ({quiz, index}) => {
                 <p>Created by {quiz?.authorName?.name}</p>
             </div> 
         </div> 
-        {
             <button className='inner-grad-btn' onClick={redirect}>Take Quiz</button> 
+        {
+            
+            (User?.result?.role==="instructor" || User?.result?.role==="admin")&&
+            <MdDelete className='delete-quiz' onClick={()=>deleteQuiz(quiz._id)}/>
         }  
         
     </div>
