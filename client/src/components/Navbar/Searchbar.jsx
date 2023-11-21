@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+let filteredQuestionArray = []
+
 const Searchbar = () => {
   const location = useLocation();
   const [searchText, setSearchText] = useState("");
@@ -66,7 +68,9 @@ const Searchbar = () => {
     })
   }
 
-  console.log(filteredQuestion)
+  filteredQuestionArray = Array.from(filteredQuestion)
+
+  console.log(filteredQuestionArray)
 
   return (
     <span>
