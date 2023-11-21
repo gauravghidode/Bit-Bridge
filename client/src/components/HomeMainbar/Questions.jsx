@@ -11,9 +11,9 @@ const Questions = ({question}) => {
                 <div className='display-tags'>
                     {
                         question?.questionTags?.map((tag) => (
-                            <Link to={`/Tags/${tag._id}`}>
-                                <p className="all-tags" key={tag._id} >{tag.tagName}</p>
-                            </Link>
+                            // <Link to={`/Tags/${tag._id}`}>
+                                <p className="all-tags" key={tag._id} onClick={() => {window.location.href="/Tags/"+tag._id}}>{tag.tagName}</p>
+                            // </Link>
                         ))
                     }
                 </div>
