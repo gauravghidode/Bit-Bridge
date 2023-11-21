@@ -3,6 +3,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux'
 import './HomeMainbar.css';
 import QuestionList from './QuestionList';
+import toast from 'react-hot-toast';
 
 const HomeMainbar = () => {
 
@@ -11,7 +12,7 @@ const HomeMainbar = () => {
     
     const checkAuth=()=>{
         if(user==null){
-            alert("Login or Signup to ask a question");
+            toast.error("Login or Signup to ask a question");
             navigate('/Auth');
         }
         else{

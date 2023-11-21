@@ -4,8 +4,13 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { createQuiz } from "../../actions/quiz";
+<<<<<<< HEAD
 // import "./AddQuiz.css";
 
+=======
+import "./AddQuiz.css";
+import toast from 'react-hot-toast'
+>>>>>>> 2f513baaf56cd5488e087c3d0b910b9b928b7e5c
 const answers = [];
 
 const AddQuiz = () => {
@@ -25,7 +30,7 @@ const AddQuiz = () => {
   function addQuestion(e) {
     e.preventDefault();
     if (document.getElementById("questionName").value === "") {
-      alert("Please add question title name");
+      toast.error("Please add question title name");
     } else {
       console.log(document.getElementById("quizName"));
       obj = {
@@ -47,7 +52,7 @@ const AddQuiz = () => {
 
   function addOption() {
     if (document.getElementById("option").value === "") {
-      alert("Add some options please");
+      toast.error("Add some options please");
     } else {
       temp.push(document.getElementById("option").value);
       document.getElementById("option").value = "";
@@ -75,10 +80,10 @@ const AddQuiz = () => {
         navigate("/Quiz")
       );
     } else if(currentquiz.length === 0){
-      alert("Please add at least one question.")
+      toast.error("Please add at least one question.")
     }
      else {
-      alert("Answer all the questions");
+      toast.error("Answer all the questions");
     }
   }
 

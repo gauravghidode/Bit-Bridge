@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
+import toast from 'react-hot-toast'
 import LeftSidebar from '../../components/LeftSidebar/LeftSidebar'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux/es/hooks/useSelector'
@@ -52,7 +53,7 @@ const QuizQuestions = () => {
         setsubmited(true);
         console.log(submited);
         
-        alert("Quiz has been submitted");
+        toast.success("Quiz has been submitted");
         dispatch(submitQuiz({ansArray, userid, quizid}, navigate('/Quiz')));
         // e.preventDefault();
       }
@@ -102,7 +103,7 @@ const QuizQuestions = () => {
                 console.log("lost focus");
                 // handleSubmit(ev);
                 // console.log(flag);
-                // alert("Your quiz has been auto submitted");
+                // toast.success("Your quiz has been auto submitted");
                 // navigate('/Quiz');
               }
             }

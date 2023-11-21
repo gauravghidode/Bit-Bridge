@@ -6,6 +6,7 @@ import './Auth.css';
 import icon from '../../assets/logo.png'
 import AboutAuth from './AboutAuth';
 import { signUp, logIn } from '../../actions/auth'
+import toast from 'react-hot-toast';
 
 
 const Auth = () => {
@@ -36,19 +37,19 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email || !password) {
-      alert("Enter Email and Password.");
+      toast.error("Enter Email and Password.");
     }
     let pass = [...password]
     // console.log(pass);
     if (isSignup) {
       if(!email.endsWith('@nitj.ac.in')){
-        alert("Invalid email address, enter your institute email to continue")
+        toast.error("Invalid email address, enter your institute email to continue")
       }
       else if (password.length < 8 || !check(pass)){
-        alert("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
+        toast.error("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
       }
       else if (!name) {
-        alert("Enter your name to continue");
+        toast.error("Enter your name to continue");
       } else
         dispatch(signUp({ name, email, password }, navigate))
     }
@@ -56,7 +57,7 @@ const Auth = () => {
       try {
         dispatch(logIn({ email, password }, navigate))
       } catch (e) {
-        alert("Invalid credentials");
+        toast.error("Invalid credentials");
       }
 
     }

@@ -4,10 +4,6 @@ import './Quiz.css'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 import { useLocation } from 'react-router-dom';
-import { MdDelete } from "react-icons/md";
-import axios from 'axios';
-import { backend_URL } from '../../api/url';
-
 
 const Quizpaper = ({quizArray, quiz, index}) => {
     // console.log(quiz);
@@ -18,7 +14,7 @@ const Quizpaper = ({quizArray, quiz, index}) => {
 
       function redirect(){
         if(User===null){
-            alert("Please login to take quiz");
+            toast.error("Please login to take quiz");
             navigate('/Auth');
         }
         else{
