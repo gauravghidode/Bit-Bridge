@@ -6,7 +6,7 @@ export const AskQuestion = async (req, res) => {
     try {
         const postQuestionData = req.body;
         // console.log(postQuestionData);
-        if(!postQuestionData.questionTitle || !postQuestionData.questionBody || !postQuestionData.userPosted || !postQuestionData.userId || !postQuestionData.selectedSubject){
+        if(!postQuestionData.questionTitle || !postQuestionData.questionBody || !postQuestionData.userId || !postQuestionData.selectedSubject){
             return res.status(500).json({
                 success: false,
                 message:"All fields are required."
@@ -14,7 +14,6 @@ export const AskQuestion = async (req, res) => {
         }
         const postQuestion = await Questions.create({questionTitle:postQuestionData.questionTitle,
             questionBody: postQuestionData.questionBody,
-            userPosted: postQuestionData.userPosted,
             userId: postQuestionData.userId,
             selectedSubject: postQuestionData.selectedSubject
         })
@@ -60,10 +59,10 @@ export const getAllQuestion = async (req, res) => {
             select:{tagName: true, tagDescription: true}
         }).populate({
             path:"userId",
-            select:{role:true}
+            select:{role:true, name: true}
         }).populate({
             path:"answer.userId",
-            select:{role:true}
+            select:{role:true, name: true}
         });;
         res.status(200).json(questionList);
     } catch (error) {

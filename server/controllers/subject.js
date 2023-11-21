@@ -53,7 +53,19 @@ export const getSubjectQuestion = async (req, res) =>{
             populate:{
                 path: "questionTags"
             }
-        });
+        }).populate({
+            path:"question",
+            populate:{
+                path: "userId",
+                select:{role:true, name: true}
+            }
+        }).populate({
+            path:"question",
+            populate:{
+                path: "answer.userId",
+                select:{role:true, name: true}
+            }
+        })
         return res.status(200).json({
             success: true,
             message: "fetched Successfully.",

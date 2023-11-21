@@ -93,7 +93,7 @@ const QuestionDetails = () => {
                                                         <Link to={`/Users/${question.userId._id}`} className='user-link'>
                                                             {
                                                                 question.userId.role === "student" &&
-                                                                <Avatar backgroundColor="white" px="2px" py="2px">{question.userPosted.charAt(0).toUpperCase()}</Avatar>
+                                                                <Avatar backgroundColor="white" px="2px" py="2px">{question.userId.name.charAt(0).toUpperCase()}</Avatar>
                                                             }{
                                                                 question.userId.role === "admin" &&
                                                                 <Avatar backgroundColor="purple" px="2px" py="2px"><FaUserTie /></Avatar>
@@ -103,7 +103,7 @@ const QuestionDetails = () => {
                                                             }
                                                             
                                                             <div>
-                                                                {question.userPosted}
+                                                                {question.userId.name}
                                                             </div>
                                                         </Link>
                                                     </div>

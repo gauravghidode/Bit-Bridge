@@ -32,7 +32,6 @@ function Navbar(){
         }
         dispatch(setCurrentUser(JSON.parse(localStorage.getItem('Profile'))));
     },[])
-    console.log(User);
     return(
         <nav className='main-nav'>
             

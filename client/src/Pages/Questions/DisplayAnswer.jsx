@@ -19,8 +19,6 @@ const DisplayAns = ({question}) => {
   const handleDelete = (answerId, noOfAnswers)=>{
     dispatch(deleteAnswer(id, answerId, noOfAnswers-1));
   }
-  // console.log(question);
-  console.log(User);
   return (
     <div>
       {
@@ -53,7 +51,7 @@ const DisplayAns = ({question}) => {
                     }
                       
                       <div>
-                          {ans.userAnswered}
+                          {ans.userId.name}
                       </div>
                   </Link>
                 </div>

@@ -7,7 +7,6 @@ const QuestionSchema = mongoose.Schema({
     noOfAnswers: {type: Number, default: 0},
     upVote: {type: [String], default:[]},
     downVote: {type: [String], default:[]},
-    userPosted: {type: String, required: "Question must have an author"},
     userId: {type: mongoose.Schema.Types.ObjectId, ref:"User"},
     askedOn: {type: Date, default: Date.now},
     answer:[{

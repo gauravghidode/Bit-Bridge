@@ -34,7 +34,19 @@ export const getQuestionByTagName = async (req, res) =>{
         const tagQuestion = await Tag.findById(tagId).populate({
             path: "question",
             populate:{
-                path: "questionTags"
+                path: "questionTags",
+            },
+        }).populate({
+            path:"question",
+            populate:{
+                path: "userId",
+                select:{role:true, name: true}
+            }
+        }).populate({
+            path:"question",
+            populate:{
+                path: "answer.userId",
+                select:{role:true, name: true}
             }
         })
 

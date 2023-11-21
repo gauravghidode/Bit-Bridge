@@ -19,7 +19,7 @@
       const a = await axios.get(url);
       setTagsList(a?.data?.data);
       setLoading(false);
-        console.log(a?.data.data);
+        // console.log(a?.data.data);
     }
     useEffect(() => {
       fetchTags();
