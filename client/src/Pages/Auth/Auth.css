@@ -94,6 +94,17 @@
     cursor: pointer;
 }
 
+#instructor-checkbox{
+    width: min-content;
+}
+
+#designation{
+    padding: 8px;
+    margin: 20px;
+    margin-left: 0px;
+    border-radius: 3px;
+}
+
 @media screen and (max-width:730px) {
     .auth-container-1{
         display: none;
