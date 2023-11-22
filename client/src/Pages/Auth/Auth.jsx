@@ -17,7 +17,7 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [instructor, setInstructor] = useState(false);
-  const [designation, setDesignation] = useState(undefined);
+  const [designation, setDesignation] = useState("");
   const [role, setRole] = useState("student");
   const [otp, setOtp] = useState("");
   const [verify, setVerify] = useState(false);
@@ -75,6 +75,7 @@ const Auth = () => {
         dispatch(logIn({ email, password }, navigate))
       } catch (e) {
         toast.error("Invalid credentials");
+        console.log(e);
       }
 
     }
@@ -150,7 +151,7 @@ const Auth = () => {
           }
           {
             (isSignup && !verify) &&
-            <button onClick={funcVerify}>Verify Email</button>
+            <button className='auth-btn border-gradient border-gradient-purple grad-btn' onSelect={funcVerify}>Verify Email</button>
           }
           {
             isSignup && verify &&

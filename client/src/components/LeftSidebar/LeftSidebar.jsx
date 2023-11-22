@@ -3,8 +3,11 @@ import './LeftSidebar.css';
 import {NavLink} from 'react-router-dom'
 import Globe from '../../assets/globe-png-9.png'
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { MdAdminPanelSettings } from "react-icons/md";
 
 const LeftSidebar = () => {
+    const User = useSelector((state) => state.currentUserReducer);
   return (
     <label className='toggle-container'>
                 <input id='toggle-checkbox' type="checkbox" name="" />
@@ -36,6 +39,14 @@ const LeftSidebar = () => {
                     <NavLink to='/Quiz' className='side-nav-links' activeClass='active' style={{paddingLeft: "40px"}}>
                         <p>Quiz</p>
                     </NavLink>
+                    {
+                        User?.result.role==='admin' &&
+                        <NavLink to='/AdminDashboard' className='side-nav-links' activeClass='active' style={{paddingLeft: "10px"}}>
+                            <MdAdminPanelSettings style={{fontSize: "25px"}}/>
+                            <p style={{paddingLeft: "6px"}}>Admin Dashboard</p>
+                        </NavLink>
+                    }
+                    
                     
                     
                 </div>
