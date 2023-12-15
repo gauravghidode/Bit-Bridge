@@ -15,7 +15,7 @@ import { backend_URL } from '../../api/url';
 const Auth = () => {
   const urlEmail = `${backend_URL}/user/sendotp`
 
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +23,8 @@ const Auth = () => {
   const [instructor, setInstructor] = useState(false);
   const [designation, setDesignation] = useState("");
   const [role, setRole] = useState("student");
-  const [otp, setOtp] = useState("123456");
-  const [verify, setVerify] = useState(true);
+  const [otp, setOtp] = useState("");
+  const [verify, setVerify] = useState(false);
 
 
   const dispatch = useDispatch();
@@ -167,14 +167,15 @@ const Auth = () => {
           }
           {
             (isSignup && !verify) &&
-            <button className='auth-btn border-gradient border-gradient-purple grad-btn' onClick={funcVerify}>Verify Email</button>
+            <button className='auth-btn border-gradient border-gradient-purple grad-btn' onClick={funcVerify}>Sign Up</button>
           }
           {
             isSignup && verify &&
             <div>
               <label htmlFor="otp">
                 <h4>OTP</h4>
-                <input type="otp" name='otp' id='otp' placeholder='Check your email for OTP' onChange={(e) => { setOtp(e.target.value) }} />
+                <p>An OTP has been sent to {email}</p>
+                <input type="otp" name='otp' id='otp' placeholder='Enter OTP' onChange={(e) => { setOtp(e.target.value) }} />
               </label>
               {/* <OtpInput
                 value={otp}
@@ -183,7 +184,7 @@ const Auth = () => {
                 renderSeparator={<span>-</span>}
                 renderInput={(props) => <input {...props} />  }
               /> */}
-              <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>Sign Up</button>
+              <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>Submit</button>
             </div>
 
           }
