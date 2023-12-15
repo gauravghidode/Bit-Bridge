@@ -8,6 +8,8 @@ export const getAllUsers = async (req, res) =>{
             email: true,
             joinedOn: true,
             role: true,
+            about: true,
+            tags: true,
         })
         res.status(200).json(allUsers);
     } catch (error) {

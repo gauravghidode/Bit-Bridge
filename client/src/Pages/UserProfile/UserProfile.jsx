@@ -54,6 +54,7 @@ const UserProfile = () => {
                     ):(
                         <ProfileBio currentProfile={currentProfile}/>
                     )
+                    
                 }
             </>
         </section>
