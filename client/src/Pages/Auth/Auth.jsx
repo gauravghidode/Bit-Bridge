@@ -1,26 +1,30 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import OtpInput from 'react-otp-input';
 
 import './Auth.css';
 import icon from '../../assets/logo.png'
 import AboutAuth from './AboutAuth';
 import { signUp, logIn } from '../../actions/auth'
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import { backend_URL } from '../../api/url';
 
 
 const Auth = () => {
+  const urlEmail = `${backend_URL}/user/sendotp`
 
-  const [isSignup, setIsSignup] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmedPassword, setConfirmedPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [instructor, setInstructor] = useState(false);
   const [designation, setDesignation] = useState("");
   const [role, setRole] = useState("student");
-  const [otp, setOtp] = useState("");
-  const [verify, setVerify] = useState(false);
+  const [otp, setOtp] = useState("123456");
+  const [verify, setVerify] = useState(true);
 
 
   const dispatch = useDispatch();
@@ -37,7 +41,8 @@ const Auth = () => {
   }
 
   const handleSwitch = () => {
-    setIsSignup(!isSignup)
+    setIsSignup(!isSignup);
+    setVerify(false);
   }
 
   const handleSubmit = (e) => {
@@ -45,32 +50,20 @@ const Auth = () => {
     if (!email || !password) {
       toast.error("Enter Email and Password.");
     }
-    let pass = [...password]
     // console.log(pass);
-    if (isSignup) {
-      if (!email.endsWith('@nitj.ac.in')) {
-        toast.error("Invalid email address, enter your institute email to continue")
-      }
-      else if (password.length < 8 || !check(pass)) {
-        toast.error("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
-      }
-      else if (!name) {
-        toast.error("Enter your name to continue");
-      }
-      else if (password !== confirmedPassword) {
-        toast.error("Passwords do not match");
-      }
-      else if(otp === ""){
+    if (isSignup && verify) {
+
+      if (otp === "") {
         toast.error("Please enter valid OTP");
       } else if (instructor) {
-        let updatedName = designation + " " + name;
+        name = designation + " " + name;
         setRole("instructor");
-        dispatch(signUp({ updatedName, email, password, role, otp }, navigate));
+        dispatch(signUp({ name, email, password, role, otp , confirmPassword}, navigate));
       }
       else
-        dispatch(signUp({ name, email, password, role, otp }, navigate));
+        dispatch(signUp({ name, email, password, role, otp, confirmPassword }, navigate));
     }
-    else {
+    else if (!isSignup) {
       try {
         dispatch(logIn({ email, password }, navigate))
       } catch (e) {
@@ -81,8 +74,31 @@ const Auth = () => {
     }
   }
 
-  async function funcVerify() {
-    setVerify(true);
+  async function funcVerify(e) {
+    e.preventDefault();
+    let pass = [...password]
+    if (isSignup && !verify) {
+      if (!email.endsWith('@nitj.ac.in')) {
+        toast.error("Invalid email address, enter your institute email to continue")
+      }
+      else if (password.length < 8 || !check(pass)) {
+        toast.error("Password must contain atleast 8 characters, including atleast 1 number and 1 letter.");
+      }
+      else if (!name) {
+        toast.error("Enter your name to continue");
+      }
+      else if (password !== confirmPassword) {
+        toast.error("Passwords do not match");
+      }
+      else {
+        setVerify(true);
+        const { data } = await axios.post(urlEmail, {
+          email: email,
+        }
+        )
+        console.log(data)
+      }
+    }
   }
 
   return (
@@ -131,7 +147,7 @@ const Auth = () => {
                   <div>
                     <h4>Confirm Password</h4>
                   </div>
-                  <input type="password" name='password' placeholder='Enter password' id='confirm-password' onChange={(e) => { setConfirmedPassword(e.target.value) }} />
+                  <input type="password" name='password' placeholder='Enter password' id='confirm-password' onChange={(e) => { setConfirmPassword(e.target.value) }} />
                   <p style={{ color: "#666767", fontSize: "13px" }}>Password must contain atleast 8 characters,<br />including atleast 1 number and 1 letter.</p>
 
                 </label>
@@ -144,14 +160,14 @@ const Auth = () => {
                   }} />I am an instructor.</p>
                 </label>
               }
-              
+
 
               {!isSignup && <p style={{ color: '#007ac6' }}>Forgot password?</p>}
             </div>
           }
           {
             (isSignup && !verify) &&
-            <button className='auth-btn border-gradient border-gradient-purple grad-btn' onSelect={funcVerify}>Verify Email</button>
+            <button className='auth-btn border-gradient border-gradient-purple grad-btn' onClick={funcVerify}>Verify Email</button>
           }
           {
             isSignup && verify &&
@@ -160,19 +176,26 @@ const Auth = () => {
                 <h4>OTP</h4>
                 <input type="otp" name='otp' id='otp' placeholder='Check your email for OTP' onChange={(e) => { setOtp(e.target.value) }} />
               </label>
-              <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>{isSignup ? 'Sign up' : 'Login'}</button>
+              {/* <OtpInput
+                value={otp}
+                onChange={setOtp}
+                numInputs={6}
+                renderSeparator={<span>-</span>}
+                renderInput={(props) => <input {...props} />  }
+              /> */}
+              <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>Sign Up</button>
             </div>
 
           }
           {
             !isSignup &&
-            <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>{isSignup ? 'Sign up' : 'Login'}</button>
+            <button type='submit' className='auth-btn border-gradient border-gradient-purple grad-btn'>Login</button>
           }
 
         </form>
         <p>
           {isSignup ? "Already have an account?" : "Don't have an account?"}
-          <button type='button' className='handle-switch-btn ' onClick={handleSwitch}>{!isSignup ? 'Sign up' : 'Login'}</button>
+          <button type='button' className='handle-switch-btn' onClick={handleSwitch}>{!isSignup ? 'Sign up' : 'Login'}</button>
         </p>
       </div>
     </section>

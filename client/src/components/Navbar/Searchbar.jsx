@@ -31,7 +31,7 @@ const Searchbar = () => {
         />
         <span class="material-symbols-outlined search-icon" onClick={handleSearch}>
             <Link to={`/filter/${searchText}`}>
-              <i class="fa fa-search" aria-hidden="true"></i>
+              <i style={{color: "white"}} class="fa fa-search" aria-hidden="true"></i>
             </Link>
         </span>
       </form>
